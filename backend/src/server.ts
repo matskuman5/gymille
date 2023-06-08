@@ -8,8 +8,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use((req, _res, next) => {
-  const { method, originalUrl, ip } = req;
-  logger.info({ method, originalUrl, ip });
+  const { method, originalUrl } = req;
+  logger.info(method, originalUrl);
   next();
 });
 
@@ -35,5 +35,5 @@ app.post('/api/workouts', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${3000}`);
+  logger.info(`Server listening on port ${3000}`);
 });
