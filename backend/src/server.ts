@@ -2,6 +2,8 @@ import express from 'express';
 import { Workout } from './types';
 
 const app = express();
+app.use(express.json());
+
 const PORT = 3000;
 
 let workouts: Workout[] = [
@@ -16,6 +18,11 @@ app.get('/', (_req, res) => {
 
 app.get('/api/workouts', (_req, res) => {
   res.send(workouts);
+});
+
+app.post('/api/workouts', (req, res) => {
+  workouts.push(req.body);
+  res.send('workout added successfully');
 });
 
 app.listen(PORT, () => {
