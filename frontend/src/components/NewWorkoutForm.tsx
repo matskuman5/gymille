@@ -1,12 +1,21 @@
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import { Workout } from '../types';
+import axios from 'axios';
 
 const NewWorkoutForm = () => {
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
 
   const submitWorkout = () => {
-    console.log('sending', date, notes);
+    const workoutToSend: Workout = {
+      date: date,
+      notes: notes,
+    };
+    console.log('attempting to send', workoutToSend);
+    axios
+      .post('http://localhost:3000/api/workouts', workoutToSend)
+      .then((res) => console.log(res));
   };
 
   return (
