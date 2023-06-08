@@ -3,8 +3,24 @@ import cors from 'cors';
 import { Workout } from './types';
 
 const app = express();
+const bunyan = require('bunyan');
+const prettystream = require('bunyan-prettystream');
 app.use(express.json());
 app.use(cors());
+
+const prettyStream = new prettystream();
+prettyStream.pipe(process.stdout);
+
+const logger = bunyan.createLogger({
+  name: 'gymille-backend',
+  stream: prettyStream,
+});
+
+app.use((req, _res, next) => {
+  const { method, originalUrl, ip } = req;
+  logger.info({ method, originalUrl, ip });
+  next();
+});
 
 const PORT = 3000;
 
