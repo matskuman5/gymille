@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Session } from '../types';
 
-const WorkoutList = () => {
+const SessionList = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const WorkoutList = () => {
 
   return (
     <div>
-      <h2>Past workouts:</h2>
+      <h2>Past workout sessions:</h2>
       <ul>
         {sessions.map((session) => {
           return (
@@ -41,4 +41,4 @@ const WorkoutList = () => {
   );
 };
 
-export default WorkoutList;
+export default SessionList;

@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import NewSessionForm from './components/NewSessionForm';
-import WorkoutList from './components/WorkoutList';
+import SessionList from './components/SessionList';
 
 const App = () => {
   return (
@@ -11,13 +11,13 @@ const App = () => {
             <Link to="/">New Session</Link>
           </li>
           <li>
-            <Link to="/workouts">Workouts</Link>
+            <Link to="/sessions">Sessions</Link>
           </li>
         </ul>
       </nav>
       <Routes>
         <Route path="/" element={<NewSessionForm />}></Route>
-        <Route path="/workouts" element={<WorkoutList />}></Route>
+        <Route path="/sessions" element={<SessionList />}></Route>
       </Routes>
     </>
   );
