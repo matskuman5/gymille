@@ -1,4 +1,3 @@
-import ExerciseForm from './components/ExerciseForm';
 import NewSessionForm from './components/NewSessionForm';
 import WorkoutList from './components/WorkoutList';
 
