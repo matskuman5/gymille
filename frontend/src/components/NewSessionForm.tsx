@@ -45,9 +45,10 @@ const NewSessionForm = () => {
       ></TextField>
       <Button onClick={newExercise}>Add Exercise</Button>
       <div>
-        {exercises.map((exercise) => (
+        {exercises.map((exercise, index) => (
           <ExerciseForm
-            index={0}
+            key={index}
+            index={index}
             updateChildData={updateExercise}
           ></ExerciseForm>
         ))}
