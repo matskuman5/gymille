@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Exercise } from '../types';
 
 interface Props {
@@ -19,12 +19,12 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    setExerciseData((prevExerciseData) => ({
-      ...prevExerciseData,
-      [name]: value,
-    }));
-    updateChildData(exerciseData, index);
+    setExerciseData({ ...exerciseData, [name]: value });
   };
+
+  useEffect(() => {
+    updateChildData(exerciseData, index);
+  }, [exerciseData]);
 
   const deleteThisExercise = () => {
     deleteExercise(index);
