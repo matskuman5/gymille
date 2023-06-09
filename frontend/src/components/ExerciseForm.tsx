@@ -38,6 +38,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         value={exerciseData.name}
         onChange={handleInputChange}
         error={!exerciseData.name}
+        helperText={!exerciseData.name ? 'Name must be non-empty' : ''}
       ></TextField>
       <TextField
         label="Sets"
@@ -46,6 +47,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         type="number"
         onChange={handleInputChange}
         error={exerciseData.sets <= 0}
+        helperText={exerciseData.sets <= 0 ? 'Sets must be at least 1' : ''}
       ></TextField>
       <TextField
         label="Reps"
@@ -54,6 +56,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         type="number"
         onChange={handleInputChange}
         error={exerciseData.reps <= 0}
+        helperText={exerciseData.reps <= 0 ? 'Reps must be at least 1' : ''}
       ></TextField>
       <TextField
         label="Weight"
@@ -62,6 +65,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         type="number"
         onChange={handleInputChange}
         error={exerciseData.weight <= 0}
+        helperText={exerciseData.weight <= 0 ? 'Weight must be at least 1' : ''}
       ></TextField>
       <TextField
         label="Notes"
