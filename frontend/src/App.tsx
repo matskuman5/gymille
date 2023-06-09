@@ -1,11 +1,12 @@
-import NewWorkoutForm from './components/NewWorkoutForm';
+import ExerciseForm from './components/ExerciseForm';
+import NewSessionForm from './components/NewSessionForm';
 import WorkoutList from './components/WorkoutList';
 
 const App = () => {
   return (
     <div>
       <h1>Gymille!</h1>
-      <NewWorkoutForm></NewWorkoutForm>
+      <NewSessionForm></NewSessionForm>
       <WorkoutList></WorkoutList>
     </div>
   );
