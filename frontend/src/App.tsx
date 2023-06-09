@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
-import NewSessionForm from './features/new-session/components/NewSessionForm';
-import SessionList from './features/session-list/components/SessionList';
+import NewSessionForm from './components/new-session/NewSessionForm';
+import SessionList from './components/session-list/SessionList';
 
 const App = () => {
   return (

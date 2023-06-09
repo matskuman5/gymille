@@ -1,10 +1,10 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import { Exercise, Session } from '../../../types';
+import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
-import postSession from '../services/sessions';
+import postSession from '../../services/sessions';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(null);

@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Exercise } from '../../../types';
+import { Exercise } from '../../types';
 
 interface Props {
   index: number;
