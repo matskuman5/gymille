@@ -1,10 +1,10 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { Exercise, Session } from '../../../types';
-import axios from 'axios';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
+import postSession from '../services/sessions';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(null);
@@ -45,8 +45,7 @@ const NewSessionForm = () => {
       date: date.toString(),
       exercises: exercises,
     };
-    console.log('attempting to send', sessionToSend);
-    axios.post('http://localhost:3000/api/sessions', sessionToSend);
+    postSession(sessionToSend);
     setDate(null);
     setExercises([]);
   };
