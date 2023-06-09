@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Session } from '../types';
+import { Session } from '../../../types';
 import SessionItem from './SessionItem';
 
 const SessionList = () => {

@@ -7,7 +7,7 @@ import {
   TableCell,
   TableBody,
 } from '@mui/material';
-import { Session } from '../types';
+import { Session } from '../../../types';
 
 interface Props {
   session: Session;

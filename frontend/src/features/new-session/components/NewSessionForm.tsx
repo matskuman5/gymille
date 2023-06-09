@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import { Exercise, Session } from '../types';
+import { Exercise, Session } from '../../../types';
 import axios from 'axios';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
