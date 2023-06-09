@@ -17,7 +17,6 @@ const ExerciseForm = ({ index, updateChildData }: Props) => {
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    console.log('poop', event.target);
     setExerciseData((prevExerciseData) => ({
       ...prevExerciseData,
       [name]: value,

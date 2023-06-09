@@ -16,6 +16,18 @@ const NewSessionForm = () => {
     });
   };
 
+  const newExercise = () => {
+    setExercises((exercises) => [
+      ...exercises,
+      {
+        name: '',
+        sets: 0,
+        reps: 0,
+        weight: 0,
+      },
+    ]);
+  };
+
   const submitSession = () => {
     const sessionToSend: Session = {
       date: date,
@@ -31,7 +43,16 @@ const NewSessionForm = () => {
         value={date}
         onChange={(event) => setDate(event.target.value)}
       ></TextField>
-      <ExerciseForm index={0} updateChildData={updateExercise}></ExerciseForm>
+      <Button onClick={newExercise}>Add Exercise</Button>
+      <div>
+        {exercises.map((exercise) => (
+          <ExerciseForm
+            index={0}
+            updateChildData={updateExercise}
+          ></ExerciseForm>
+        ))}
+      </div>
+
       <Button onClick={submitSession}>Submit</Button>
     </div>
   );
