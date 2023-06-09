@@ -1,13 +1,14 @@
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { Exercise } from '../types';
 
 interface Props {
   index: number;
   updateChildData: (e: Exercise, i: number) => void;
+  deleteExercise: (i: number) => void;
 }
 
-const ExerciseForm = ({ index, updateChildData }: Props) => {
+const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
   const [exerciseData, setExerciseData] = useState<Exercise>({
     name: '',
     sets: 0,
@@ -23,6 +24,10 @@ const ExerciseForm = ({ index, updateChildData }: Props) => {
       [name]: value,
     }));
     updateChildData(exerciseData, index);
+  };
+
+  const deleteThisExercise = () => {
+    deleteExercise(index);
   };
 
   return (
@@ -60,6 +65,7 @@ const ExerciseForm = ({ index, updateChildData }: Props) => {
         value={exerciseData.notes}
         onChange={handleInputChange}
       ></TextField>
+      <Button onClick={deleteThisExercise}>Delete</Button>
     </div>
   );
 };

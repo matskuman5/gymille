@@ -28,6 +28,12 @@ const NewSessionForm = () => {
     ]);
   };
 
+  const deleteExercise = (indexToRemove: number) => {
+    setExercises((exercises) =>
+      exercises.filter((_, i) => i !== indexToRemove)
+    );
+  };
+
   const submitSession = () => {
     const sessionToSend: Session = {
       date: date,
@@ -50,6 +56,7 @@ const NewSessionForm = () => {
             key={index}
             index={index}
             updateChildData={updateExercise}
+            deleteExercise={deleteExercise}
           ></ExerciseForm>
         ))}
       </div>
