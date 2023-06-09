@@ -13,6 +13,7 @@ const ExerciseForm = ({ index, updateChildData }: Props) => {
     sets: 0,
     reps: 0,
     weight: 0,
+    notes: '',
   });
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
