@@ -40,6 +40,7 @@ const NewSessionForm = () => {
       exercises: exercises,
     };
     console.log('attempting to send', sessionToSend);
+    axios.post('http://localhost:3000/api/sessions', sessionToSend);
   };
 
   return (

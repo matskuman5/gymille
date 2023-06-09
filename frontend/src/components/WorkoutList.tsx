@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Workout } from '../types';
+import { Session } from '../types';
 
 const WorkoutList = () => {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [sessions, setSessions] = useState<Session[]>([]);
 
   useEffect(() => {
-    axios.get<Workout[]>('http://localhost:3000/api/workouts').then((res) => {
-      setWorkouts(res.data);
+    axios.get<Session[]>('http://localhost:3000/api/sessions').then((res) => {
+      setSessions(res.data);
     });
   }, []);
 
@@ -15,12 +15,23 @@ const WorkoutList = () => {
     <div>
       <h2>Past workouts:</h2>
       <ul>
-        {workouts.map((workout) => {
+        {sessions.map((session) => {
           return (
-            <li key={workout.date}>
+            <li key={session.date}>
               <div>
-                <p>Date: {workout.date}</p>
-                <p>Notes: {workout.notes}</p>
+                <h3>Date: {session.date}</h3>
+                {session.exercises.map((exercise) => {
+                  return (
+                    <div key={exercise.name}>
+                      <p>
+                        <b>{exercise.name}</b> ({exercise.bodyPart}),{' '}
+                        {exercise.sets} sets of {exercise.reps} at{' '}
+                        {exercise.weight}
+                      </p>
+                      <p>Notes: {exercise.notes}</p>
+                    </div>
+                  );
+                })}
               </div>
             </li>
           );
