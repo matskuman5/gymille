@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2023-06-01",
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "bodyPart": "Chest",
+        "sets": 3,
+        "reps": 10,
+        "weight": 135,
+        "notes": "Take it slow"
+      },
+      {
+        "name": "Squat",
+        "bodyPart": "Legs",
+        "sets": 4,
+        "reps": 8,
+        "weight": 225,
+        "notes": "Maintain proper form"
+      }
+    ]
+  },
+  {
+    "date": "2023-06-02",
+    "exercises": [
+      {
+        "name": "Shoulder Press",
+        "bodyPart": "Shoulders",
+        "sets": 3,
+        "reps": 12,
+        "weight": 95
+      },
+      {
+        "name": "Deadlift",
+        "bodyPart": "Back",
+        "sets": 3,
+        "reps": 6,
+        "weight": 275
+      }
+    ]
+  }
+]
