@@ -37,6 +37,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         name="name"
         value={exerciseData.name}
         onChange={handleInputChange}
+        error={!exerciseData.name}
       ></TextField>
       <TextField
         label="Sets"
@@ -44,6 +45,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         value={exerciseData.sets}
         type="number"
         onChange={handleInputChange}
+        error={exerciseData.sets <= 0}
       ></TextField>
       <TextField
         label="Reps"
@@ -51,6 +53,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         value={exerciseData.reps}
         type="number"
         onChange={handleInputChange}
+        error={exerciseData.reps <= 0}
       ></TextField>
       <TextField
         label="Weight"
@@ -58,6 +61,7 @@ const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
         value={exerciseData.weight}
         type="number"
         onChange={handleInputChange}
+        error={exerciseData.weight <= 0}
       ></TextField>
       <TextField
         label="Notes"

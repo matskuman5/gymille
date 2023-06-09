@@ -51,6 +51,12 @@ const NewSessionForm = () => {
     setExercises([]);
   };
 
+  const checkValidity = () => {
+    return exercises.every((exercise) => {
+      return exercise.name && exercise.sets > 0 && exercise.reps > 0;
+    });
+  };
+
   return (
     <div>
       <DatePicker
@@ -69,7 +75,9 @@ const NewSessionForm = () => {
         ))}
       </div>
 
-      <Button onClick={submitSession}>Submit</Button>
+      <Button onClick={submitSession} disabled={!checkValidity()}>
+        Submit
+      </Button>
     </div>
   );
 };
