@@ -1,11 +1,13 @@
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import { useState } from 'react';
 import { Exercise, Session } from '../types';
 import axios from 'axios';
 import ExerciseForm from './ExerciseForm';
+import { DatePicker } from '@mui/x-date-pickers';
+import { Dayjs } from 'dayjs';
 
 const NewSessionForm = () => {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState<Dayjs | null>(null);
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
   const updateExercise = (exercise: Exercise, index: number) => {
@@ -35,23 +37,26 @@ const NewSessionForm = () => {
   };
 
   const submitSession = () => {
+    if (date === null) {
+      console.error('date not valid');
+      return;
+    }
     const sessionToSend: Session = {
-      date: date,
+      date: date.toString(),
       exercises: exercises,
     };
     console.log('attempting to send', sessionToSend);
     axios.post('http://localhost:3000/api/sessions', sessionToSend);
-    setDate('');
+    setDate(null);
     setExercises([]);
   };
 
   return (
     <div>
-      <TextField
-        label="Date"
+      <DatePicker
         value={date}
-        onChange={(event) => setDate(event.target.value)}
-      ></TextField>
+        onChange={(value) => setDate(value)}
+      ></DatePicker>
       <Button onClick={newExercise}>Add Exercise</Button>
       <div>
         {exercises.map((exercise, index) => (
