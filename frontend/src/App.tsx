@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NewSessionForm from './components/new-session/NewSessionForm';
 import SessionList from './components/session-list/SessionList';
 import Header from './components/Header';
