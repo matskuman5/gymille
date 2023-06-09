@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { Workout } from './types';
+import { Session } from './types';
 import logger from './utils/logging';
 
 const app = express();
@@ -15,21 +15,17 @@ app.use((req, _res, next) => {
 
 const PORT = 3000;
 
-let workouts: Workout[] = [
-  { date: '2023-3-21', notes: 'felt like crap' },
-  { date: '2023-3-29', notes: 'improving' },
-  { date: '2023-4-1', notes: 'hurt my shoulder' },
-];
+let workouts: Session[] = [];
 
 app.get('/', (_req, res) => {
   res.send('hi');
 });
 
-app.get('/api/workouts', (_req, res) => {
+app.get('/api/sessions', (_req, res) => {
   res.send(workouts);
 });
 
-app.post('/api/workouts', (req, res) => {
+app.post('/api/sessions', (req, res) => {
   workouts.push(req.body);
   res.send('workout added successfully');
 });
