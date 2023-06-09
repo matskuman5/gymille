@@ -1,15 +1,18 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Session } from '../../types';
 import SessionItem from './SessionItem';
+import { getSessions } from '../../services/sessions';
 
 const SessionList = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
 
   useEffect(() => {
-    axios.get<Session[]>('http://localhost:3000/api/sessions').then((res) => {
-      setSessions(res.data);
-    });
+    const fetchSessions = async () => {
+      const sessionsData = await getSessions();
+      setSessions(sessionsData);
+    };
+
+    fetchSessions();
   }, []);
 
   return (
