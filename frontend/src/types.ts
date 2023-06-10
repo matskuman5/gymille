@@ -1,3 +1,7 @@
+export interface SessionTemplate {
+  exerciseTypes: ExerciseType[];
+}
+
 export interface Session {
   date: string;
   exercises: Exercise[];

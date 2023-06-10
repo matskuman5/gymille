@@ -11,6 +11,13 @@ const Header = () => {
         <Button variant="contained" component={RouterLink} to="/sessions">
           Previous Sessions
         </Button>
+        <Button
+          variant="contained"
+          component={RouterLink}
+          to="/session-templates"
+        >
+          Session Templates
+        </Button>
       </Toolbar>
     </AppBar>
   );
