@@ -7,16 +7,19 @@ interface Props {
 
 const SessionTemplateItem = ({ sessionTemplate }: Props) => {
   return (
-    <List>
-      {sessionTemplate.exerciseTypes.map((exerciseType) => {
-        const text = `${exerciseType.name}, ${exerciseType.bodyPart}`;
-        return (
-          <ListItem>
-            <ListItemText primary={text} />
-          </ListItem>
-        );
-      })}
-    </List>
+    <>
+      <h3>{sessionTemplate.name}</h3>
+      <List>
+        {sessionTemplate.exerciseTypes.map((exerciseType) => {
+          const text = `${exerciseType.name}, ${exerciseType.bodyPart}`;
+          return (
+            <ListItem>
+              <ListItemText primary={text} />
+            </ListItem>
+          );
+        })}
+      </List>
+    </>
   );
 };
 

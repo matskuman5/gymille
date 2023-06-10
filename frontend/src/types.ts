@@ -1,4 +1,5 @@
 export interface SessionTemplate {
+  name: string;
   exerciseTypes: ExerciseType[];
 }
 

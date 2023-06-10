@@ -1,5 +1,6 @@
 [
   {
+    "name": "Push",
     "exerciseTypes": [
       {
         "name": "Bench Press",
@@ -16,6 +17,7 @@
     ]
   },
   {
+    "name": "Pull",
     "exerciseTypes": [
       {
         "name": "Deadlift",
