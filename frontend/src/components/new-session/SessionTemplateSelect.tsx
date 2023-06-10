@@ -1,4 +1,4 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { getSessionTemplates } from '../../services/session-templates';
 import { Exercise, SessionTemplate } from '../../types';
