@@ -5,6 +5,7 @@ import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
+import SessionTemplateSelect from './SessionTemplateSelect';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(null);
@@ -58,6 +59,7 @@ const NewSessionForm = () => {
 
   return (
     <div>
+      <SessionTemplateSelect setExercises={setExercises} />
       <DatePicker
         value={date}
         onChange={(value) => setDate(value)}
