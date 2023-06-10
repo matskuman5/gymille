@@ -1,4 +1,12 @@
-import { ListItemText, List, ListItem, Button, TextField } from '@mui/material';
+import {
+  ListItemText,
+  List,
+  ListItem,
+  Button,
+  TextField,
+  IconButton,
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 import { SessionTemplate } from '../../types';
 import { useState } from 'react';
 
@@ -25,9 +33,9 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
   return (
     <>
       <h3>{sessionTemplate.name}</h3>
-      <Button onClick={() => setEditing(!editing)}>
-        Edit: {editing.toString()}
-      </Button>
+      <IconButton onClick={() => setEditing(!editing)}>
+        <EditIcon />
+      </IconButton>
       {editing ? (
         sessionTemplate.exerciseTypes.map((exerciseType, index) => (
           <TextField
