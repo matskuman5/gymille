@@ -24,7 +24,7 @@ const SessionTemplateList = () => {
         // TODO: replace key with uuid
         <SessionTemplateItem
           key={sessionTemplate.name}
-          sessionTemplate={sessionTemplate}
+          givenSessionTemplate={sessionTemplate}
         ></SessionTemplateItem>
       ))}
     </div>
