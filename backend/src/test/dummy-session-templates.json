@@ -1,0 +1,34 @@
+[
+  {
+    "exerciseTypes": [
+      {
+        "name": "Bench Press",
+        "bodyPart": "Chest"
+      },
+      {
+        "name": "Squat",
+        "bodyPart": "Legs"
+      },
+      {
+        "name": "Shoulder Press",
+        "bodyPart": "Shoulders"
+      }
+    ]
+  },
+  {
+    "exerciseTypes": [
+      {
+        "name": "Deadlift",
+        "bodyPart": "Back"
+      },
+      {
+        "name": "Bicep Curls",
+        "bodyPart": "Arms"
+      },
+      {
+        "name": "Lunges",
+        "bodyPart": "Legs"
+      }
+    ]
+  }
+]
