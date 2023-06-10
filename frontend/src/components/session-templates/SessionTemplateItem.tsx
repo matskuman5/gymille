@@ -13,7 +13,8 @@ const SessionTemplateItem = ({ sessionTemplate }: Props) => {
         {sessionTemplate.exerciseTypes.map((exerciseType) => {
           const text = `${exerciseType.name}, ${exerciseType.bodyPart}`;
           return (
-            <ListItem>
+            // TODO: replace key with uuid
+            <ListItem key={exerciseType.name}>
               <ListItemText primary={text} />
             </ListItem>
           );

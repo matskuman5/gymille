@@ -21,7 +21,9 @@ const SessionTemplateList = () => {
     <div>
       <h2>Session templates:</h2>
       {sessionTemplates.map((sessionTemplate) => (
+        // TODO: replace key with uuid
         <SessionTemplateItem
+          key={sessionTemplate.name}
           sessionTemplate={sessionTemplate}
         ></SessionTemplateItem>
       ))}
