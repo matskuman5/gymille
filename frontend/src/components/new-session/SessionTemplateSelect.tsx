@@ -1,4 +1,4 @@
-import { MenuItem, Select } from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { getSessionTemplates } from '../../services/session-templates';
 import { Exercise, SessionTemplate } from '../../types';
@@ -46,13 +46,16 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
   };
 
   return (
-    <Select label="Template" onChange={handleInputChange} value="">
-      {sessionTemplates.map((sessionTemplate) => (
-        <MenuItem key={sessionTemplate.name} value={sessionTemplate.name}>
-          {sessionTemplate.name}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <InputLabel>Template</InputLabel>
+      <Select onChange={handleInputChange} value="">
+        {sessionTemplates.map((sessionTemplate) => (
+          <MenuItem key={sessionTemplate.name} value={sessionTemplate.name}>
+            {sessionTemplate.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
