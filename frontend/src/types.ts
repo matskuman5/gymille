@@ -14,6 +14,7 @@ export interface ExerciseType {
 }
 
 export interface Exercise extends ExerciseType {
+  id: number;
   sets: number;
   reps: number;
   weight: number;

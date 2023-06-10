@@ -16,6 +16,7 @@ const ExerciseForm = ({
   deleteExercise,
 }: Props) => {
   const [exerciseData, setExerciseData] = useState<Exercise>({
+    id: exercise.id,
     name: exercise.name,
     sets: 0,
     reps: 0,
@@ -32,12 +33,13 @@ const ExerciseForm = ({
     updateChildData(exerciseData, index);
   }, [exerciseData]);
 
-  const deleteThisExercise = () => {
+  const deleteThisExercise = (index: number) => {
     deleteExercise(index);
   };
 
   return (
     <div>
+      <p>id: {exercise.id}</p>
       <TextField
         label="Name"
         name="name"
@@ -79,7 +81,7 @@ const ExerciseForm = ({
         value={exerciseData.notes}
         onChange={handleInputChange}
       ></TextField>
-      <Button onClick={deleteThisExercise}>Delete</Button>
+      <Button onClick={() => deleteThisExercise(exercise.id)}>Delete</Button>
     </div>
   );
 };

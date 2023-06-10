@@ -23,6 +23,7 @@ const NewSessionForm = () => {
     setExercises((exercises) => [
       ...exercises,
       {
+        id: Math.round(Math.random() * 10000),
         name: '',
         sets: 0,
         reps: 0,
@@ -32,8 +33,9 @@ const NewSessionForm = () => {
   };
 
   const deleteExercise = (indexToRemove: number) => {
+    console.log('deleting exercise', indexToRemove);
     setExercises((exercises) =>
-      exercises.filter((_, i) => i !== indexToRemove)
+      exercises.filter((exercise) => exercise.id !== indexToRemove)
     );
   };
 
@@ -68,7 +70,7 @@ const NewSessionForm = () => {
       <div>
         {exercises.map((exercise, index) => (
           <ExerciseForm
-            key={index}
+            key={exercise.id}
             index={index}
             exercise={exercise}
             updateChildData={updateExercise}
