@@ -9,11 +9,10 @@ const SessionTemplateItem = ({ sessionTemplate }: Props) => {
   return (
     <List>
       {sessionTemplate.exerciseTypes.map((exerciseType) => {
+        const text = `${exerciseType.name}, ${exerciseType.bodyPart}`;
         return (
           <ListItem>
-            <ListItemText>
-              primary="{exerciseType.name}, {exerciseType.bodyPart}"
-            </ListItemText>
+            <ListItemText primary={text} />
           </ListItem>
         );
       })}
