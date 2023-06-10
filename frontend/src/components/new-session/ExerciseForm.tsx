@@ -4,13 +4,19 @@ import { Exercise } from '../../types';
 
 interface Props {
   index: number;
+  exercise: Exercise;
   updateChildData: (e: Exercise, i: number) => void;
   deleteExercise: (i: number) => void;
 }
 
-const ExerciseForm = ({ index, updateChildData, deleteExercise }: Props) => {
+const ExerciseForm = ({
+  index,
+  exercise,
+  updateChildData,
+  deleteExercise,
+}: Props) => {
   const [exerciseData, setExerciseData] = useState<Exercise>({
-    name: '',
+    name: exercise.name,
     sets: 0,
     reps: 0,
     weight: 0,

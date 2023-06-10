@@ -70,6 +70,7 @@ const NewSessionForm = () => {
           <ExerciseForm
             key={index}
             index={index}
+            exercise={exercise}
             updateChildData={updateExercise}
             deleteExercise={deleteExercise}
           ></ExerciseForm>
