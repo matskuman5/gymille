@@ -6,6 +6,9 @@ import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
 import SessionTemplateSelect from './SessionTemplateSelect';
+import { toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(null);
@@ -41,7 +44,7 @@ const NewSessionForm = () => {
 
   const submitSession = () => {
     if (date === null) {
-      console.error('date not valid');
+      toast.error('You must pick a date!');
       return;
     }
     const sessionToSend: Session = {

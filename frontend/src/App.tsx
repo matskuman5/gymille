@@ -3,6 +3,7 @@ import NewSessionForm from './components/new-session/NewSessionForm';
 import SessionList from './components/session-list/SessionList';
 import Header from './components/Header';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           element={<SessionTemplateList />}
         ></Route>
       </Routes>
+      <ToastContainer />
     </>
   );
 };
