@@ -23,10 +23,13 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
         />
       ) : (
         <>
-          <h3>{sessionTemplate.name}</h3>
-          <IconButton onClick={() => setEditing(!editing)}>
-            <EditIcon />
-          </IconButton>
+          <h3>
+            {sessionTemplate.name}{' '}
+            <IconButton onClick={() => setEditing(!editing)}>
+              <EditIcon />
+            </IconButton>
+          </h3>
+
           <List>
             {sessionTemplate.exerciseTypes.map((exerciseType) => {
               const text: string = `${exerciseType.name}, ${exerciseType.bodyPart}`;

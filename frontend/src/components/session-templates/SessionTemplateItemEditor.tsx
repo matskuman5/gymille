@@ -56,7 +56,7 @@ const SessionTemplateItemEditor = ({
         <DoDisturbIcon />
       </IconButton>
       <TextField
-        label="name"
+        label="Template Name"
         defaultValue={sessionTemplateEditing.name}
         onChange={(event) => updateName(event?.target.value)}
       ></TextField>
