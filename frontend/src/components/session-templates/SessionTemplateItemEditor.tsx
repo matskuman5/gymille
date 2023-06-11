@@ -32,6 +32,10 @@ const SessionTemplateItemEditor = ({
     console.log(oldSessionTemplate);
   };
 
+  const updateName = (newName: string) => {
+    setSessionTemplateEditing({ ...sessionTemplateEditing, name: newName });
+  };
+
   const confirmChanges = () => {
     console.log('confirm');
     setSessionTemplate(sessionTemplateEditing);
@@ -51,6 +55,11 @@ const SessionTemplateItemEditor = ({
       <IconButton onClick={cancelChanges}>
         <DoDisturbIcon />
       </IconButton>
+      <TextField
+        label="name"
+        defaultValue={sessionTemplateEditing.name}
+        onChange={(event) => updateName(event?.target.value)}
+      ></TextField>
       {sessionTemplateEditing.exerciseTypes.map((exerciseType, index) => (
         <TextField
           key={exerciseType.name}

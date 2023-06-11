@@ -15,8 +15,6 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
 
   return (
     <>
-      <h3>{sessionTemplate.name}</h3>
-
       {editing ? (
         <SessionTemplateItemEditor
           oldSessionTemplate={sessionTemplate}
@@ -25,6 +23,7 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
         />
       ) : (
         <>
+          <h3>{sessionTemplate.name}</h3>
           <IconButton onClick={() => setEditing(!editing)}>
             <EditIcon />
           </IconButton>
