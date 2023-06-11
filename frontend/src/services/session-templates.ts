@@ -10,6 +10,16 @@ export const postSessionTemplate = async (sessionTemplate: SessionTemplate) => {
   return response.data;
 };
 
+export const updateSessionTemplate = async (
+  sessionTemplate: SessionTemplate
+) => {
+  const response = await axios.put(
+    `${apiUrl}/api/session-templates/${sessionTemplate.name}`,
+    sessionTemplate
+  );
+  return response.data;
+};
+
 export const getSessionTemplates = async () => {
   const response = await axios.get<SessionTemplate[]>(
     `${apiUrl}/api/session-templates`

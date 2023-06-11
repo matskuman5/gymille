@@ -1,14 +1,18 @@
 import { ListItemText, List, ListItem, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { SessionTemplate } from '../../types';
+import { Session, SessionTemplate } from '../../types';
 import { useState } from 'react';
 import SessionTemplateItemEditor from './SessionTemplateItemEditor';
 
 interface Props {
   givenSessionTemplate: SessionTemplate;
+  handleUpdatedSessionTemplate: (sessionTemplate: SessionTemplate) => void;
 }
 
-const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
+const SessionTemplateItem = ({
+  givenSessionTemplate,
+  handleUpdatedSessionTemplate,
+}: Props) => {
   const [editing, setEditing] = useState<Boolean>(false);
   const [sessionTemplate, setSessionTemplate] =
     useState<SessionTemplate>(givenSessionTemplate);
@@ -20,6 +24,7 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
           oldSessionTemplate={sessionTemplate}
           setSessionTemplate={setSessionTemplate}
           setEditing={setEditing}
+          handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
         />
       ) : (
         <>

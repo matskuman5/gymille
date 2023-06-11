@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { SessionTemplate } from '../../types';
 import SessionTemplateItem from './SessionTemplateItem';
-import { getSessionTemplates } from '../../services/session-templates';
+import {
+  getSessionTemplates,
+  updateSessionTemplate,
+} from '../../services/session-templates';
 import { Button } from '@mui/material';
 
 const SessionTemplateList = () => {
@@ -17,6 +20,12 @@ const SessionTemplateList = () => {
 
     fetchSessionTemplates();
   }, []);
+
+  const handleUpdatedSessionTemplate = async (
+    sessionTemplate: SessionTemplate
+  ) => {
+    await updateSessionTemplate(sessionTemplate);
+  };
 
   const newSessionTemplate = () => {
     setSessionTemplates([
@@ -44,6 +53,7 @@ const SessionTemplateList = () => {
         <div key={sessionTemplate.name}>
           <SessionTemplateItem
             givenSessionTemplate={sessionTemplate}
+            handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
           ></SessionTemplateItem>
           <Button onClick={() => deleteSessionTemplate(sessionTemplate.name)}>
             Delete

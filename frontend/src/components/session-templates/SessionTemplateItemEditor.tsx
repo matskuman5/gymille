@@ -8,12 +8,14 @@ interface Props {
   oldSessionTemplate: SessionTemplate;
   setSessionTemplate: React.Dispatch<React.SetStateAction<SessionTemplate>>;
   setEditing: React.Dispatch<React.SetStateAction<Boolean>>;
+  handleUpdatedSessionTemplate: (sessionTemplate: SessionTemplate) => void;
 }
 
 const SessionTemplateItemEditor = ({
   oldSessionTemplate,
   setSessionTemplate,
   setEditing,
+  handleUpdatedSessionTemplate,
 }: Props) => {
   const [sessionTemplateEditing, setSessionTemplateEditing] =
     useState<SessionTemplate>(oldSessionTemplate);
@@ -67,6 +69,7 @@ const SessionTemplateItemEditor = ({
 
   const confirmChanges = () => {
     setSessionTemplate(sessionTemplateEditing);
+    handleUpdatedSessionTemplate(sessionTemplateEditing);
     setEditing(false);
   };
 
