@@ -36,7 +36,7 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
     }
     const newExercises = template.exerciseTypes.map((exerciseType) => ({
       ...exerciseType,
-      id: Math.round(Math.random() * 10000),
+      id: exerciseType.id,
       sets: 0,
       reps: 0,
       weight: 0,

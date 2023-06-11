@@ -23,17 +23,17 @@
     "name": "Pull",
     "exerciseTypes": [
       {
-        "id": 1,
+        "id": 4,
         "name": "Deadlift",
         "bodyPart": "Back"
       },
       {
-        "id": 2,
+        "id": 5,
         "name": "Bicep Curls",
         "bodyPart": "Arms"
       },
       {
-        "id": 3,
+        "id": 6,
         "name": "Lunges",
         "bodyPart": "Legs"
       }
