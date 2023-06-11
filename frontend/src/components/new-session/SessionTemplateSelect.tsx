@@ -14,8 +14,10 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
 
   useEffect(() => {
     const fetchSessionTemplates = async () => {
-      const sessionsData = await getSessionTemplates();
-      setSessionTemplates(sessionsData);
+      const sessionTemplateData = await getSessionTemplates();
+      if (sessionTemplateData !== undefined) {
+        setSessionTemplates(sessionTemplateData);
+      }
     };
 
     fetchSessionTemplates();
