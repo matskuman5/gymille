@@ -1,4 +1,4 @@
-import { TextField, IconButton } from '@mui/material';
+import { TextField, IconButton, Button } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { SessionTemplate } from '../../types';
@@ -36,6 +36,30 @@ const SessionTemplateItemEditor = ({
     setSessionTemplateEditing({ ...sessionTemplateEditing, name: newName });
   };
 
+  const newExerciseType = () => {
+    setSessionTemplateEditing({
+      ...sessionTemplateEditing,
+      exerciseTypes: [
+        ...sessionTemplateEditing.exerciseTypes,
+        {
+          id: Math.round(Math.random() * 10000),
+          name: '',
+          bodyPart: '',
+        },
+      ],
+    });
+  };
+
+  const deleteExerciseType = (indexToRemove: number) => {
+    console.log('deleting exercise type', indexToRemove);
+    setSessionTemplateEditing({
+      ...sessionTemplateEditing,
+      exerciseTypes: sessionTemplateEditing.exerciseTypes.filter(
+        (exerciseType) => exerciseType.id !== indexToRemove
+      ),
+    });
+  };
+
   const confirmChanges = () => {
     console.log('confirm');
     setSessionTemplate(sessionTemplateEditing);
@@ -61,13 +85,18 @@ const SessionTemplateItemEditor = ({
         onChange={(event) => updateName(event?.target.value)}
       ></TextField>
       {sessionTemplateEditing.exerciseTypes.map((exerciseType, index) => (
-        <TextField
-          key={exerciseType.name}
-          label="name"
-          defaultValue={exerciseType.name}
-          onChange={(event) => updateExerciseType(event.target.value, index)}
-        ></TextField>
+        <div key={exerciseType.id}>
+          <TextField
+            label="name"
+            defaultValue={exerciseType.name}
+            onChange={(event) => updateExerciseType(event.target.value, index)}
+          ></TextField>
+          <Button onClick={() => deleteExerciseType(exerciseType.id)}>
+            Delete
+          </Button>
+        </div>
       ))}
+      <Button onClick={newExerciseType}>Add Exercise Type</Button>
     </>
   );
 };

@@ -3,14 +3,17 @@
     "name": "Push",
     "exerciseTypes": [
       {
+        "id": 1,
         "name": "Bench Press",
         "bodyPart": "Chest"
       },
       {
+        "id": 2,
         "name": "Squat",
         "bodyPart": "Legs"
       },
       {
+        "id": 3,
         "name": "Shoulder Press",
         "bodyPart": "Shoulders"
       }
@@ -20,14 +23,17 @@
     "name": "Pull",
     "exerciseTypes": [
       {
+        "id": 1,
         "name": "Deadlift",
         "bodyPart": "Back"
       },
       {
+        "id": 2,
         "name": "Bicep Curls",
         "bodyPart": "Arms"
       },
       {
+        "id": 3,
         "name": "Lunges",
         "bodyPart": "Legs"
       }

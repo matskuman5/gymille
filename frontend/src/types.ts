@@ -9,12 +9,12 @@ export interface Session {
 }
 
 export interface ExerciseType {
+  id: number;
   name: string;
   bodyPart?: string;
 }
 
 export interface Exercise extends ExerciseType {
-  id: number;
   sets: number;
   reps: number;
   weight: number;
