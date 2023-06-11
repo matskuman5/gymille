@@ -97,6 +97,10 @@ const SessionTemplateItemEditor = ({
       <TextField
         label="Template Name"
         defaultValue={sessionTemplateEditing.name}
+        error={!sessionTemplateEditing.name}
+        helperText={
+          !sessionTemplateEditing.name ? 'Name must be non-empty' : ''
+        }
         onChange={(event) => updateName(event?.target.value)}
       ></TextField>
       {sessionTemplateEditing.exerciseTypes.map((exerciseType, index) => (
@@ -104,6 +108,8 @@ const SessionTemplateItemEditor = ({
           <TextField
             label="name"
             defaultValue={exerciseType.name}
+            error={!exerciseType.name}
+            helperText={!exerciseType.name ? 'Name must be non-empty' : ''}
             onChange={(event) => updateExerciseType(event.target.value, index)}
           ></TextField>
           <Button onClick={() => deleteExerciseType(exerciseType.id)}>
