@@ -21,15 +21,23 @@ const SessionTemplateItemEditor = ({
 
   const updateExerciseType = (name: string, index: number) => {
     setSessionTemplateEditing((sessionTemplateEditing) => {
-      const newSessionTemplate = sessionTemplateEditing;
-      newSessionTemplate.exerciseTypes[index] = {
-        ...newSessionTemplate.exerciseTypes[index],
-        name: name,
-      };
-      return newSessionTemplate;
-    });
+      const updatedExerciseTypes = sessionTemplateEditing.exerciseTypes.map(
+        (exerciseType, i) => {
+          if (i === index) {
+            return {
+              ...exerciseType,
+              name: name,
+            };
+          }
+          return exerciseType;
+        }
+      );
 
-    console.log(oldSessionTemplate);
+      return {
+        ...sessionTemplateEditing,
+        exerciseTypes: updatedExerciseTypes,
+      };
+    });
   };
 
   const updateName = (newName: string) => {
@@ -70,9 +78,17 @@ const SessionTemplateItemEditor = ({
     setEditing(false);
   };
 
+  const checkValidity = () => {
+    return (
+      sessionTemplateEditing.exerciseTypes.every(
+        (exerciseType) => exerciseType.name
+      ) && sessionTemplateEditing.name
+    );
+  };
+
   return (
     <>
-      <IconButton onClick={confirmChanges}>
+      <IconButton onClick={confirmChanges} disabled={!checkValidity()}>
         <CheckIcon />
       </IconButton>
       <IconButton onClick={cancelChanges}>
