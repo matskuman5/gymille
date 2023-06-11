@@ -24,7 +24,7 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
       ) : (
         <>
           <h3>
-            {sessionTemplate.name}{' '}
+            {sessionTemplate.name}
             <IconButton onClick={() => setEditing(!editing)}>
               <EditIcon />
             </IconButton>
