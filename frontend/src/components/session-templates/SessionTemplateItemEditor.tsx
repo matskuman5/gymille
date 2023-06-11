@@ -44,7 +44,6 @@ const SessionTemplateItemEditor = ({
         {
           id: Math.round(Math.random() * 10000),
           name: '',
-          bodyPart: '',
         },
       ],
     });

@@ -32,7 +32,7 @@ const SessionTemplateItem = ({ givenSessionTemplate }: Props) => {
 
           <List>
             {sessionTemplate.exerciseTypes.map((exerciseType) => {
-              const text: string = `${exerciseType.name}, ${exerciseType.bodyPart}`;
+              const text: string = `${exerciseType.name}`;
               return (
                 <ListItem key={exerciseType.id}>
                   <ListItemText primary={text} />
