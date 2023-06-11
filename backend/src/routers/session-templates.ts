@@ -15,4 +15,11 @@ sessionTemplateRouter.post('/', (req, res) => {
   res.send('session template added successfully');
 });
 
+sessionTemplateRouter.put('/:name', (req, res) => {
+  sessionTemplates = sessionTemplates.map((sessionTemplate) =>
+    sessionTemplate.name === req.params.name ? req.body : sessionTemplate
+  );
+  res.send('session template updated successfully');
+});
+
 export default sessionTemplateRouter;
