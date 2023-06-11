@@ -1,6 +1,6 @@
 import { ListItemText, List, ListItem, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { Session, SessionTemplate } from '../../types';
+import { SessionTemplate } from '../../types';
 import { useState } from 'react';
 import SessionTemplateItemEditor from './SessionTemplateItemEditor';
 
