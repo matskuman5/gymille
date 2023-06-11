@@ -15,9 +15,8 @@ const SessionTemplateItemEditor = ({
   setSessionTemplate,
   setEditing,
 }: Props) => {
-  // create a deep copy to avoid editing the "main" session template in the editor
   const [sessionTemplateEditing, setSessionTemplateEditing] =
-    useState<SessionTemplate>(JSON.parse(JSON.stringify(oldSessionTemplate)));
+    useState<SessionTemplate>(oldSessionTemplate);
 
   const updateExerciseType = (name: string, index: number) => {
     setSessionTemplateEditing((sessionTemplateEditing) => {
