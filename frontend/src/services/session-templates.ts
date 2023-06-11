@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { SessionTemplate } from '../types';
 import apiUrl from '../config';
-import { showError } from '../utils/notifications';
+import { showError, showNotification } from '../utils/notifications';
 
 export const postSessionTemplate = async (sessionTemplate: SessionTemplate) => {
   try {
@@ -23,6 +23,7 @@ export const updateSessionTemplate = async (
       `${apiUrl}/api/session-templates/${sessionTemplate.name}`,
       sessionTemplate
     );
+    showNotification('Session template updated successfully.', 'success');
     return response.data;
   } catch (error) {
     showError(error);
