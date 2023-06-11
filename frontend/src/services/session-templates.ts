@@ -40,3 +40,15 @@ export const getSessionTemplates = async () => {
     showError(error);
   }
 };
+
+export const deleteSessionTemplate = async (nameToRemove: string) => {
+  try {
+    const response = await axios.delete(
+      `${apiUrl}/api/session-templates/${nameToRemove}`
+    );
+    showNotification('Session template deleted successfully.', 'success');
+    return response;
+  } catch (error) {
+    showError(error);
+  }
+};

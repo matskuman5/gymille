@@ -22,4 +22,11 @@ sessionTemplateRouter.put('/:name', (req, res) => {
   res.send('session template updated successfully');
 });
 
+sessionTemplateRouter.delete('/:name', (req, res) => {
+  sessionTemplates = sessionTemplates.filter(
+    (sessionTemplate) => sessionTemplate.name !== req.params.name
+  );
+  res.send('session template deleted successfully').status(200);
+});
+
 export default sessionTemplateRouter;

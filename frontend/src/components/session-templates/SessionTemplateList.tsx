@@ -4,6 +4,7 @@ import SessionTemplateItem from './SessionTemplateItem';
 import {
   getSessionTemplates,
   updateSessionTemplate,
+  deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
 import { Button } from '@mui/material';
 
@@ -39,12 +40,15 @@ const SessionTemplateList = () => {
     ]);
   };
 
-  const deleteSessionTemplate = (nameToRemove: string) => {
-    setSessionTemplates(
-      sessionTemplates.filter(
-        (sessionTemplate) => sessionTemplate.name !== nameToRemove
-      )
-    );
+  const deleteSessionTemplate = async (nameToRemove: string) => {
+    const response = await deleteSessionTemplateAPI(nameToRemove);
+    if (response !== undefined && response.status === 200) {
+      setSessionTemplates(
+        sessionTemplates.filter(
+          (sessionTemplate) => sessionTemplate.name !== nameToRemove
+        )
+      );
+    }
   };
 
   return (
