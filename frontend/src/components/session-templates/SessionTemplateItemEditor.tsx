@@ -57,7 +57,6 @@ const SessionTemplateItemEditor = ({
   };
 
   const deleteExerciseType = (indexToRemove: number) => {
-    console.log('deleting exercise type', indexToRemove);
     setSessionTemplateEditing({
       ...sessionTemplateEditing,
       exerciseTypes: sessionTemplateEditing.exerciseTypes.filter(
@@ -67,13 +66,11 @@ const SessionTemplateItemEditor = ({
   };
 
   const confirmChanges = () => {
-    console.log('confirm');
     setSessionTemplate(sessionTemplateEditing);
     setEditing(false);
   };
 
   const cancelChanges = () => {
-    console.log('cancel');
     setEditing(false);
   };
 
