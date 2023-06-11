@@ -18,14 +18,14 @@ const SessionTemplateItemEditor = ({
   const [sessionTemplateEditing, setSessionTemplateEditing] =
     useState<SessionTemplate>(oldSessionTemplate);
 
-  const updateExerciseType = (name: string, index: number) => {
+  const updateExerciseType = (newName: string, index: number) => {
     setSessionTemplateEditing((sessionTemplateEditing) => {
       const updatedExerciseTypes = sessionTemplateEditing.exerciseTypes.map(
         (exerciseType, i) => {
           if (i === index) {
             return {
               ...exerciseType,
-              name: name,
+              name: newName,
             };
           }
           return exerciseType;
