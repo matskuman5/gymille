@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "Push",
     "exerciseTypes": [
       {
@@ -20,6 +21,7 @@
     ]
   },
   {
+    "id": 2,
     "name": "Pull",
     "exerciseTypes": [
       {

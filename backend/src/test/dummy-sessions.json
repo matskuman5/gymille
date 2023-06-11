@@ -3,6 +3,7 @@
     "date": "2023-06-01",
     "exercises": [
       {
+        "id": 1,
         "name": "Bench Press",
         "bodyPart": "Chest",
         "sets": 3,
@@ -11,6 +12,7 @@
         "notes": "Take it slow"
       },
       {
+        "id": 2,
         "name": "Squat",
         "bodyPart": "Legs",
         "sets": 4,
@@ -24,6 +26,7 @@
     "date": "2023-06-02",
     "exercises": [
       {
+        "id": 3,
         "name": "Shoulder Press",
         "bodyPart": "Shoulders",
         "sets": 3,
@@ -31,6 +34,7 @@
         "weight": 95
       },
       {
+        "id": 4,
         "name": "Deadlift",
         "bodyPart": "Back",
         "sets": 3,
