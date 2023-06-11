@@ -21,3 +21,12 @@ export const showNotification = (message: string, type: notificationType) => {
       break;
   }
 };
+
+export const showError = (error: any) => {
+  if (error instanceof Error) {
+    toast.error(`Error: ${error.message}`);
+  } else {
+    toast.error(JSON.stringify(error));
+  }
+  console.error(error);
+};
