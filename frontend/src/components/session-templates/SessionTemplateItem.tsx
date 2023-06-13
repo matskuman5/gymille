@@ -6,9 +6,9 @@ import {
   Typography,
   Box,
   Stack,
-  Button,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { SessionTemplate } from '../../types';
 import { useState } from 'react';
 import SessionTemplateItemEditor from './SessionTemplateItemEditor';
@@ -47,6 +47,11 @@ const SessionTemplateItem = ({
             <IconButton onClick={() => setEditing(!editing)}>
               <EditIcon />
             </IconButton>
+            <IconButton
+              onClick={() => deleteSessionTemplate(sessionTemplate.name)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </Stack>
 
           <List>
@@ -62,10 +67,6 @@ const SessionTemplateItem = ({
               );
             })}
           </List>
-
-          <Button onClick={() => deleteSessionTemplate(sessionTemplate.name)}>
-            Delete
-          </Button>
         </>
       )}
     </Box>
