@@ -132,6 +132,7 @@ const SessionTemplateItemEditor = ({
             <TextField
               label="Sets (optional)"
               defaultValue={exerciseTemplate.sets}
+              type="number"
               onChange={(event) =>
                 updateExerciseTemplate(
                   {
@@ -145,6 +146,7 @@ const SessionTemplateItemEditor = ({
             <TextField
               label="Reps (optional)"
               defaultValue={exerciseTemplate.reps}
+              type="number"
               onChange={(event) =>
                 updateExerciseTemplate(
                   {
