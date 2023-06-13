@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
 import SessionTemplateSelect from './SessionTemplateSelect';
 import { showNotification } from '../../utils/notifications';
 
 const NewSessionForm = () => {
-  const [date, setDate] = useState<Dayjs | null>(null);
+  const [date, setDate] = useState<Dayjs | null>(dayjs());
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
   const updateExercise = (exercise: Exercise, index: number) => {
