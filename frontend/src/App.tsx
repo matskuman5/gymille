@@ -5,12 +5,13 @@ import Header from './components/Header';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
 import { ToastContainer } from 'react-toastify';
 import { Container, Stack } from '@mui/material';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
     <Container>
       <Stack spacing={2}>
-        <Header></Header>
+        <Header />
         <Routes>
           <Route path="/" element={<NewSessionForm />}></Route>
           <Route path="/sessions" element={<SessionList />}></Route>
@@ -19,6 +20,7 @@ const App = () => {
             element={<SessionTemplateList />}
           ></Route>
         </Routes>
+        <Footer />
       </Stack>
       <ToastContainer />
     </Container>
