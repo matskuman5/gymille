@@ -2,10 +2,10 @@ import {
   ListItemText,
   List,
   ListItem,
-  IconButton,
   Typography,
   Box,
   Stack,
+  Button,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -44,14 +44,18 @@ const SessionTemplateItem = ({
               {sessionTemplate.name}
             </Typography>
 
-            <IconButton onClick={() => setEditing(!editing)}>
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              onClick={() => deleteSessionTemplate(sessionTemplate.name)}
+            <Button
+              onClick={() => setEditing(!editing)}
+              startIcon={<EditIcon />}
             >
-              <DeleteIcon />
-            </IconButton>
+              Edit
+            </Button>
+            <Button
+              onClick={() => deleteSessionTemplate(sessionTemplate.name)}
+              startIcon={<DeleteIcon />}
+            >
+              Delete
+            </Button>
           </Stack>
 
           <List>

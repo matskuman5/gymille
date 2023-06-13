@@ -1,6 +1,7 @@
-import { TextField, IconButton, Button } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { ExerciseTemplate, SessionTemplate } from '../../types';
 import { useState } from 'react';
 
@@ -86,12 +87,16 @@ const SessionTemplateItemEditor = ({
 
   return (
     <>
-      <IconButton onClick={confirmChanges} disabled={!checkValidity()}>
-        <CheckIcon />
-      </IconButton>
-      <IconButton onClick={cancelChanges}>
-        <DoDisturbIcon />
-      </IconButton>
+      <Button
+        onClick={confirmChanges}
+        disabled={!checkValidity()}
+        startIcon={<CheckIcon />}
+      >
+        Confirm
+      </Button>
+      <Button onClick={cancelChanges} startIcon={<DoDisturbIcon />}>
+        Cancel
+      </Button>
       <TextField
         label="Template Name"
         defaultValue={sessionTemplateEditing.name}
@@ -147,13 +152,18 @@ const SessionTemplateItemEditor = ({
                 )
               }
             ></TextField>
-            <Button onClick={() => deleteExerciseTemplate(exerciseTemplate.id)}>
+            <Button
+              startIcon={<DeleteIcon />}
+              onClick={() => deleteExerciseTemplate(exerciseTemplate.id)}
+            >
               Delete
             </Button>
           </div>
         )
       )}
-      <Button onClick={newExerciseTemplate}>Add Exercise Type</Button>
+      <Button variant="outlined" onClick={newExerciseTemplate}>
+        Add Exercise Template
+      </Button>
     </>
   );
 };
