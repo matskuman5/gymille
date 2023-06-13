@@ -86,7 +86,7 @@ const SessionTemplateItemEditor = ({
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} margin={3}>
       <Stack direction="row">
         <Button
           onClick={confirmChanges}
