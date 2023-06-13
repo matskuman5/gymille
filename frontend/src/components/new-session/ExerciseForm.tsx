@@ -18,8 +18,8 @@ const ExerciseForm = ({
   const [exerciseData, setExerciseData] = useState<Exercise>({
     id: exercise.id,
     name: exercise.name,
-    sets: 0,
-    reps: 0,
+    sets: exercise.sets,
+    reps: exercise.reps,
     weight: 0,
     notes: '',
   });

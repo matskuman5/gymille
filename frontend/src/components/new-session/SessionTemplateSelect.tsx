@@ -36,14 +36,29 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
       console.error(`can't find session template ${value}}`);
       return;
     }
-    const newExercises = template.exerciseTemplates.map((exerciseTemplate) => ({
-      ...exerciseTemplate,
-      id: exerciseTemplate.id,
-      sets: 0,
-      reps: 0,
-      weight: 0,
-      notes: '',
-    }));
+
+    const newExercises = template.exerciseTemplates.map((exerciseTemplate) => {
+      if (exerciseTemplate.sets && exerciseTemplate.reps) {
+        console.log('pop', exerciseTemplate);
+        return {
+          ...exerciseTemplate,
+          id: exerciseTemplate.id,
+          sets: exerciseTemplate.sets,
+          reps: exerciseTemplate.reps,
+          weight: 0,
+          notes: '',
+        };
+      }
+      console.log('fuck');
+      return {
+        ...exerciseTemplate,
+        id: exerciseTemplate.id,
+        sets: 0,
+        reps: 0,
+        weight: 0,
+        notes: '',
+      };
+    });
     setExercises(newExercises);
   };
 
