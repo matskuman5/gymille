@@ -54,9 +54,6 @@ const SessionTemplateList = () => {
   return (
     <Container>
       <Stack spacing={2}>
-        <Typography variant="h3" fontWeight="bold">
-          Session templates:
-        </Typography>
         <Stack spacing={2} divider={<Divider flexItem />}>
           {sessionTemplates.map((sessionTemplate) => (
             // TODO: replace key with uuid
