@@ -38,23 +38,13 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
     }
 
     const newExercises = template.exerciseTemplates.map((exerciseTemplate) => {
-      if (exerciseTemplate.sets && exerciseTemplate.reps) {
-        console.log('pop', exerciseTemplate);
-        return {
-          ...exerciseTemplate,
-          id: exerciseTemplate.id,
-          sets: exerciseTemplate.sets,
-          reps: exerciseTemplate.reps,
-          weight: 0,
-          notes: '',
-        };
-      }
-      console.log('fuck');
+      const sets = exerciseTemplate.sets ? exerciseTemplate.sets : 0;
+      const reps = exerciseTemplate.reps ? exerciseTemplate.reps : 0;
       return {
         ...exerciseTemplate,
         id: exerciseTemplate.id,
-        sets: 0,
-        reps: 0,
+        sets: sets,
+        reps: reps,
         weight: 0,
         notes: '',
       };

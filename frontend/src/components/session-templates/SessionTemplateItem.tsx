@@ -38,7 +38,7 @@ const SessionTemplateItem = ({
           <List>
             {sessionTemplate.exerciseTemplates.map((exerciseTemplate) => {
               const text: string =
-                exerciseTemplate.sets && exerciseTemplate.reps
+                exerciseTemplate.sets || exerciseTemplate.reps
                   ? `${exerciseTemplate.name}, ${exerciseTemplate.sets} x ${exerciseTemplate.reps}`
                   : `${exerciseTemplate.name}`;
               return (
