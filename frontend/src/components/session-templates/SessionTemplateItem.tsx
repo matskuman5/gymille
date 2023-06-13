@@ -6,6 +6,7 @@ import {
   Typography,
   Box,
   Stack,
+  Button,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { SessionTemplate } from '../../types';
@@ -15,11 +16,13 @@ import SessionTemplateItemEditor from './SessionTemplateItemEditor';
 interface Props {
   givenSessionTemplate: SessionTemplate;
   handleUpdatedSessionTemplate: (sessionTemplate: SessionTemplate) => void;
+  deleteSessionTemplate: (nameToRemove: string) => void;
 }
 
 const SessionTemplateItem = ({
   givenSessionTemplate,
   handleUpdatedSessionTemplate,
+  deleteSessionTemplate,
 }: Props) => {
   const [editing, setEditing] = useState<Boolean>(false);
   const [sessionTemplate, setSessionTemplate] =
@@ -59,6 +62,10 @@ const SessionTemplateItem = ({
               );
             })}
           </List>
+
+          <Button onClick={() => deleteSessionTemplate(sessionTemplate.name)}>
+            Delete
+          </Button>
         </>
       )}
     </>

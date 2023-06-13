@@ -70,10 +70,10 @@ const SessionTemplateList = () => {
             <SessionTemplateItem
               givenSessionTemplate={sessionTemplate}
               handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
+              deleteSessionTemplate={() =>
+                deleteSessionTemplate(sessionTemplate.name)
+              }
             ></SessionTemplateItem>
-            <Button onClick={() => deleteSessionTemplate(sessionTemplate.name)}>
-              Delete
-            </Button>
           </Box>
         ))}
       </Stack>
