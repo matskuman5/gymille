@@ -6,7 +6,14 @@ import {
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
-import { Button } from '@mui/material';
+import {
+  Button,
+  Stack,
+  Typography,
+  Divider,
+  Box,
+  Container,
+} from '@mui/material';
 
 const SessionTemplateList = () => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
@@ -52,22 +59,27 @@ const SessionTemplateList = () => {
   };
 
   return (
-    <div>
-      <h2>Session templates:</h2>
-      {sessionTemplates.map((sessionTemplate) => (
-        // TODO: replace key with uuid
-        <div key={sessionTemplate.name}>
-          <SessionTemplateItem
-            givenSessionTemplate={sessionTemplate}
-            handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
-          ></SessionTemplateItem>
-          <Button onClick={() => deleteSessionTemplate(sessionTemplate.name)}>
-            Delete
-          </Button>
-        </div>
-      ))}
+    <Container>
+      <Typography variant="h3" fontWeight="bold" margin={2}>
+        Session templates:
+      </Typography>
+      <Stack spacing={2} divider={<Divider flexItem />}>
+        {sessionTemplates.map((sessionTemplate) => (
+          // TODO: replace key with uuid
+          <Box key={sessionTemplate.name} boxShadow={3}>
+            <SessionTemplateItem
+              givenSessionTemplate={sessionTemplate}
+              handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
+            ></SessionTemplateItem>
+            <Button onClick={() => deleteSessionTemplate(sessionTemplate.name)}>
+              Delete
+            </Button>
+          </Box>
+        ))}
+      </Stack>
+
       <Button onClick={newSessionTemplate}>Add New Session Template</Button>
-    </div>
+    </Container>
   );
 };
 

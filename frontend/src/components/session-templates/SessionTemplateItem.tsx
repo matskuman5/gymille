@@ -1,4 +1,12 @@
-import { ListItemText, List, ListItem, IconButton } from '@mui/material';
+import {
+  ListItemText,
+  List,
+  ListItem,
+  IconButton,
+  Typography,
+  Box,
+  Stack,
+} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { SessionTemplate } from '../../types';
 import { useState } from 'react';
@@ -28,12 +36,15 @@ const SessionTemplateItem = ({
         />
       ) : (
         <>
-          <h3>
-            {sessionTemplate.name}
+          <Stack direction="row">
+            <Typography variant="h4" margin={2}>
+              {sessionTemplate.name}
+            </Typography>
+
             <IconButton onClick={() => setEditing(!editing)}>
               <EditIcon />
             </IconButton>
-          </h3>
+          </Stack>
 
           <List>
             {sessionTemplate.exerciseTemplates.map((exerciseTemplate) => {
