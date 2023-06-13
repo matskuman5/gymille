@@ -6,14 +6,7 @@ import {
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
-import {
-  Button,
-  Stack,
-  Typography,
-  Divider,
-  Box,
-  Container,
-} from '@mui/material';
+import { Button, Stack, Typography, Divider, Container } from '@mui/material';
 
 const SessionTemplateList = () => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
@@ -66,15 +59,14 @@ const SessionTemplateList = () => {
       <Stack spacing={2} divider={<Divider flexItem />}>
         {sessionTemplates.map((sessionTemplate) => (
           // TODO: replace key with uuid
-          <Box key={sessionTemplate.name} boxShadow={3}>
-            <SessionTemplateItem
-              givenSessionTemplate={sessionTemplate}
-              handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
-              deleteSessionTemplate={() =>
-                deleteSessionTemplate(sessionTemplate.name)
-              }
-            ></SessionTemplateItem>
-          </Box>
+          <SessionTemplateItem
+            key={sessionTemplate.name}
+            givenSessionTemplate={sessionTemplate}
+            handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
+            deleteSessionTemplate={() =>
+              deleteSessionTemplate(sessionTemplate.name)
+            }
+          ></SessionTemplateItem>
         ))}
       </Stack>
 

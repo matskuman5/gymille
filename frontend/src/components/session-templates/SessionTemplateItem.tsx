@@ -29,7 +29,7 @@ const SessionTemplateItem = ({
     useState<SessionTemplate>(givenSessionTemplate);
 
   return (
-    <>
+    <Box boxShadow={3}>
       {editing ? (
         <SessionTemplateItemEditor
           oldSessionTemplate={sessionTemplate}
@@ -68,7 +68,7 @@ const SessionTemplateItem = ({
           </Button>
         </>
       )}
-    </>
+    </Box>
   );
 };
 
