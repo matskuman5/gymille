@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Push",
-    "exerciseTypes": [
+    "exerciseTemplates": [
       {
         "id": 1,
         "name": "Bench Press",
@@ -11,7 +11,9 @@
       {
         "id": 2,
         "name": "Squat",
-        "bodyPart": "Legs"
+        "bodyPart": "Legs",
+        "sets": 3,
+        "reps": 12
       },
       {
         "id": 3,
@@ -23,21 +25,27 @@
   {
     "id": 2,
     "name": "Pull",
-    "exerciseTypes": [
+    "exerciseTemplates": [
       {
         "id": 4,
         "name": "Deadlift",
-        "bodyPart": "Back"
+        "bodyPart": "Back",
+        "sets": 4,
+        "reps": 2
       },
       {
         "id": 5,
         "name": "Bicep Curls",
-        "bodyPart": "Arms"
+        "bodyPart": "Arms",
+        "sets": 3,
+        "reps": 12
       },
       {
         "id": 6,
         "name": "Lunges",
-        "bodyPart": "Legs"
+        "bodyPart": "Legs",
+        "sets": 4,
+        "reps": 6
       }
     ]
   }
