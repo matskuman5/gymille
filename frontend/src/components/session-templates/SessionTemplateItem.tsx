@@ -37,7 +37,10 @@ const SessionTemplateItem = ({
 
           <List>
             {sessionTemplate.exerciseTypes.map((exerciseType) => {
-              const text: string = `${exerciseType.name}`;
+              const text: string =
+                exerciseType.sets && exerciseType.reps
+                  ? `${exerciseType.name}, ${exerciseType.sets} x ${exerciseType.reps}`
+                  : `${exerciseType.name}`;
               return (
                 <ListItem key={exerciseType.id}>
                   <ListItemText primary={text} />

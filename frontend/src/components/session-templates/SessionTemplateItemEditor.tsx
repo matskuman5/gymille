@@ -1,7 +1,7 @@
 import { TextField, IconButton, Button } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
-import { SessionTemplate } from '../../types';
+import { ExerciseTemplate, SessionTemplate } from '../../types';
 import { useState } from 'react';
 
 interface Props {
@@ -20,15 +20,15 @@ const SessionTemplateItemEditor = ({
   const [sessionTemplateEditing, setSessionTemplateEditing] =
     useState<SessionTemplate>(oldSessionTemplate);
 
-  const updateExerciseType = (newName: string, index: number) => {
+  const updateExerciseType = (
+    newExerciseType: ExerciseTemplate,
+    index: number
+  ) => {
     setSessionTemplateEditing((sessionTemplateEditing) => {
       const updatedExerciseTypes = sessionTemplateEditing.exerciseTypes.map(
         (exerciseType, i) => {
           if (i === index) {
-            return {
-              ...exerciseType,
-              name: newName,
-            };
+            return newExerciseType;
           }
           return exerciseType;
         }
@@ -109,7 +109,41 @@ const SessionTemplateItemEditor = ({
             defaultValue={exerciseType.name}
             error={!exerciseType.name}
             helperText={!exerciseType.name ? 'Name must be non-empty' : ''}
-            onChange={(event) => updateExerciseType(event.target.value, index)}
+            onChange={(event) =>
+              updateExerciseType(
+                {
+                  ...exerciseType,
+                  name: event.target.value,
+                },
+                index
+              )
+            }
+          ></TextField>
+          <TextField
+            label="Sets (optional)"
+            defaultValue={exerciseType.sets}
+            onChange={(event) =>
+              updateExerciseType(
+                {
+                  ...exerciseType,
+                  sets: Number(event.target.value),
+                },
+                index
+              )
+            }
+          ></TextField>
+          <TextField
+            label="Reps (optional)"
+            defaultValue={exerciseType.reps}
+            onChange={(event) =>
+              updateExerciseType(
+                {
+                  ...exerciseType,
+                  reps: Number(event.target.value),
+                },
+                index
+              )
+            }
           ></TextField>
           <Button onClick={() => deleteExerciseType(exerciseType.id)}>
             Delete
