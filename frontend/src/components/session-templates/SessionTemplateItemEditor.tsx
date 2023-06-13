@@ -1,4 +1,4 @@
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Stack } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -86,17 +86,20 @@ const SessionTemplateItemEditor = ({
   };
 
   return (
-    <>
-      <Button
-        onClick={confirmChanges}
-        disabled={!checkValidity()}
-        startIcon={<CheckIcon />}
-      >
-        Confirm
-      </Button>
-      <Button onClick={cancelChanges} startIcon={<DoDisturbIcon />}>
-        Cancel
-      </Button>
+    <Stack spacing={2}>
+      <Stack direction="row">
+        <Button
+          onClick={confirmChanges}
+          disabled={!checkValidity()}
+          startIcon={<CheckIcon />}
+        >
+          Confirm
+        </Button>
+        <Button onClick={cancelChanges} startIcon={<DoDisturbIcon />}>
+          Cancel
+        </Button>
+      </Stack>
+
       <TextField
         label="Template Name"
         defaultValue={sessionTemplateEditing.name}
@@ -110,7 +113,7 @@ const SessionTemplateItemEditor = ({
         (exerciseTemplate, index) => (
           <div key={exerciseTemplate.id}>
             <TextField
-              label="name"
+              label="Exercise Name"
               defaultValue={exerciseTemplate.name}
               error={!exerciseTemplate.name}
               helperText={
@@ -161,10 +164,10 @@ const SessionTemplateItemEditor = ({
           </div>
         )
       )}
-      <Button variant="outlined" onClick={newExerciseTemplate}>
+      <Button variant="contained" onClick={newExerciseTemplate}>
         Add Exercise Template
       </Button>
-    </>
+    </Stack>
   );
 };
 
