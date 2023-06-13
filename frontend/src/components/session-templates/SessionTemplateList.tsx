@@ -6,7 +6,7 @@ import {
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
-import { Button, Stack, Typography, Divider, Container } from '@mui/material';
+import { Button, Stack, Divider, Container } from '@mui/material';
 
 const SessionTemplateList = () => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
