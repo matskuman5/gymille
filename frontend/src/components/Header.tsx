@@ -1,4 +1,4 @@
-import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Stack, Toolbar, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Header = () => {
@@ -13,19 +13,21 @@ const Header = () => {
         Gymille!
       </Typography>
       <Toolbar>
-        <Button variant="contained" component={RouterLink} to="/">
-          New Session
-        </Button>
-        <Button variant="contained" component={RouterLink} to="/sessions">
-          Previous Sessions
-        </Button>
-        <Button
-          variant="contained"
-          component={RouterLink}
-          to="/session-templates"
-        >
-          Session Templates
-        </Button>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" component={RouterLink} to="/">
+            New Session
+          </Button>
+          <Button variant="contained" component={RouterLink} to="/sessions">
+            Previous Sessions
+          </Button>
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to="/session-templates"
+          >
+            Session Templates
+          </Button>
+        </Stack>
       </Toolbar>
     </AppBar>
   );
