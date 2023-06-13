@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Box, Button, Container, Stack } from '@mui/material';
 import { useState } from 'react';
 import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
@@ -61,29 +61,38 @@ const NewSessionForm = () => {
   };
 
   return (
-    <div>
+    <Stack spacing={2}>
       <SessionTemplateSelect setExercises={setExercises} />
       <DatePicker
         value={date}
         onChange={(value) => setDate(value)}
       ></DatePicker>
-      <Button onClick={newExercise}>Add Exercise</Button>
-      <div>
-        {exercises.map((exercise, index) => (
-          <ExerciseForm
-            key={exercise.id}
-            index={index}
-            exercise={exercise}
-            updateChildData={updateExercise}
-            deleteExercise={deleteExercise}
-          ></ExerciseForm>
-        ))}
-      </div>
 
-      <Button onClick={submitSession} disabled={!checkValidity()}>
+      <Box boxShadow={3}>
+        <Stack spacing={1} margin={3}>
+          {exercises.map((exercise, index) => (
+            <ExerciseForm
+              key={exercise.id}
+              index={index}
+              exercise={exercise}
+              updateChildData={updateExercise}
+              deleteExercise={deleteExercise}
+            ></ExerciseForm>
+          ))}
+        </Stack>
+        <Button variant="contained" onClick={newExercise}>
+          Add Exercise
+        </Button>
+      </Box>
+
+      <Button
+        variant="contained"
+        onClick={submitSession}
+        disabled={!checkValidity()}
+      >
         Submit
       </Button>
-    </div>
+    </Stack>
   );
 };
 

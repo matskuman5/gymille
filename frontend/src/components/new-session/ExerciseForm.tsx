@@ -1,4 +1,5 @@
-import { Button, TextField } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect, useState } from 'react';
 import { Exercise } from '../../types';
 
@@ -38,8 +39,7 @@ const ExerciseForm = ({
   };
 
   return (
-    <div>
-      <p>id: {exercise.id}</p>
+    <Stack direction="row" spacing={1}>
       <TextField
         label="Name"
         name="name"
@@ -81,8 +81,13 @@ const ExerciseForm = ({
         value={exerciseData.notes}
         onChange={handleInputChange}
       ></TextField>
-      <Button onClick={() => deleteThisExercise(exercise.id)}>Delete</Button>
-    </div>
+      <Button
+        startIcon={<DeleteIcon />}
+        onClick={() => deleteThisExercise(exercise.id)}
+      >
+        Delete
+      </Button>
+    </Stack>
   );
 };
 
