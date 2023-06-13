@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
