@@ -9,7 +9,9 @@ const SessionList = () => {
   useEffect(() => {
     const fetchSessions = async () => {
       const sessionsData = await getSessions();
-      setSessions(sessionsData);
+      if (sessionsData !== undefined) {
+        setSessions(sessionsData);
+      }
     };
 
     fetchSessions();
