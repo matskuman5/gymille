@@ -53,24 +53,32 @@ const SessionTemplateList = () => {
 
   return (
     <Container>
-      <Typography variant="h3" fontWeight="bold" margin={2}>
-        Session templates:
-      </Typography>
-      <Stack spacing={2} divider={<Divider flexItem />}>
-        {sessionTemplates.map((sessionTemplate) => (
-          // TODO: replace key with uuid
-          <SessionTemplateItem
-            key={sessionTemplate.name}
-            givenSessionTemplate={sessionTemplate}
-            handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
-            deleteSessionTemplate={() =>
-              deleteSessionTemplate(sessionTemplate.name)
-            }
-          ></SessionTemplateItem>
-        ))}
-      </Stack>
+      <Stack spacing={2}>
+        <Typography variant="h3" fontWeight="bold">
+          Session templates:
+        </Typography>
+        <Stack spacing={2} divider={<Divider flexItem />}>
+          {sessionTemplates.map((sessionTemplate) => (
+            // TODO: replace key with uuid
+            <SessionTemplateItem
+              key={sessionTemplate.name}
+              givenSessionTemplate={sessionTemplate}
+              handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
+              deleteSessionTemplate={() =>
+                deleteSessionTemplate(sessionTemplate.name)
+              }
+            ></SessionTemplateItem>
+          ))}
+        </Stack>
 
-      <Button onClick={newSessionTemplate}>Add New Session Template</Button>
+        <Button
+          style={{ maxWidth: '70px' }}
+          variant="contained"
+          onClick={newSessionTemplate}
+        >
+          New
+        </Button>
+      </Stack>
     </Container>
   );
 };
