@@ -20,23 +20,22 @@ const SessionTemplateItemEditor = ({
   const [sessionTemplateEditing, setSessionTemplateEditing] =
     useState<SessionTemplate>(oldSessionTemplate);
 
-  const updateExerciseType = (
-    newExerciseType: ExerciseTemplate,
+  const updateExerciseTemplate = (
+    newExerciseTemplate: ExerciseTemplate,
     index: number
   ) => {
     setSessionTemplateEditing((sessionTemplateEditing) => {
-      const updatedExerciseTypes = sessionTemplateEditing.exerciseTypes.map(
-        (exerciseType, i) => {
+      const updatedExerciseTemplates =
+        sessionTemplateEditing.exerciseTemplates.map((exerciseTemplate, i) => {
           if (i === index) {
-            return newExerciseType;
+            return newExerciseTemplate;
           }
-          return exerciseType;
-        }
-      );
+          return exerciseTemplate;
+        });
 
       return {
         ...sessionTemplateEditing,
-        exerciseTypes: updatedExerciseTypes,
+        exerciseTemplates: updatedExerciseTemplates,
       };
     });
   };
@@ -45,11 +44,11 @@ const SessionTemplateItemEditor = ({
     setSessionTemplateEditing({ ...sessionTemplateEditing, name: newName });
   };
 
-  const newExerciseType = () => {
+  const newExerciseTemplate = () => {
     setSessionTemplateEditing({
       ...sessionTemplateEditing,
-      exerciseTypes: [
-        ...sessionTemplateEditing.exerciseTypes,
+      exerciseTemplates: [
+        ...sessionTemplateEditing.exerciseTemplates,
         {
           id: Math.round(Math.random() * 10000),
           name: '',
@@ -58,11 +57,11 @@ const SessionTemplateItemEditor = ({
     });
   };
 
-  const deleteExerciseType = (indexToRemove: number) => {
+  const deleteExerciseTemplate = (indexToRemove: number) => {
     setSessionTemplateEditing({
       ...sessionTemplateEditing,
-      exerciseTypes: sessionTemplateEditing.exerciseTypes.filter(
-        (exerciseType) => exerciseType.id !== indexToRemove
+      exerciseTemplates: sessionTemplateEditing.exerciseTemplates.filter(
+        (exerciseTemplate) => exerciseTemplate.id !== indexToRemove
       ),
     });
   };
@@ -79,8 +78,8 @@ const SessionTemplateItemEditor = ({
 
   const checkValidity = () => {
     return (
-      sessionTemplateEditing.exerciseTypes.every(
-        (exerciseType) => exerciseType.name
+      sessionTemplateEditing.exerciseTemplates.every(
+        (exerciseTemplate) => exerciseTemplate.name
       ) && sessionTemplateEditing.name
     );
   };
@@ -102,55 +101,59 @@ const SessionTemplateItemEditor = ({
         }
         onChange={(event) => updateName(event?.target.value)}
       ></TextField>
-      {sessionTemplateEditing.exerciseTypes.map((exerciseType, index) => (
-        <div key={exerciseType.id}>
-          <TextField
-            label="name"
-            defaultValue={exerciseType.name}
-            error={!exerciseType.name}
-            helperText={!exerciseType.name ? 'Name must be non-empty' : ''}
-            onChange={(event) =>
-              updateExerciseType(
-                {
-                  ...exerciseType,
-                  name: event.target.value,
-                },
-                index
-              )
-            }
-          ></TextField>
-          <TextField
-            label="Sets (optional)"
-            defaultValue={exerciseType.sets}
-            onChange={(event) =>
-              updateExerciseType(
-                {
-                  ...exerciseType,
-                  sets: Number(event.target.value),
-                },
-                index
-              )
-            }
-          ></TextField>
-          <TextField
-            label="Reps (optional)"
-            defaultValue={exerciseType.reps}
-            onChange={(event) =>
-              updateExerciseType(
-                {
-                  ...exerciseType,
-                  reps: Number(event.target.value),
-                },
-                index
-              )
-            }
-          ></TextField>
-          <Button onClick={() => deleteExerciseType(exerciseType.id)}>
-            Delete
-          </Button>
-        </div>
-      ))}
-      <Button onClick={newExerciseType}>Add Exercise Type</Button>
+      {sessionTemplateEditing.exerciseTemplates.map(
+        (exerciseTemplate, index) => (
+          <div key={exerciseTemplate.id}>
+            <TextField
+              label="name"
+              defaultValue={exerciseTemplate.name}
+              error={!exerciseTemplate.name}
+              helperText={
+                !exerciseTemplate.name ? 'Name must be non-empty' : ''
+              }
+              onChange={(event) =>
+                updateExerciseTemplate(
+                  {
+                    ...exerciseTemplate,
+                    name: event.target.value,
+                  },
+                  index
+                )
+              }
+            ></TextField>
+            <TextField
+              label="Sets (optional)"
+              defaultValue={exerciseTemplate.sets}
+              onChange={(event) =>
+                updateExerciseTemplate(
+                  {
+                    ...exerciseTemplate,
+                    sets: Number(event.target.value),
+                  },
+                  index
+                )
+              }
+            ></TextField>
+            <TextField
+              label="Reps (optional)"
+              defaultValue={exerciseTemplate.reps}
+              onChange={(event) =>
+                updateExerciseTemplate(
+                  {
+                    ...exerciseTemplate,
+                    reps: Number(event.target.value),
+                  },
+                  index
+                )
+              }
+            ></TextField>
+            <Button onClick={() => deleteExerciseTemplate(exerciseTemplate.id)}>
+              Delete
+            </Button>
+          </div>
+        )
+      )}
+      <Button onClick={newExerciseTemplate}>Add Exercise Type</Button>
     </>
   );
 };

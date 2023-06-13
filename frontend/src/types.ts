@@ -1,6 +1,6 @@
 export interface SessionTemplate {
   name: string;
-  exerciseTypes: ExerciseTemplate[];
+  exerciseTemplates: ExerciseTemplate[];
 }
 
 export interface Session {

@@ -36,9 +36,9 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
       console.error(`can't find session template ${value}}`);
       return;
     }
-    const newExercises = template.exerciseTypes.map((exerciseType) => ({
-      ...exerciseType,
-      id: exerciseType.id,
+    const newExercises = template.exerciseTemplates.map((exerciseTemplate) => ({
+      ...exerciseTemplate,
+      id: exerciseTemplate.id,
       sets: 0,
       reps: 0,
       weight: 0,

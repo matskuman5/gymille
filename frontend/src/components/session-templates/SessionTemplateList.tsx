@@ -35,7 +35,7 @@ const SessionTemplateList = () => {
       ...sessionTemplates,
       {
         name: '',
-        exerciseTypes: [],
+        exerciseTemplates: [],
       },
     ]);
   };

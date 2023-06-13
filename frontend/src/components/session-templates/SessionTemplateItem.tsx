@@ -36,13 +36,13 @@ const SessionTemplateItem = ({
           </h3>
 
           <List>
-            {sessionTemplate.exerciseTypes.map((exerciseType) => {
+            {sessionTemplate.exerciseTemplates.map((exerciseTemplate) => {
               const text: string =
-                exerciseType.sets && exerciseType.reps
-                  ? `${exerciseType.name}, ${exerciseType.sets} x ${exerciseType.reps}`
-                  : `${exerciseType.name}`;
+                exerciseTemplate.sets && exerciseTemplate.reps
+                  ? `${exerciseTemplate.name}, ${exerciseTemplate.sets} x ${exerciseTemplate.reps}`
+                  : `${exerciseTemplate.name}`;
               return (
-                <ListItem key={exerciseType.id}>
+                <ListItem key={exerciseTemplate.id}>
                   <ListItemText primary={text} />
                 </ListItem>
               );
