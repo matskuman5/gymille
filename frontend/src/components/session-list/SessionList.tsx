@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Session } from '../../types';
 import SessionItem from './SessionItem';
 import { getSessions } from '../../services/sessions';
+import { Stack } from '@mui/material';
 
 const SessionList = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -18,12 +19,11 @@ const SessionList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Past workout sessions:</h2>
+    <Stack spacing={2}>
       {sessions.map((session) => (
         <SessionItem key={session.date} session={session}></SessionItem>
       ))}
-    </div>
+    </Stack>
   );
 };
 
