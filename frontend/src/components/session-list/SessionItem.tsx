@@ -20,7 +20,13 @@ const SessionItem = ({ session }: Props) => {
         <TableHead>
           <TableRow>
             <TableCell>
-              <b>{session.date}</b>
+              {session.name ? (
+                <b>
+                  {session.name}, {session.date}
+                </b>
+              ) : (
+                <b>{session.date}</b>
+              )}
             </TableCell>
           </TableRow>
           <TableRow>

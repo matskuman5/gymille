@@ -5,6 +5,7 @@ export interface SessionTemplate {
 
 export interface Session {
   date: string;
+  name?: string;
   exercises: Exercise[];
 }
 

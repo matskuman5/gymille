@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Button, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
 import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
@@ -10,6 +10,7 @@ import { showNotification } from '../../utils/notifications';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
+  const [name, setName] = useState('');
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
   const updateExercise = (exercise: Exercise, index: number) => {
@@ -47,6 +48,7 @@ const NewSessionForm = () => {
     }
     const sessionToSend: Session = {
       date: date.toString(),
+      name: name,
       exercises: exercises,
     };
     postSession(sessionToSend);
@@ -67,6 +69,11 @@ const NewSessionForm = () => {
         value={date}
         onChange={(value) => setDate(value)}
       ></DatePicker>
+      <TextField
+        label="Session Name"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+      ></TextField>
 
       <Box boxShadow={3}>
         <Stack spacing={1} margin={3}>
