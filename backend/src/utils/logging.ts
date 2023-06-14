@@ -1,5 +1,5 @@
-const bunyan = require('bunyan');
-const prettystream = require('bunyan-prettystream');
+import bunyan from 'bunyan';
+import prettystream from 'bunyan-prettystream';
 
 const prettyStream = new prettystream();
 prettyStream.pipe(process.stdout);
