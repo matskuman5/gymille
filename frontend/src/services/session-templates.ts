@@ -2,6 +2,7 @@ import axios from 'axios';
 import { SessionTemplate } from '../types';
 import apiUrl from '../config';
 import { showError, showNotification } from '../utils/notifications';
+import { v4 as uuidv4 } from 'uuid';
 
 export const postSessionTemplate = async (sessionTemplate: SessionTemplate) => {
   try {
@@ -35,7 +36,23 @@ export const getSessionTemplates = async () => {
     const response = await axios.get<SessionTemplate[]>(
       `${apiUrl}/api/session-templates`
     );
-    return response.data;
+    if (response.data !== undefined) {
+      const sessionTemplateDataWithIDs = response.data.map(
+        (sessionTemplate) => {
+          const exerciseTemplatesWithIDs =
+            sessionTemplate.exerciseTemplates.map((exerciseTemplate) => ({
+              ...exerciseTemplate,
+              id: uuidv4(),
+            }));
+
+          return {
+            ...sessionTemplate,
+            exerciseTemplates: exerciseTemplatesWithIDs,
+          };
+        }
+      );
+      return sessionTemplateDataWithIDs;
+    }
   } catch (error) {
     showError(error);
   }

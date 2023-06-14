@@ -18,21 +18,7 @@ const SessionTemplateList = () => {
     const fetchSessionTemplates = async () => {
       const sessionTemplateData = await getSessionTemplates();
       if (sessionTemplateData !== undefined) {
-        const sessionTemplateDataWithIDs = sessionTemplateData.map(
-          (sessionTemplate) => {
-            const exerciseTemplatesWithIDs =
-              sessionTemplate.exerciseTemplates.map((exerciseTemplate) => ({
-                ...exerciseTemplate,
-                id: uuidv4(),
-              }));
-
-            return {
-              ...sessionTemplate,
-              exerciseTemplates: exerciseTemplatesWithIDs,
-            };
-          }
-        );
-        setSessionTemplates(sessionTemplateDataWithIDs);
+        setSessionTemplates(sessionTemplateData);
       }
     };
 
