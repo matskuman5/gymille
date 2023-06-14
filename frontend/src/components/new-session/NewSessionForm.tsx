@@ -58,7 +58,12 @@ const NewSessionForm = () => {
 
   const checkValidity = () => {
     return exercises.every((exercise) => {
-      return exercise.name && exercise.sets > 0 && exercise.reps > 0;
+      return (
+        exercise.name &&
+        exercise.sets > 0 &&
+        exercise.reps > 0 &&
+        exercise.weight > 0
+      );
     });
   };
 
