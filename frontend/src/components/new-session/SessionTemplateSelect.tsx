@@ -5,9 +5,10 @@ import { Exercise, SessionTemplate } from '../../types';
 
 interface Props {
   setExercises: React.Dispatch<React.SetStateAction<Exercise[]>>;
+  setSessionName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SessionTemplateSelect = ({ setExercises }: Props) => {
+const SessionTemplateSelect = ({ setExercises, setSessionName }: Props) => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
     []
   );
@@ -50,6 +51,7 @@ const SessionTemplateSelect = ({ setExercises }: Props) => {
       };
     });
     setExercises(newExercises);
+    setSessionName(template.name);
   };
 
   return (

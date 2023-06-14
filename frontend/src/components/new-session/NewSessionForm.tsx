@@ -64,7 +64,10 @@ const NewSessionForm = () => {
 
   return (
     <Stack spacing={2}>
-      <SessionTemplateSelect setExercises={setExercises} />
+      <SessionTemplateSelect
+        setExercises={setExercises}
+        setSessionName={setName}
+      />
       <DatePicker
         value={date}
         onChange={(value) => setDate(value)}
