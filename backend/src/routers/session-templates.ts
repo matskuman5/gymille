@@ -11,7 +11,10 @@ sessionTemplateRouter.get('/', (_req, res) => {
 });
 
 sessionTemplateRouter.post('/', (req, res) => {
-  sessionTemplates.push(req.body);
+  sessionTemplates.push({
+    ...req.body,
+    id: Math.random() * 10000,
+  });
   res.send('session template added successfully');
 });
 
