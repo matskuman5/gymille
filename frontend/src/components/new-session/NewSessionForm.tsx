@@ -47,6 +47,7 @@ const NewSessionForm = () => {
       return;
     }
     const sessionToSend: Session = {
+      id: Math.random() * 10000,
       date: date.toString(),
       name: name,
       exercises: exercises,

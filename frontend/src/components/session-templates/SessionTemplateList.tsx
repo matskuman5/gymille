@@ -34,19 +34,18 @@ const SessionTemplateList = () => {
     setSessionTemplates([
       ...sessionTemplates,
       {
+        id: Math.random() * 10000,
         name: '',
         exerciseTemplates: [],
       },
     ]);
   };
 
-  const deleteSessionTemplate = async (nameToRemove: string) => {
-    const response = await deleteSessionTemplateAPI(nameToRemove);
+  const deleteSessionTemplate = async (id: Number) => {
+    const response = await deleteSessionTemplateAPI(id);
     if (response !== undefined && response.status === 200) {
       setSessionTemplates(
-        sessionTemplates.filter(
-          (sessionTemplate) => sessionTemplate.name !== nameToRemove
-        )
+        sessionTemplates.filter((sessionTemplate) => sessionTemplate.id !== id)
       );
     }
   };
@@ -56,13 +55,12 @@ const SessionTemplateList = () => {
       <Stack spacing={2}>
         <Stack spacing={2} divider={<Divider flexItem />}>
           {sessionTemplates.map((sessionTemplate) => (
-            // TODO: replace key with uuid
             <SessionTemplateItem
-              key={sessionTemplate.name}
+              key={sessionTemplate.id}
               givenSessionTemplate={sessionTemplate}
               handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
               deleteSessionTemplate={() =>
-                deleteSessionTemplate(sessionTemplate.name)
+                deleteSessionTemplate(sessionTemplate.id)
               }
             ></SessionTemplateItem>
           ))}

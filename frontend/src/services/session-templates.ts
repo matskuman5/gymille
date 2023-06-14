@@ -20,7 +20,7 @@ export const updateSessionTemplate = async (
 ) => {
   try {
     const response = await axios.put(
-      `${apiUrl}/api/session-templates/${sessionTemplate.name}`,
+      `${apiUrl}/api/session-templates/${sessionTemplate.id}`,
       sessionTemplate
     );
     showNotification('Session template updated successfully.', 'success');
@@ -41,10 +41,10 @@ export const getSessionTemplates = async () => {
   }
 };
 
-export const deleteSessionTemplate = async (nameToRemove: string) => {
+export const deleteSessionTemplate = async (id: Number) => {
   try {
     const response = await axios.delete(
-      `${apiUrl}/api/session-templates/${nameToRemove}`
+      `${apiUrl}/api/session-templates/${id}`
     );
     showNotification('Session template deleted successfully.', 'success');
     return response;
