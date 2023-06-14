@@ -21,7 +21,7 @@ const SessionList = () => {
   return (
     <Stack spacing={2}>
       {sessions.map((session) => (
-        <SessionItem key={session.date} session={session}></SessionItem>
+        <SessionItem key={session.id} session={session}></SessionItem>
       ))}
     </Stack>
   );

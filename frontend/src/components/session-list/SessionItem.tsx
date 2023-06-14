@@ -39,7 +39,7 @@ const SessionItem = ({ session }: Props) => {
         </TableHead>
         <TableBody>
           {session.exercises.map((exercise) => (
-            <TableRow key={exercise.name}>
+            <TableRow key={exercise.id}>
               <TableCell>{exercise.name}</TableCell>
               <TableCell>{exercise.sets}</TableCell>
               <TableCell>{exercise.reps}</TableCell>
