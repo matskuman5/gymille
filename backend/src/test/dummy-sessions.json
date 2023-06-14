@@ -1,11 +1,10 @@
 [
   {
-    "id": 1,
+    "id": "b600fd47-cfd8-4b61-8e56-e82b0adb7b74",
     "date": "2023-06-01",
     "name": "Push",
     "exercises": [
       {
-        "id": 1,
         "name": "Bench Press",
         "bodyPart": "Chest",
         "sets": 3,
@@ -14,7 +13,6 @@
         "notes": "Take it slow"
       },
       {
-        "id": 2,
         "name": "Squat",
         "bodyPart": "Legs",
         "sets": 4,
@@ -25,11 +23,10 @@
     ]
   },
   {
-    "id": 2,
+    "id": "d6b204e8-ed4c-4f58-879f-d3c05551a83c",
     "date": "2023-06-02",
     "exercises": [
       {
-        "id": 3,
         "name": "Shoulder Press",
         "bodyPart": "Shoulders",
         "sets": 3,
@@ -37,7 +34,6 @@
         "weight": 95
       },
       {
-        "id": 4,
         "name": "Deadlift",
         "bodyPart": "Back",
         "sets": 3,

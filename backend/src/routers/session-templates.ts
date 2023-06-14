@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import dummySessionTemplates from '../test/dummy-session-templates.json';
 import { SessionTemplate } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 const sessionTemplateRouter = Router();
 
@@ -13,21 +14,21 @@ sessionTemplateRouter.get('/', (_req, res) => {
 sessionTemplateRouter.post('/', (req, res) => {
   sessionTemplates.push({
     ...req.body,
-    id: Math.random() * 10000,
+    id: uuidv4(),
   });
   res.send('session template added successfully');
 });
 
 sessionTemplateRouter.put('/:id', (req, res) => {
   sessionTemplates = sessionTemplates.map((sessionTemplate) =>
-    sessionTemplate.id === Number(req.params.id) ? req.body : sessionTemplate
+    sessionTemplate.id === req.params.id ? req.body : sessionTemplate
   );
   res.send('session template updated successfully');
 });
 
 sessionTemplateRouter.delete('/:id', (req, res) => {
   sessionTemplates = sessionTemplates.filter(
-    (sessionTemplate) => sessionTemplate.id !== Number(req.params.id)
+    (sessionTemplate) => sessionTemplate.id !== req.params.id
   );
   res.send('session template deleted successfully').status(200);
 });

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import dummySessions from '../test/dummy-sessions.json';
 import { Session } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 const sessionRouter = Router();
 
@@ -11,7 +12,10 @@ sessionRouter.get('/', (_req, res) => {
 });
 
 sessionRouter.post('/', (req, res) => {
-  sessions.push(req.body);
+  sessions.push({
+    ...req.body,
+    id: uuidv4(),
+  });
   res.send('session added successfully');
 });
 

@@ -1,26 +1,23 @@
 export interface SessionTemplate {
-  id: number;
+  id: string;
   name: string;
   exerciseTemplates: ExerciseTemplate[];
 }
 
 export interface Session {
-  id: number;
+  id: string;
   date: string;
   name?: string;
   exercises: Exercise[];
 }
 
-export interface ExerciseType {
+export interface ExerciseTemplate {
   name: string;
-}
-
-export interface ExerciseTemplate extends ExerciseType {
   sets?: number;
   reps?: number;
 }
 
-export interface Exercise extends ExerciseType {
+export interface Exercise extends ExerciseTemplate {
   sets: number;
   reps: number;
   weight: number;

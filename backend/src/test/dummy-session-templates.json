@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "bcce916a-85a1-474c-a5f3-155dccad9166",
     "name": "Push",
     "exerciseTemplates": [
       {
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": "0f13db6e-72d9-4630-a63b-68f5ac5763df",
     "name": "Pull",
     "exerciseTemplates": [
       {
