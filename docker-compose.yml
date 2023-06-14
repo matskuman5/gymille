@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: gymille-frontend
+    ports:
+      - '8080:80'
