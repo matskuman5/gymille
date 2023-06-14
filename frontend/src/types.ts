@@ -11,17 +11,14 @@ export interface Session {
   exercises: Exercise[];
 }
 
-export interface ExerciseType {
+export interface ExerciseTemplate {
   id: number;
   name: string;
-}
-
-export interface ExerciseTemplate extends ExerciseType {
   sets?: number;
   reps?: number;
 }
 
-export interface Exercise extends ExerciseType {
+export interface Exercise extends ExerciseTemplate {
   sets: number;
   reps: number;
   weight: number;
