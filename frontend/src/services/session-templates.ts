@@ -41,7 +41,7 @@ export const getSessionTemplates = async () => {
   }
 };
 
-export const deleteSessionTemplate = async (id: Number) => {
+export const deleteSessionTemplate = async (id: string) => {
   try {
     const response = await axios.delete(
       `${apiUrl}/api/session-templates/${id}`

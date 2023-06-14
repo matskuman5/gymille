@@ -1,18 +1,18 @@
 export interface SessionTemplate {
-  id: number;
+  id: string;
   name: string;
   exerciseTemplates: ExerciseTemplate[];
 }
 
 export interface Session {
-  id: number;
+  id: string;
   date: string;
   name?: string;
   exercises: Exercise[];
 }
 
 export interface ExerciseTemplate {
-  id: number;
+  id: string;
   name: string;
   sets?: number;
   reps?: number;

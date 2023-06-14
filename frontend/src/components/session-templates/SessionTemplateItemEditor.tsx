@@ -4,6 +4,7 @@ import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ExerciseTemplate, SessionTemplate } from '../../types';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   oldSessionTemplate: SessionTemplate;
@@ -51,18 +52,18 @@ const SessionTemplateItemEditor = ({
       exerciseTemplates: [
         ...sessionTemplateEditing.exerciseTemplates,
         {
-          id: Math.round(Math.random() * 10000),
+          id: uuidv4(),
           name: '',
         },
       ],
     });
   };
 
-  const deleteExerciseTemplate = (indexToRemove: number) => {
+  const deleteExerciseTemplate = (id: string) => {
     setSessionTemplateEditing({
       ...sessionTemplateEditing,
       exerciseTemplates: sessionTemplateEditing.exerciseTemplates.filter(
-        (exerciseTemplate) => exerciseTemplate.id !== indexToRemove
+        (exerciseTemplate) => exerciseTemplate.id !== id
       ),
     });
   };

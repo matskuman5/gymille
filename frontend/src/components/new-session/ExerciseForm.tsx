@@ -7,7 +7,7 @@ interface Props {
   index: number;
   exercise: Exercise;
   updateChildData: (e: Exercise, i: number) => void;
-  deleteExercise: (i: number) => void;
+  deleteExercise: (index: string) => void;
 }
 
 const ExerciseForm = ({
@@ -34,8 +34,8 @@ const ExerciseForm = ({
     updateChildData(exerciseData, index);
   }, [exerciseData]);
 
-  const deleteThisExercise = (index: number) => {
-    deleteExercise(index);
+  const deleteThisExercise = (id: string) => {
+    deleteExercise(id);
   };
 
   return (

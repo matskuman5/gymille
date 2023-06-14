@@ -7,6 +7,7 @@ import {
   deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
 import { Button, Stack, Divider, Container } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 
 const SessionTemplateList = () => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
@@ -22,7 +23,7 @@ const SessionTemplateList = () => {
             const exerciseTemplatesWithIDs =
               sessionTemplate.exerciseTemplates.map((exerciseTemplate) => ({
                 ...exerciseTemplate,
-                id: Math.random() * 10000,
+                id: uuidv4(),
               }));
 
             return {
@@ -48,14 +49,14 @@ const SessionTemplateList = () => {
     setSessionTemplates([
       ...sessionTemplates,
       {
-        id: Math.random() * 10000,
+        id: uuidv4(),
         name: '',
         exerciseTemplates: [],
       },
     ]);
   };
 
-  const deleteSessionTemplate = async (id: Number) => {
+  const deleteSessionTemplate = async (id: string) => {
     const response = await deleteSessionTemplateAPI(id);
     if (response !== undefined && response.status === 200) {
       setSessionTemplates(

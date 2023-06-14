@@ -7,6 +7,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
 import SessionTemplateSelect from './SessionTemplateSelect';
 import { showNotification } from '../../utils/notifications';
+import { v4 as uuidv4 } from 'uuid';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
@@ -25,7 +26,7 @@ const NewSessionForm = () => {
     setExercises((exercises) => [
       ...exercises,
       {
-        id: Math.round(Math.random() * 10000),
+        id: uuidv4(),
         name: '',
         sets: 0,
         reps: 0,
@@ -34,10 +35,10 @@ const NewSessionForm = () => {
     ]);
   };
 
-  const deleteExercise = (indexToRemove: number) => {
-    console.log('deleting exercise', indexToRemove);
+  const deleteExercise = (id: string) => {
+    console.log('deleting exercise', id);
     setExercises((exercises) =>
-      exercises.filter((exercise) => exercise.id !== indexToRemove)
+      exercises.filter((exercise) => exercise.id !== id)
     );
   };
 
@@ -47,7 +48,7 @@ const NewSessionForm = () => {
       return;
     }
     const sessionToSend: Session = {
-      id: Math.random() * 10000,
+      id: uuidv4(),
       date: date.toString(),
       name: name,
       exercises: exercises,
