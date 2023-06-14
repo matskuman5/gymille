@@ -4,19 +4,16 @@
     "name": "Push",
     "exerciseTemplates": [
       {
-        "id": 1,
         "name": "Bench Press",
         "bodyPart": "Chest"
       },
       {
-        "id": 2,
         "name": "Squat",
         "bodyPart": "Legs",
         "sets": 3,
         "reps": 12
       },
       {
-        "id": 3,
         "name": "Shoulder Press",
         "bodyPart": "Shoulders"
       }
@@ -27,21 +24,18 @@
     "name": "Pull",
     "exerciseTemplates": [
       {
-        "id": 4,
         "name": "Deadlift",
         "bodyPart": "Back",
         "sets": 4,
         "reps": 2
       },
       {
-        "id": 5,
         "name": "Bicep Curls",
         "bodyPart": "Arms",
         "sets": 3,
         "reps": 12
       },
       {
-        "id": 6,
         "name": "Lunges",
         "bodyPart": "Legs",
         "sets": 4,

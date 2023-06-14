@@ -15,16 +15,16 @@ sessionTemplateRouter.post('/', (req, res) => {
   res.send('session template added successfully');
 });
 
-sessionTemplateRouter.put('/:name', (req, res) => {
+sessionTemplateRouter.put('/:id', (req, res) => {
   sessionTemplates = sessionTemplates.map((sessionTemplate) =>
-    sessionTemplate.name === req.params.name ? req.body : sessionTemplate
+    sessionTemplate.id === Number(req.params.id) ? req.body : sessionTemplate
   );
   res.send('session template updated successfully');
 });
 
-sessionTemplateRouter.delete('/:name', (req, res) => {
+sessionTemplateRouter.delete('/:id', (req, res) => {
   sessionTemplates = sessionTemplates.filter(
-    (sessionTemplate) => sessionTemplate.name !== req.params.name
+    (sessionTemplate) => sessionTemplate.id !== Number(req.params.id)
   );
   res.send('session template deleted successfully').status(200);
 });
