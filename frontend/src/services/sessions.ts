@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const postSession = async (session: Session) => {
   try {
-    const response = await axios.post(`${apiUrl}/api/sessions`, session);
+    const response = await axios.post(`${apiUrl}/sessions`, session);
     showNotification('Session saved successfully.', 'success');
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const postSession = async (session: Session) => {
 
 export const getSessions = async () => {
   try {
-    const response = await axios.get<Session[]>(`${apiUrl}/api/sessions`);
+    const response = await axios.get<Session[]>(`${apiUrl}/sessions`);
 
     if (response.data !== undefined) {
       const sessionDataWithIDs = response.data.map((session) => {

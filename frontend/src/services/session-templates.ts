@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const postSessionTemplate = async (sessionTemplate: SessionTemplate) => {
   try {
     const response = await axios.post(
-      `${apiUrl}/api/session-templates`,
+      `${apiUrl}/session-templates`,
       sessionTemplate
     );
     return response.data;
@@ -21,7 +21,7 @@ export const updateSessionTemplate = async (
 ) => {
   try {
     const response = await axios.put(
-      `${apiUrl}/api/session-templates/${sessionTemplate.id}`,
+      `${apiUrl}/session-templates/${sessionTemplate.id}`,
       sessionTemplate
     );
     showNotification('Session template updated successfully.', 'success');
@@ -34,7 +34,7 @@ export const updateSessionTemplate = async (
 export const getSessionTemplates = async () => {
   try {
     const response = await axios.get<SessionTemplate[]>(
-      `${apiUrl}/api/session-templates`
+      `${apiUrl}/session-templates`
     );
     if (response.data !== undefined) {
       const sessionTemplateDataWithIDs = response.data.map(
@@ -60,9 +60,7 @@ export const getSessionTemplates = async () => {
 
 export const deleteSessionTemplate = async (id: string) => {
   try {
-    const response = await axios.delete(
-      `${apiUrl}/api/session-templates/${id}`
-    );
+    const response = await axios.delete(`${apiUrl}/session-templates/${id}`);
     showNotification('Session template deleted successfully.', 'success');
     return response;
   } catch (error) {
