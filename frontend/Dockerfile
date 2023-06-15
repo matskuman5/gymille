@@ -10,6 +10,7 @@ COPY tsconfig.json .
 COPY tsconfig.node.json .
 COPY index.html .
 COPY vite.config.ts .
+COPY .env.production .
 COPY src ./src
 
 # Install dependencies
