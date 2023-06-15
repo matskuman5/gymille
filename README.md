@@ -8,4 +8,4 @@ $ cd gymille
 $ docker compose up
 ```
 
-Then navigate to `http://localhost:5000`.
+Then navigate to http://localhost:5000.
