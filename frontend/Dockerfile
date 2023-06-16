@@ -22,8 +22,9 @@ RUN npm run build
 # Stage 2: Serve with Nginx
 FROM nginx:1.24.0-alpine
 
-# Copy built static files to Nginx
+# Copy built static files and config to Nginx
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
