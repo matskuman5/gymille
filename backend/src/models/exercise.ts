@@ -11,15 +11,15 @@ export const Exercise = sequelize.define('Exercise', {
     allowNull: false,
   },
   sets: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   reps: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   weight: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   notes: {
