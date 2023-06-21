@@ -6,6 +6,7 @@ import sessionRouter from './routers/session';
 import { PORT } from './config';
 import sessionTemplateRouter from './routers/session-templates';
 import { connectToDB } from './utils/db';
+import { addDummySessions } from './test/dummy';
 
 const app = express();
 app.use(express.json());
@@ -23,5 +24,6 @@ app.use('/api/session-templates', sessionTemplateRouter);
 
 app.listen(PORT, () => {
   connectToDB();
+  addDummySessions();
   logger.info(`Server listening on port ${PORT}`);
 });

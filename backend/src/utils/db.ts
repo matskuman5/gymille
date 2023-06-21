@@ -8,7 +8,6 @@ export const connectToDB = async () => {
   try {
     await sequelize.authenticate();
     logger.info('Connected to database successfully');
-    sequelize.close();
   } catch (error) {
     logger.error(error);
   }

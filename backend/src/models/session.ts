@@ -12,6 +12,5 @@ export const Session = sequelize.define('Session', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
 });
