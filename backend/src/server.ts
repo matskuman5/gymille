@@ -22,8 +22,8 @@ app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 
-app.listen(PORT, () => {
-  connectToDB();
-  addDummySessions();
+app.listen(PORT, async () => {
+  await connectToDB();
+  await addDummySessions();
   logger.info(`Server listening on port ${PORT}`);
 });
