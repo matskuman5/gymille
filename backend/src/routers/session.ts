@@ -1,22 +1,28 @@
 import { Router } from 'express';
-import dummySessions from '../test/dummy-sessions.json';
-import { Session } from '../types';
+import models from '../models';
 import { v4 as uuidv4 } from 'uuid';
 
 const sessionRouter = Router();
 
-let sessions: Session[] = dummySessions;
-
-sessionRouter.get('/', (_req, res) => {
-  res.send(sessions);
+sessionRouter.get('/', async (_req, res) => {
+  try {
+    const sessions = await models.Session.findAll();
+    res.json(sessions);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 });
 
-sessionRouter.post('/', (req, res) => {
-  sessions.push({
-    ...req.body,
-    id: uuidv4(),
-  });
-  res.send('session added successfully');
+sessionRouter.post('/', async (req, res) => {
+  try {
+    const session = await models.Session.create({
+      ...req.body,
+      id: uuidv4(),
+    });
+    res.json(session);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 });
 
 export default sessionRouter;
