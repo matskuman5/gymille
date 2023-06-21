@@ -21,8 +21,7 @@ app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 
-connectToDB();
-
 app.listen(PORT, () => {
+  connectToDB();
   logger.info(`Server listening on port ${PORT}`);
 });
