@@ -1,0 +1,28 @@
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../utils/db';
+
+export const Exercise = sequelize.define('Exercise', {
+  id: {
+    type: DataTypes.STRING,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  sets: {
+    type: DataTypes.NUMBER,
+    allowNull: false,
+  },
+  reps: {
+    type: DataTypes.NUMBER,
+    allowNull: false,
+  },
+  weight: {
+    type: DataTypes.NUMBER,
+    allowNull: false,
+  },
+  notes: {
+    type: DataTypes.STRING,
+  },
+});
