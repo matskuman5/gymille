@@ -8,8 +8,28 @@ const sessionRouter = Router();
 
 sessionRouter.get('/', async (_req, res) => {
   try {
-    const sessions = await models.Session.findAll();
-    res.json(sessions);
+    const sessions = await models.SessionModel.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
+
+    let response = [];
+
+    for (const session of sessions) {
+      if (session.id !== null) {
+        const sessionExercises = await models.ExerciseModel.findAll({
+          attributes: { exclude: ['sessionId'] },
+          where: { sessionId: session.id },
+        });
+        console.log(sessionExercises);
+        response.push({
+          ...session,
+          exercises: sessionExercises,
+        });
+      }
+    }
+    res.json(response);
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -27,18 +47,26 @@ sessionRouter.post('/', async (req, res) => {
       throw new Error('Session validation failed');
     }
 
-    await models.Session.create({
-      id: session.id,
-      date: session.date,
-      name: session.name,
-    });
+    if (session.name) {
+      await models.SessionModel.create({
+        id: session.id,
+        date: session.date,
+        name: session.name,
+      });
+    } else {
+      await models.SessionModel.create({
+        id: session.id,
+        date: session.date,
+      });
+    }
 
     const exercises = session.exercises.map((exercise) => ({
       ...exercise,
+      id: uuidv4(),
       sessionId: session.id,
     }));
 
-    await models.Exercise.bulkCreate(exercises);
+    await models.ExerciseModel.bulkCreate(exercises);
 
     res.status(201);
   } catch (error) {

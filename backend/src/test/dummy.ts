@@ -8,6 +8,6 @@ export const addDummySessions = async () => {
     name: session.name,
   }));
   sessionsWithoutExercises.forEach(async (session) => {
-    await models.Session.create(session);
+    await models.SessionModel.create(session);
   });
 };

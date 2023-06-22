@@ -1,7 +1,29 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+} from 'sequelize';
 import { sequelize } from '../utils/db';
 
-export const Exercise = sequelize.define('Exercise', {
+interface ExerciseModel
+  extends Model<
+    InferAttributes<ExerciseModel>,
+    InferCreationAttributes<ExerciseModel>
+  > {
+  sessionId: string;
+  id: string;
+  name: string;
+  sets: number;
+  reps: number;
+  weight: number;
+  notes?: string;
+}
+
+export const ExerciseModel = sequelize.define<ExerciseModel>('Exercise', {
+  sessionId: {
+    type: DataTypes.STRING,
+  },
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
