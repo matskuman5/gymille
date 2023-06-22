@@ -27,7 +27,12 @@ const ExerciseForm = ({
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    setExerciseData({ ...exerciseData, [name]: value });
+    // this is a bit hacky, the entire setup here needs to be reassessed
+    if (name === 'sets' || 'reps' || 'weight') {
+      setExerciseData({ ...exerciseData, [name]: Number(value) });
+    } else {
+      setExerciseData({ ...exerciseData, [name]: value });
+    }
   };
 
   useEffect(() => {
