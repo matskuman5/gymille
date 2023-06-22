@@ -7,6 +7,7 @@ import { PORT } from './config';
 import sessionTemplateRouter from './routers/session-templates';
 import { connectToDB } from './utils/db';
 import { addDummySessions } from './test/dummy';
+import models from './models';
 
 const app = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use('/api/session-templates', sessionTemplateRouter);
 
 app.listen(PORT, async () => {
   await connectToDB();
+  await models.setupModels();
   await addDummySessions();
   logger.info(`Server listening on port ${PORT}`);
 });

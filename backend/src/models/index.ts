@@ -1,13 +1,23 @@
 import { Session } from './session';
 import { Exercise } from './exercise';
+import logger from '../utils/logging';
 
-Session.hasMany(Exercise);
-Exercise.belongsTo(Session);
+const setupModels = async () => {
+  try {
+    Session.hasMany(Exercise);
+    Exercise.belongsTo(Session);
 
-Session.sync({ alter: true });
-Exercise.sync({ alter: true });
+    await Session.sync({ force: true });
+    await Exercise.sync({ force: true });
+
+    logger.info('Models synced with database successfully');
+  } catch (error) {
+    logger.error(error);
+  }
+};
 
 export default {
   Session,
   Exercise,
+  setupModels,
 };

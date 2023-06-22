@@ -7,7 +7,6 @@ export const addDummySessions = async () => {
     date: session.date,
     name: session.name,
   }));
-  console.log(sessionsWithoutExercises);
   sessionsWithoutExercises.forEach(async (session) => {
     await models.Session.create(session);
   });
