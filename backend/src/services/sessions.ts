@@ -1,5 +1,7 @@
 import { ModelStatic } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 import models from '../models';
+import { isSession } from '../utils/types';
 
 export const getAllSessions = async () => {
   return getAllData(
@@ -43,4 +45,37 @@ const getAllData = async (
   }
 
   return response;
+};
+
+export const addSession = async (sessionTemplate: object) => {
+  const session = {
+    ...sessionTemplate,
+    id: uuidv4(),
+  };
+
+  if (!isSession(session)) {
+    console.log(session);
+    throw new Error('Session validation failed');
+  }
+
+  if (session.name) {
+    await models.SessionModel.create({
+      id: session.id,
+      date: session.date,
+      name: session.name,
+    });
+  } else {
+    await models.SessionModel.create({
+      id: session.id,
+      date: session.date,
+    });
+  }
+
+  const exercises = session.exercises.map((exercise) => ({
+    ...exercise,
+    id: uuidv4(),
+    sessionId: session.id,
+  }));
+
+  await models.ExerciseModel.bulkCreate(exercises);
 };
