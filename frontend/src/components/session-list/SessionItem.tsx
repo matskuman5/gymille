@@ -6,14 +6,17 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Button,
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Session } from '../../types';
 
 interface Props {
   session: Session;
+  deleteSession: (id: string) => void;
 }
 
-const SessionItem = ({ session }: Props) => {
+const SessionItem = ({ session, deleteSession }: Props) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -27,6 +30,12 @@ const SessionItem = ({ session }: Props) => {
               ) : (
                 <b>{session.date}</b>
               )}
+              <Button
+                onClick={() => deleteSession(session.id)}
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
             </TableCell>
           </TableRow>
           <TableRow>

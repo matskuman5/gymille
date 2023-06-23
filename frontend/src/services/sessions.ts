@@ -21,3 +21,13 @@ export const getSessions = async () => {
     showError(error);
   }
 };
+
+export const deleteSession = async (id: string) => {
+  try {
+    const response = await axios.delete(`${apiUrl}/sessions/${id}`);
+    showNotification('Session deleted successfully.', 'success');
+    return response;
+  } catch (error) {
+    showError(error);
+  }
+};

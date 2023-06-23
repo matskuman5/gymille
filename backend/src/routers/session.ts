@@ -29,8 +29,8 @@ sessionRouter.post('/', async (req, res) => {
 
 sessionRouter.delete('/:id', async (req, res) => {
   try {
-    await deleteSession(req.params.id);
-    res.status(200);
+    const response = await deleteSession(req.params.id);
+    res.json(response);
   } catch (error) {
     res.status(400).json({ error });
   }
