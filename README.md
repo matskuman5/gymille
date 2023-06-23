@@ -1,4 +1,4 @@
-## Running locally
+# Running locally
 
 Requires [Docker](https://www.docker.com/).
 
@@ -6,7 +6,7 @@ Requires [Docker](https://www.docker.com/).
 $ git clone https://github.com/matskuman5/gymille.git
 ```
 
-### Production
+## Production
 
 ```
 $ cd gymille
@@ -15,7 +15,7 @@ $ docker compose up
 
 Then navigate to http://localhost:5000/front. API requests can be made to http://localhost:5000/api.
 
-### Development
+## Development
 
 First, run this shell script to start the Postgres database in a Docker container. You can inspect the database state with [psql](https://www.postgresql.org/docs/current/app-psql.html).
 
