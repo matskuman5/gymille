@@ -3,7 +3,7 @@ import cors from 'cors';
 import logger from './utils/logging';
 import pingRouter from './routers/ping';
 import sessionRouter from './routers/session';
-import { PORT } from './config';
+import { PORT } from './utils/config';
 import sessionTemplateRouter from './routers/session-templates';
 import { connectToDB } from './utils/db';
 import { addDummySessions } from './test/dummy';

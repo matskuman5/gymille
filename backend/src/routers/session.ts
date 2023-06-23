@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import models from '../models';
 import { v4 as uuidv4 } from 'uuid';
-import { isSession } from '../types';
+import { isSession } from '../utils/types';
 import logger from '../utils/logging';
 
 const sessionRouter = Router();

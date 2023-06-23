@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import dummySessionTemplates from '../test/dummy-session-templates.json';
-import { SessionTemplate } from '../types';
+import { SessionTemplate } from '../utils/types';
 import { v4 as uuidv4 } from 'uuid';
 
 const sessionTemplateRouter = Router();
