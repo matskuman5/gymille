@@ -19,12 +19,12 @@ export const getAllSessionTemplates = async () => {
   );
 };
 
-async function getAllData(
+const getAllData = async (
   mainModel: ModelStatic<any>,
   subModel: ModelStatic<any>,
   idField: string,
   subModelName: string
-) {
+) => {
   const mainData = await mainModel.findAll({ raw: true });
 
   const response = [];
@@ -43,4 +43,4 @@ async function getAllData(
   }
 
   return response;
-}
+};
