@@ -2,13 +2,35 @@ import { Router } from 'express';
 import dummySessionTemplates from '../test/dummy-session-templates.json';
 import { SessionTemplate } from '../utils/types';
 import { v4 as uuidv4 } from 'uuid';
+import models from '../models';
 
 const sessionTemplateRouter = Router();
 
 let sessionTemplates: SessionTemplate[] = dummySessionTemplates;
 
-sessionTemplateRouter.get('/', (_req, res) => {
-  res.send(sessionTemplates);
+sessionTemplateRouter.get('/', async (_req, res) => {
+  try {
+    const sessionTemplates = await models.SessionTemplateModel.findAll({
+      raw: true,
+    });
+    let response = [];
+
+    for (const sessionTemplate of sessionTemplates) {
+      if (sessionTemplate.id !== null) {
+        const exercises = await models.ExerciseTemplateModel.findAll({
+          raw: true,
+          where: { sessionTemplateId: sessionTemplate.id },
+        });
+        response.push({
+          ...sessionTemplate,
+          exerciseTemplates: exercises,
+        });
+      }
+    }
+    res.json(response);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 sessionTemplateRouter.post('/', (req, res) => {
