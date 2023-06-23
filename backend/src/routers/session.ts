@@ -11,7 +11,7 @@ const sessionRouter = Router();
 sessionRouter.get('/', async (_req, res) => {
   try {
     const response = await getAllSessions();
-    res.status(200).json(response);
+    res.json(response);
   } catch (error) {
     res.status(400).json({ error });
   }
@@ -30,7 +30,7 @@ sessionRouter.post('/', async (req, res) => {
 sessionRouter.delete('/:id', async (req, res) => {
   try {
     const response = await deleteSession(req.params.id);
-    res.status(200).json(response);
+    res.json(response);
   } catch (error) {
     res.status(400).json({ error });
   }

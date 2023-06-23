@@ -20,7 +20,7 @@ sessionTemplateRouter.get('/', async (_req, res) => {
 sessionTemplateRouter.post('/', async (req, res) => {
   try {
     const response = await addSessionTemplate(req.body);
-    res.json(response);
+    res.status(201).json(response);
   } catch (error) {
     res.status(400).json({ error });
   }
