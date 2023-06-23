@@ -1,15 +1,12 @@
 import { Router } from 'express';
-import dummySessionTemplates from '../test/dummy-session-templates.json';
-import { SessionTemplate } from '../utils/types';
 import { getAllSessionTemplates } from '../services/sessions';
 import {
   addSessionTemplate,
+  deleteSessionTemplate,
   updateSessionTemplate,
 } from '../services/session-template';
 
 const sessionTemplateRouter = Router();
-
-let sessionTemplates: SessionTemplate[] = dummySessionTemplates;
 
 sessionTemplateRouter.get('/', async (_req, res) => {
   try {
@@ -38,11 +35,13 @@ sessionTemplateRouter.put('/:id', async (req, res) => {
   }
 });
 
-sessionTemplateRouter.delete('/:id', (req, res) => {
-  sessionTemplates = sessionTemplates.filter(
-    (sessionTemplate) => sessionTemplate.id !== req.params.id
-  );
-  res.send('session template deleted successfully').status(200);
+sessionTemplateRouter.delete('/:id', async (req, res) => {
+  try {
+    const response = await deleteSessionTemplate(req.params.id);
+    res.json(response);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 export default sessionTemplateRouter;

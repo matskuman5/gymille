@@ -60,3 +60,13 @@ export const updateSessionTemplate = async (
     );
   }
 };
+
+export const deleteSessionTemplate = async (id: string) => {
+  await models.SessionTemplateModel.destroy({
+    where: { id: id },
+  });
+
+  await models.ExerciseTemplateModel.destroy({
+    where: { sessionTemplateId: id },
+  });
+};
