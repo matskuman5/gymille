@@ -24,8 +24,11 @@ app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 
 app.listen(PORT, async () => {
+  logger.info(
+    `Starting server in mode: ${process.env.NODE_ENV || 'development'}`
+  );
   await connectToDB();
   await models.setupModels();
   await addDummySessions();
-  logger.info(`Server listening on port ${PORT}`);
+  logger.info(`Startup successful, server listening on port ${PORT}`);
 });
