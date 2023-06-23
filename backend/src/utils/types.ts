@@ -4,7 +4,7 @@ export interface SessionTemplate {
   exerciseTemplates: ExerciseTemplate[];
 }
 
-export const isSessionTemplate = (object: unknown): object is Session =>
+export const isSessionTemplate = (object: unknown): object is SessionTemplate =>
   typeof object === 'object' &&
   object !== null &&
   'id' in object &&
