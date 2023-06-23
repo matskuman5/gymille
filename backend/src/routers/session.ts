@@ -3,29 +3,13 @@ import models from '../models';
 import { v4 as uuidv4 } from 'uuid';
 import { isSession } from '../utils/types';
 import logger from '../utils/logging';
+import { getAllSessions } from '../services/sessions';
 
 const sessionRouter = Router();
 
 sessionRouter.get('/', async (_req, res) => {
   try {
-    const sessions = await models.SessionModel.findAll({
-      raw: true,
-    });
-
-    let response = [];
-
-    for (const session of sessions) {
-      if (session.id !== null) {
-        const sessionExercises = await models.ExerciseModel.findAll({
-          raw: true,
-          where: { sessionId: session.id },
-        });
-        response.push({
-          ...session,
-          exercises: sessionExercises,
-        });
-      }
-    }
+    const response = await getAllSessions();
     res.json(response);
   } catch (error) {
     res.status(400).json({ error });
