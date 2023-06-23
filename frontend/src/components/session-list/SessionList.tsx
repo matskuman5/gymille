@@ -20,10 +20,8 @@ const SessionList = () => {
   }, []);
 
   const deleteSession = async (id: string) => {
-    const response = await deleteSessionAPI(id);
-    if (response !== undefined && response.status === 200) {
-      setSessions(sessions.filter((session) => session.id !== id));
-    }
+    await deleteSessionAPI(id);
+    await fetchSessions();
   };
 
   return (
