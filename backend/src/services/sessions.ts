@@ -47,9 +47,9 @@ const getAllData = async (
   return response;
 };
 
-export const addSession = async (sessionTemplate: object) => {
+export const addSession = async (obj: object) => {
   const session = {
-    ...sessionTemplate,
+    ...obj,
     id: uuidv4(),
   };
 
