@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import dummySessionTemplates from '../test/dummy-session-templates.json';
 import { SessionTemplate } from '../utils/types';
-import { v4 as uuidv4 } from 'uuid';
 import { getAllSessionTemplates } from '../services/sessions';
+import { addSessionTemplate } from '../services/session-template';
 
 const sessionTemplateRouter = Router();
 
@@ -17,12 +17,13 @@ sessionTemplateRouter.get('/', async (_req, res) => {
   }
 });
 
-sessionTemplateRouter.post('/', (req, res) => {
-  sessionTemplates.push({
-    ...req.body,
-    id: uuidv4(),
-  });
-  res.send('session template added successfully');
+sessionTemplateRouter.post('/', async (req, res) => {
+  try {
+    const response = await addSessionTemplate(req.body);
+    res.json(response);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 sessionTemplateRouter.put('/:id', (req, res) => {
