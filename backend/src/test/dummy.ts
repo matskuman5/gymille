@@ -2,12 +2,13 @@ import models from '../models';
 import dummySessions from './dummy-sessions.json';
 
 export const addDummySessions = async () => {
-  const sessionsWithoutExercises = dummySessions.map((session) => ({
-    id: session.id,
-    date: session.date,
-    name: session.name,
-  }));
-  sessionsWithoutExercises.forEach(async (session) => {
-    await models.SessionModel.create(session);
+  dummySessions.forEach(async (session) => {
+    const sessionWithoutExercises = {
+      id: session.id,
+      date: session.date,
+      name: session.name,
+    };
+    await models.SessionModel.create(sessionWithoutExercises);
+    await models.ExerciseModel.bulkCreate(session.exercises);
   });
 };

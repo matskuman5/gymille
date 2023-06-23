@@ -1,4 +1,5 @@
 import {
+  CreationOptional,
   DataTypes,
   InferAttributes,
   InferCreationAttributes,
@@ -17,12 +18,13 @@ interface ExerciseModel
   sets: number;
   reps: number;
   weight: number;
-  notes?: string;
+  notes: CreationOptional<string>;
 }
 
 export const ExerciseModel = sequelize.define<ExerciseModel>('Exercise', {
   sessionId: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   id: {
     type: DataTypes.STRING,
