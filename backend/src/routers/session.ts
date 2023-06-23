@@ -9,9 +9,7 @@ const sessionRouter = Router();
 sessionRouter.get('/', async (_req, res) => {
   try {
     const sessions = await models.SessionModel.findAll({
-      attributes: {
-        exclude: ['createdAt', 'updatedAt'],
-      },
+      raw: true,
     });
 
     let response = [];
@@ -19,10 +17,9 @@ sessionRouter.get('/', async (_req, res) => {
     for (const session of sessions) {
       if (session.id !== null) {
         const sessionExercises = await models.ExerciseModel.findAll({
-          attributes: { exclude: ['sessionId'] },
+          raw: true,
           where: { sessionId: session.id },
         });
-        console.log(sessionExercises);
         response.push({
           ...session,
           exercises: sessionExercises,
