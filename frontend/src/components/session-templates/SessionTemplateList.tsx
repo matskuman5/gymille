@@ -15,15 +15,15 @@ const SessionTemplateList = () => {
   );
 
   useEffect(() => {
-    const fetchSessionTemplates = async () => {
-      const sessionTemplateData = await getSessionTemplates();
-      if (sessionTemplateData !== undefined) {
-        setSessionTemplates(sessionTemplateData);
-      }
-    };
-
     fetchSessionTemplates();
   }, []);
+
+  const fetchSessionTemplates = async () => {
+    const sessionTemplateData = await getSessionTemplates();
+    if (sessionTemplateData !== undefined) {
+      setSessionTemplates(sessionTemplateData);
+    }
+  };
 
   const handleUpdatedSessionTemplate = async (
     sessionTemplate: SessionTemplate
@@ -43,12 +43,8 @@ const SessionTemplateList = () => {
   };
 
   const deleteSessionTemplate = async (id: string) => {
-    const response = await deleteSessionTemplateAPI(id);
-    if (response !== undefined && response.status === 200) {
-      setSessionTemplates(
-        sessionTemplates.filter((sessionTemplate) => sessionTemplate.id !== id)
-      );
-    }
+    await deleteSessionTemplateAPI(id);
+    await fetchSessionTemplates();
   };
 
   return (
