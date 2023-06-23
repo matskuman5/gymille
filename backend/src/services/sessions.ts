@@ -79,3 +79,13 @@ export const addSession = async (obj: object) => {
 
   await models.ExerciseModel.bulkCreate(exercises);
 };
+
+export const deleteSession = async (id: string) => {
+  await models.SessionModel.destroy({
+    where: { id: id },
+  });
+
+  await models.ExerciseModel.destroy({
+    where: { sessionId: id },
+  });
+};

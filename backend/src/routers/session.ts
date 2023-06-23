@@ -1,6 +1,10 @@
 import { Router } from 'express';
 import logger from '../utils/logging';
-import { addSession, getAllSessions } from '../services/sessions';
+import {
+  addSession,
+  deleteSession,
+  getAllSessions,
+} from '../services/sessions';
 
 const sessionRouter = Router();
 
@@ -19,6 +23,15 @@ sessionRouter.post('/', async (req, res) => {
     res.status(201);
   } catch (error) {
     logger.error(error);
+    res.status(400).json({ error });
+  }
+});
+
+sessionRouter.delete('/:id', async (req, res) => {
+  try {
+    await deleteSession(req.params.id);
+    res.status(200);
+  } catch (error) {
     res.status(400).json({ error });
   }
 });
