@@ -28,3 +28,35 @@ export const addSessionTemplate = async (obj: object) => {
 
   await models.ExerciseTemplateModel.bulkCreate(exerciseTemplates);
 };
+
+export const updateSessionTemplate = async (
+  id: string,
+  sessionTemplate: object
+) => {
+  if (!isSessionTemplate(sessionTemplate)) {
+    console.log(sessionTemplate);
+    throw new Error('Session template validation failed');
+  }
+
+  console.log(sessionTemplate);
+
+  await models.SessionTemplateModel.update(
+    { name: sessionTemplate.name },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+
+  for (const exerciseTemplate of sessionTemplate.exerciseTemplates) {
+    await models.ExerciseTemplateModel.update(
+      {
+        name: exerciseTemplate.name,
+        sets: exerciseTemplate.sets,
+        reps: exerciseTemplate.reps,
+      },
+      { where: { id: exerciseTemplate.id } }
+    );
+  }
+};

@@ -2,7 +2,10 @@ import { Router } from 'express';
 import dummySessionTemplates from '../test/dummy-session-templates.json';
 import { SessionTemplate } from '../utils/types';
 import { getAllSessionTemplates } from '../services/sessions';
-import { addSessionTemplate } from '../services/session-template';
+import {
+  addSessionTemplate,
+  updateSessionTemplate,
+} from '../services/session-template';
 
 const sessionTemplateRouter = Router();
 
@@ -26,11 +29,13 @@ sessionTemplateRouter.post('/', async (req, res) => {
   }
 });
 
-sessionTemplateRouter.put('/:id', (req, res) => {
-  sessionTemplates = sessionTemplates.map((sessionTemplate) =>
-    sessionTemplate.id === req.params.id ? req.body : sessionTemplate
-  );
-  res.send('session template updated successfully');
+sessionTemplateRouter.put('/:id', async (req, res) => {
+  try {
+    const response = await updateSessionTemplate(req.params.id, req.body);
+    res.json(response);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 sessionTemplateRouter.delete('/:id', (req, res) => {
