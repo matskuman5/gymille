@@ -36,23 +36,7 @@ export const getSessionTemplates = async () => {
     const response = await axios.get<SessionTemplate[]>(
       `${apiUrl}/session-templates`
     );
-    if (response.data !== undefined) {
-      const sessionTemplateDataWithIDs = response.data.map(
-        (sessionTemplate) => {
-          const exerciseTemplatesWithIDs =
-            sessionTemplate.exerciseTemplates.map((exerciseTemplate) => ({
-              ...exerciseTemplate,
-              id: uuidv4(),
-            }));
-
-          return {
-            ...sessionTemplate,
-            exerciseTemplates: exerciseTemplatesWithIDs,
-          };
-        }
-      );
-      return sessionTemplateDataWithIDs;
-    }
+    return response.data;
   } catch (error) {
     showError(error);
   }
