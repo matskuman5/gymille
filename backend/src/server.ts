@@ -30,5 +30,5 @@ app.listen(PORT, async () => {
   await connectToDB();
   await models.setupModels();
   await addDummySessions();
-  logger.info(`Startup successful, server listening on port ${PORT}`);
+  logger.info(`Startup finished, server listening on port ${PORT}`);
 });
