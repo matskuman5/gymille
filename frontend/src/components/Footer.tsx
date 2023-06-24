@@ -6,8 +6,8 @@ const Footer = () => {
       boxShadow={3}
       sx={{
         backgroundColor: (theme) => theme.palette.grey[300],
-        position: 'fixed',
         bottom: 0,
+        width: '100%',
       }}
     >
       <Stack margin={1}>
