@@ -34,7 +34,7 @@ COPY package.json .
 COPY package-lock.json .
 
 # Deterministically install only packages needed for production
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy compiled code from compiler stage
 COPY --from=compiler /usr/src/app/dist ./dist
