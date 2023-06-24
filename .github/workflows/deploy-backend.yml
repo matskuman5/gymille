@@ -1,9 +1,9 @@
-name: Deploy frontend
+name: Deploy backend
 
 on:
   push:
     paths:
-      - 'frontend/**'
+      - 'backend/**'
 
 jobs:
   deploy:
@@ -13,5 +13,5 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
         env:
-          FLY_API_TOKEN: ${{ secrets.FRONTEND.FLY_API_TOKEN }}
-        working-directory: ./frontend
+          FLY_API_TOKEN: ${{ secrets.BACKEND.FLY_API_TOKEN }}
+        working-directory: ./backend
