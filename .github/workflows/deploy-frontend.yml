@@ -5,6 +5,9 @@ on:
     paths:
       - 'frontend/**'
 
+env:
+  FLY_API_TOKEN: ${{ secrets.FRONTEND.FLY_API_TOKEN }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,6 +15,4 @@ jobs:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
-        env:
-          FLY_API_TOKEN: ${{ secrets.FRONTEND.FLY_API_TOKEN }}
         working-directory: ./frontend
