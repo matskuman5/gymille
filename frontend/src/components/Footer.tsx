@@ -6,7 +6,6 @@ const Footer = () => {
       boxShadow={3}
       sx={{
         backgroundColor: (theme) => theme.palette.grey[300],
-        bottom: 0,
         width: '100%',
       }}
     >
