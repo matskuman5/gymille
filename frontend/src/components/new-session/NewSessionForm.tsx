@@ -80,8 +80,10 @@ const NewSessionForm = () => {
         </Grid>
         <Grid item>
           <DatePicker
+            label="Date"
             value={date}
             onChange={(value) => setDate(value)}
+            sx={{ maxWidth: 120 }}
           ></DatePicker>
         </Grid>
         <Grid item>
@@ -89,6 +91,7 @@ const NewSessionForm = () => {
             label="Session Name"
             value={name}
             onChange={(event) => setName(event.target.value)}
+            sx={{ maxWidth: 140 }}
           ></TextField>
         </Grid>
       </Grid>
