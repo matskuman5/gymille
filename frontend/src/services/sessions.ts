@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Session } from '../types';
-import apiUrl from '../config';
+import apiUrl from '../utils/config';
 import { showError, showNotification } from '../utils/notifications';
 
 export const postSession = async (session: Session) => {

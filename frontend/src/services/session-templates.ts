@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SessionTemplate } from '../types';
-import apiUrl from '../config';
+import apiUrl from '../utils/config';
 import { showError, showNotification } from '../utils/notifications';
 
 export const postSessionTemplate = async (sessionTemplate: SessionTemplate) => {
