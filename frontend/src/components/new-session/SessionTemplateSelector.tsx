@@ -8,7 +8,7 @@ interface Props {
   setSessionName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SessionTemplateSelect = ({ setExercises, setSessionName }: Props) => {
+const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
     []
   );
@@ -68,4 +68,4 @@ const SessionTemplateSelect = ({ setExercises, setSessionName }: Props) => {
   );
 };
 
-export default SessionTemplateSelect;
+export default SessionTemplateSelector;

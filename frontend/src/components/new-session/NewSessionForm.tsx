@@ -5,7 +5,7 @@ import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
-import SessionTemplateSelect from './SessionTemplateSelect';
+import SessionTemplateSelector from './SessionTemplateSelector';
 import { showNotification } from '../../utils/notifications';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -73,7 +73,7 @@ const NewSessionForm = () => {
     <Stack spacing={2}>
       <Grid container spacing={1}>
         <Grid item>
-          <SessionTemplateSelect
+          <SessionTemplateSelector
             setExercises={setExercises}
             setSessionName={setName}
           />
