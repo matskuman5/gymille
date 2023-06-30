@@ -4,12 +4,12 @@ import SessionList from './components/session-list/SessionList';
 import Header from './components/Header';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
 import { ToastContainer } from 'react-toastify';
-import { Box, Container, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <Container>
+    <Box>
       <Stack spacing={2} minHeight="100vh">
         <Header />
         <Box sx={{ flex: 1 }}>
@@ -25,7 +25,7 @@ const App = () => {
         <Footer />
       </Stack>
       <ToastContainer />
-    </Container>
+    </Box>
   );
 };
 
