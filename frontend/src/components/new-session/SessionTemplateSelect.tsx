@@ -55,7 +55,7 @@ const SessionTemplateSelect = ({ setExercises, setSessionName }: Props) => {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }}>
+    <FormControl sx={{ minWidth: 120 }}>
       <InputLabel>Template</InputLabel>
       <Select onChange={handleInputChange} value="">
         {sessionTemplates.map((sessionTemplate) => (
