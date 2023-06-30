@@ -14,13 +14,24 @@ const Header = () => {
       </Typography>
       <Toolbar>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" component={RouterLink} to="/">
+          <Button
+            size="small"
+            variant="contained"
+            component={RouterLink}
+            to="/"
+          >
             New Session
           </Button>
-          <Button variant="contained" component={RouterLink} to="/sessions">
+          <Button
+            size="small"
+            variant="contained"
+            component={RouterLink}
+            to="/sessions"
+          >
             Previous Sessions
           </Button>
           <Button
+            size="small"
             variant="contained"
             component={RouterLink}
             to="/session-templates"
