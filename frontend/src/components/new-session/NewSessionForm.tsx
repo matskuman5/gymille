@@ -1,4 +1,4 @@
-import { Box, Button, Stack, TextField } from '@mui/material';
+import { Box, Button, Grid, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
 import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
@@ -71,19 +71,27 @@ const NewSessionForm = () => {
 
   return (
     <Stack spacing={2}>
-      <SessionTemplateSelect
-        setExercises={setExercises}
-        setSessionName={setName}
-      />
-      <DatePicker
-        value={date}
-        onChange={(value) => setDate(value)}
-      ></DatePicker>
-      <TextField
-        label="Session Name"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-      ></TextField>
+      <Grid container spacing={1}>
+        <Grid item>
+          <SessionTemplateSelect
+            setExercises={setExercises}
+            setSessionName={setName}
+          />
+        </Grid>
+        <Grid item>
+          <DatePicker
+            value={date}
+            onChange={(value) => setDate(value)}
+          ></DatePicker>
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Session Name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          ></TextField>
+        </Grid>
+      </Grid>
 
       <Box boxShadow={3}>
         <Stack spacing={1} margin={3}>
