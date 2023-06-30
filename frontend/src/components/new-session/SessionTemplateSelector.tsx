@@ -12,6 +12,7 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
     []
   );
+  const [selectedTemplate, setSelectedTemplate] = useState('');
 
   useEffect(() => {
     const fetchSessionTemplates = async () => {
@@ -52,12 +53,13 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
     });
     setExercises(newExercises);
     setSessionName(template.name);
+    setSelectedTemplate(template.name);
   };
 
   return (
     <FormControl sx={{ minWidth: 120 }}>
       <InputLabel>Template</InputLabel>
-      <Select onChange={handleInputChange} value="">
+      <Select onChange={handleInputChange} value={selectedTemplate}>
         {sessionTemplates.map((sessionTemplate) => (
           <MenuItem key={sessionTemplate.name} value={sessionTemplate.name}>
             {sessionTemplate.name}
