@@ -14,4 +14,14 @@ userRouter.post('/', async (req, res) => {
   }
 });
 
+userRouter.get('/', async (req, res) => {
+  try {
+    console.log(req.session);
+    res.status(200).send(req.session.username);
+  } catch (error) {
+    logger.error(error);
+    res.status(400).json({ error });
+  }
+});
+
 export default userRouter;
