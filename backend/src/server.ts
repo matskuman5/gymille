@@ -3,7 +3,7 @@ import cors from 'cors';
 import { logger, logRequests } from './utils/logging';
 import pingRouter from './routers/ping';
 import sessionRouter from './routers/session';
-import { PORT } from './utils/config';
+import { NODE_ENV, PORT } from './utils/config';
 import sessionTemplateRouter from './routers/session-templates';
 import {
   connectToPostgres,
@@ -29,9 +29,7 @@ app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 
 app.listen(PORT, async () => {
-  logger.info(
-    `Starting server in mode: ${process.env.NODE_ENV || 'development'}`
-  );
+  logger.info(`Starting server in mode: ${NODE_ENV}`);
   await connectToPostgres();
   await models.setupModels();
   await addDummySessions();
