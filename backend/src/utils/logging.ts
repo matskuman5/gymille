@@ -2,7 +2,7 @@ import bunyan from 'bunyan';
 import prettystream from 'bunyan-prettystream';
 import { NextFunction, Request, Response } from 'express';
 
-const prettyStream = new prettystream();
+const prettyStream = new prettystream({ mode: 'short' });
 prettyStream.pipe(process.stdout);
 
 export const bunyanLogger = bunyan.createLogger({
