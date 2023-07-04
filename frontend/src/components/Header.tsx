@@ -1,4 +1,4 @@
-import { AppBar, Button, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Grid, Toolbar, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
         Gymille!
       </Typography>
       <Toolbar>
-        <Stack direction="row" spacing={2}>
+        <Grid spacing={2} marginBottom={2}>
           <Button
             size="small"
             variant="contained"
@@ -38,7 +38,7 @@ const Header = () => {
           >
             Session Templates
           </Button>
-        </Stack>
+        </Grid>
       </Toolbar>
     </AppBar>
   );
