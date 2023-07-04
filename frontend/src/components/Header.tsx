@@ -13,39 +13,47 @@ const Header = () => {
         Gymille!
       </Typography>
       <Toolbar>
-        <Grid spacing={2} marginBottom={2}>
-          <Button
-            size="small"
-            variant="contained"
-            component={RouterLink}
-            to="/"
-          >
-            New Session
-          </Button>
-          <Button
-            size="small"
-            variant="contained"
-            component={RouterLink}
-            to="/sessions"
-          >
-            Previous Sessions
-          </Button>
-          <Button
-            size="small"
-            variant="contained"
-            component={RouterLink}
-            to="/session-templates"
-          >
-            Session Templates
-          </Button>
-          <Button
-            size="small"
-            variant="contained"
-            component={RouterLink}
-            to="/user"
-          >
-            User
-          </Button>
+        <Grid container spacing={2} marginBottom={2}>
+          <Grid item>
+            <Button
+              size="small"
+              variant="contained"
+              component={RouterLink}
+              to="/"
+            >
+              New Session
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              size="small"
+              variant="contained"
+              component={RouterLink}
+              to="/sessions"
+            >
+              Previous Sessions
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              size="small"
+              variant="contained"
+              component={RouterLink}
+              to="/session-templates"
+            >
+              Session Templates
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              size="small"
+              variant="contained"
+              component={RouterLink}
+              to="/user"
+            >
+              User
+            </Button>
+          </Grid>
         </Grid>
       </Toolbar>
     </AppBar>
