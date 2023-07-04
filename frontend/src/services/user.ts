@@ -12,3 +12,12 @@ export const createUser = async (user: User) => {
     showError(error);
   }
 };
+
+export const getUserName = async () => {
+  try {
+    const response = await axios.get(`${apiUrl}/users`);
+    return response.data;
+  } catch (error) {
+    showError(error);
+  }
+};
