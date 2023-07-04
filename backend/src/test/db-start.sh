@@ -6,4 +6,6 @@ then
 else
     docker run -d --name testdb -e POSTGRES_PASSWORD=test -p 5432:5432 postgres
 fi
+docker run -d -p 6379:6379 -it redis/redis-stack-server:latest
+sleep 1s # wait for postgres to start up before connecting to it
 docker exec -it testdb psql -U postgres postgres
