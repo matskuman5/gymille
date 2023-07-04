@@ -9,6 +9,7 @@ import { connectToDB } from './utils/db';
 import { addDummySessions } from './test/dummy';
 import models from './models';
 import userRouter from './routers/users';
+import loginRouter from './routers/login';
 
 const app = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 app.use('/api/users', userRouter);
+app.use('/api/login', loginRouter);
 
 app.listen(PORT, async () => {
   logger.info(
