@@ -38,6 +38,14 @@ const Header = () => {
           >
             Session Templates
           </Button>
+          <Button
+            size="small"
+            variant="contained"
+            component={RouterLink}
+            to="/user"
+          >
+            User
+          </Button>
         </Grid>
       </Toolbar>
     </AppBar>

@@ -6,7 +6,7 @@ import SessionTemplateList from './components/session-templates/SessionTemplateL
 import { ToastContainer } from 'react-toastify';
 import { Box, Stack } from '@mui/material';
 import Footer from './components/Footer';
-import AccountCreationForm from './components/user-authentication/AccountCreationForm';
+import UserPage from './components/user-authentication/UserPage';
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
               path="/session-templates"
               element={<SessionTemplateList />}
             />
-            <Route path="/register" element={<AccountCreationForm />} />
+            <Route path="/user" element={<UserPage />} />
           </Routes>
         </Box>
         <Footer />
