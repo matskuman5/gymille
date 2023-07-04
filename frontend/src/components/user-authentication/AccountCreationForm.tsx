@@ -17,7 +17,7 @@ const AccountCreationForm = () => {
   };
 
   return (
-    <Stack>
+    <Stack spacing={1}>
       <TextField
         label="Username"
         value={username}
@@ -34,7 +34,11 @@ const AccountCreationForm = () => {
             : ''
         }
       ></TextField>
-      <Button onClick={handleSubmit} disabled={password.length < 8}>
+      <Button
+        variant="contained"
+        onClick={handleSubmit}
+        disabled={password.length < 8}
+      >
         Create Account
       </Button>
     </Stack>
