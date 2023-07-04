@@ -63,3 +63,22 @@ export const isExercise = (object: unknown): object is Exercise =>
   typeof object.sets === 'number' &&
   typeof object.reps === 'number' &&
   typeof object.weight === 'number';
+
+export interface User {
+  id: string;
+  username: string;
+  passwordHash: string;
+}
+
+export interface NewUser {
+  username: string;
+  password: string;
+}
+
+export const isNewUser = (object: unknown): object is NewUser =>
+  typeof object === 'object' &&
+  object !== null &&
+  'username' in object &&
+  'password' in object &&
+  typeof object.username === 'string' &&
+  typeof object.password === 'string';
