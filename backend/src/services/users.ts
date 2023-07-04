@@ -9,6 +9,14 @@ export const addUser = async (newUser: object) => {
     throw new Error('User validation failed');
   }
 
+  const existingUser = await models.UserModel.findOne({
+    where: { username: newUser.username },
+  });
+
+  if (existingUser) {
+    throw new Error(`Username ${newUser.username} already used`);
+  }
+
   const passwordHash = await bcrypt.hash(newUser.password, 10);
 
   await models.UserModel.create({
