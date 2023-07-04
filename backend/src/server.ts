@@ -17,7 +17,15 @@ import loginRouter from './routers/login';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+if (NODE_ENV === 'development') {
+  app.use(
+    cors({
+      origin: 'http://localhost:5173',
+      credentials: true,
+    })
+  );
+}
 
 app.use(logRequests);
 app.use(sessionMiddleware);
