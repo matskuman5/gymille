@@ -1,7 +1,8 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Grid, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
 import { createUser } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../services/login';
 
 const AccountCreationForm = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +10,14 @@ const AccountCreationForm = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleLoginClick = async () => {
+    const response = await login({ username, password });
+    if (response && response.status === 200) {
+      navigate('/');
+    }
+  };
+
+  const handleCreateAccountClick = async () => {
     const response = await createUser({ username, password });
     if (response && response.status === 201) {
       navigate('/');
@@ -34,13 +42,22 @@ const AccountCreationForm = () => {
             : ''
         }
       ></TextField>
-      <Button
-        variant="contained"
-        onClick={handleSubmit}
-        disabled={password.length < 8}
-      >
-        Create Account
-      </Button>
+      <Grid container spacing={1}>
+        <Grid item>
+          <Button variant="contained" onClick={handleLoginClick}>
+            Login
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            onClick={handleCreateAccountClick}
+            disabled={password.length < 8}
+          >
+            Create Account
+          </Button>
+        </Grid>
+      </Grid>
     </Stack>
   );
 };
