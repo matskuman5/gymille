@@ -3,6 +3,7 @@ import { ExerciseModel } from './exercise';
 import logger from '../utils/logging';
 import { SessionTemplateModel } from './session-template';
 import { ExerciseTemplateModel } from './exercise-template';
+import { UserModel } from './user';
 
 const setupModels = async () => {
   try {
@@ -16,6 +17,7 @@ const setupModels = async () => {
     await ExerciseModel.sync({ force: true });
     await SessionTemplateModel.sync({ force: true });
     await ExerciseTemplateModel.sync({ force: true });
+    await UserModel.sync({ force: true });
 
     logger.info('Models synced with database successfully');
   } catch (error) {
