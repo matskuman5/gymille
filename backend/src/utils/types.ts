@@ -82,3 +82,9 @@ export const isNewUser = (object: unknown): object is NewUser =>
   'password' in object &&
   typeof object.username === 'string' &&
   typeof object.password === 'string';
+
+declare module 'express-session' {
+  interface SessionData {
+    username: string;
+  }
+}
