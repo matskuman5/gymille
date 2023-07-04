@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from 'express';
 const prettyStream = new prettystream({ mode: 'short' });
 prettyStream.pipe(process.stdout);
 
-export const bunyanLogger = bunyan.createLogger({
+export const logger = bunyan.createLogger({
   name: 'gymille-backend',
   stream: prettyStream,
 });
@@ -15,6 +15,6 @@ export const logRequests = (
   _res: Response,
   next: NextFunction
 ) => {
-  bunyanLogger.info(req.method, req.url);
+  logger.info(req.method, req.url);
   next();
 };
