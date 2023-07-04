@@ -5,7 +5,7 @@ import pingRouter from './routers/ping';
 import sessionRouter from './routers/session';
 import { PORT } from './utils/config';
 import sessionTemplateRouter from './routers/session-templates';
-import { connectToDB } from './utils/db';
+import { connectToPostgres, connectToRedis } from './utils/db';
 import { addDummySessions } from './test/dummy';
 import models from './models';
 import userRouter from './routers/users';
@@ -27,8 +27,9 @@ app.listen(PORT, async () => {
   logger.info(
     `Starting server in mode: ${process.env.NODE_ENV || 'development'}`
   );
-  await connectToDB();
+  await connectToPostgres();
   await models.setupModels();
   await addDummySessions();
+  await connectToRedis();
   logger.info(`Startup finished, server listening on port ${PORT}`);
 });
