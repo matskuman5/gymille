@@ -7,7 +7,7 @@ export const createUser = async (user: User) => {
   try {
     const response = await axios.post(`${apiUrl}/users`, user);
     showNotification('User created successfully.', 'success');
-    return response.data;
+    return response;
   } catch (error) {
     showError(error);
   }

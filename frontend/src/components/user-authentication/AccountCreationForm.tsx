@@ -1,12 +1,19 @@
 import { Button, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
+import { createUser } from '../../services/user';
+import { useNavigate } from 'react-router-dom';
 
 const AccountCreationForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    console.log('creating account');
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    const response = await createUser({ username, password });
+    if (response && response.status === 201) {
+      navigate('/');
+    }
   };
 
   return (
@@ -27,7 +34,9 @@ const AccountCreationForm = () => {
             : ''
         }
       ></TextField>
-      <Button onClick={handleSubmit}>Create Account</Button>
+      <Button onClick={handleSubmit} disabled={password.length < 8}>
+        Create Account
+      </Button>
     </Stack>
   );
 };
