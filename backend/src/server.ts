@@ -5,7 +5,11 @@ import pingRouter from './routers/ping';
 import sessionRouter from './routers/session';
 import { PORT } from './utils/config';
 import sessionTemplateRouter from './routers/session-templates';
-import { connectToPostgres, connectToRedis } from './utils/db';
+import {
+  connectToPostgres,
+  connectToRedis,
+  sessionMiddleware,
+} from './utils/db';
 import { addDummySessions } from './test/dummy';
 import models from './models';
 import userRouter from './routers/users';
@@ -16,6 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(logRequests);
+app.use(sessionMiddleware);
 
 app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);

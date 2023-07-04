@@ -1,7 +1,9 @@
 import { Sequelize } from 'sequelize';
-import { DATABASE_URL } from './config';
+import { DATABASE_URL, REDIS_SECRET } from './config';
 import { logger } from './logging';
 import { createClient } from 'redis';
+import session from 'express-session';
+import RedisStore from 'connect-redis';
 
 export const sequelize = new Sequelize(DATABASE_URL, {
   logging: false,
@@ -26,3 +28,12 @@ export const connectToRedis = async () => {
     logger.error(error);
   }
 };
+
+export const sessionMiddleware = session({
+  secret: REDIS_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: new RedisStore({
+    client: redisClient,
+  }),
+});

@@ -5,3 +5,5 @@ export const DATABASE_URL =
   'postgres://postgres:test@localhost:5432/postgres';
 
 export const JWT_SECRET = process.env.JWT_SECRET || 'test';
+
+export const REDIS_SECRET = process.env.REDIS_SECRET || 'test';
