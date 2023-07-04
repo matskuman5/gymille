@@ -1,6 +1,6 @@
 import { SessionModel } from './session';
 import { ExerciseModel } from './exercise';
-import logger from '../utils/logging';
+import { bunyanLogger } from '../utils/logging';
 import { SessionTemplateModel } from './session-template';
 import { ExerciseTemplateModel } from './exercise-template';
 import { UserModel } from './user';
@@ -19,9 +19,9 @@ const setupModels = async () => {
     await ExerciseTemplateModel.sync({ force: true });
     await UserModel.sync({ force: true });
 
-    logger.info('Models synced with database successfully');
+    bunyanLogger.info('Models synced with database successfully');
   } catch (error) {
-    logger.error(error);
+    bunyanLogger.error(error);
   }
 };
 

@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import logger from './utils/logging';
+import { bunyanLogger, logRequests } from './utils/logging';
 import pingRouter from './routers/ping';
 import sessionRouter from './routers/session';
 import { PORT } from './utils/config';
@@ -15,11 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use((req, _res, next) => {
-  const { method, originalUrl } = req;
-  logger.info(method, originalUrl);
-  next();
-});
+app.use(logRequests);
 
 app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
@@ -28,11 +24,11 @@ app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 
 app.listen(PORT, async () => {
-  logger.info(
+  bunyanLogger.info(
     `Starting server in mode: ${process.env.NODE_ENV || 'development'}`
   );
   await connectToDB();
   await models.setupModels();
   await addDummySessions();
-  logger.info(`Startup finished, server listening on port ${PORT}`);
+  bunyanLogger.info(`Startup finished, server listening on port ${PORT}`);
 });

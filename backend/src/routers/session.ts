@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import logger from '../utils/logging';
+import { bunyanLogger } from '../utils/logging';
 import {
   addSession,
   deleteSession,
@@ -22,7 +22,7 @@ sessionRouter.post('/', async (req, res) => {
     const response = await addSession(req.body);
     res.status(201).json(response);
   } catch (error) {
-    logger.error(error);
+    bunyanLogger.error(error);
     res.status(400).json({ error });
   }
 });

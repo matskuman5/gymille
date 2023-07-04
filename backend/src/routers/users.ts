@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import logger from '../utils/logging';
 import { addUser } from '../services/users';
+import { bunyanLogger } from '../utils/logging';
 
 const userRouter = Router();
 
@@ -9,7 +9,7 @@ userRouter.post('/', async (req, res) => {
     const response = await addUser(req.body);
     res.status(201).json(response);
   } catch (error) {
-    logger.error(error);
+    bunyanLogger.error(error);
     res.status(400).json({ error });
   }
 });
