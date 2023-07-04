@@ -15,13 +15,13 @@ const App = () => {
         <Header />
         <Box sx={{ flex: 1 }}>
           <Routes>
-            <Route path="/" element={<NewSessionForm />}></Route>
-            <Route path="/sessions" element={<SessionList />}></Route>
+            <Route path="/" element={<NewSessionForm />} />
+            <Route path="/sessions" element={<SessionList />} />
             <Route
               path="/session-templates"
               element={<SessionTemplateList />}
-            ></Route>
-            <Route path="/register" element={<AccountCreationForm />}></Route>
+            />
+            <Route path="/register" element={<AccountCreationForm />} />
           </Routes>
         </Box>
         <Footer />
