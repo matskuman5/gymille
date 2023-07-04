@@ -5,7 +5,9 @@ import { showError, showNotification } from '../utils/notifications';
 
 export const login = async (user: User) => {
   try {
-    const response = await axios.post(`${apiUrl}/login`, user);
+    const response = await axios.post(`${apiUrl}/login`, user, {
+      withCredentials: true,
+    });
     showNotification('Logged in successfully.', 'success');
     return response;
   } catch (error) {
