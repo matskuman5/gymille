@@ -16,6 +16,7 @@ const UserPage = () => {
 
   const handleLogoutClick = async () => {
     await logout();
+    await fetchUsername();
   };
 
   useEffect(() => {
@@ -23,11 +24,18 @@ const UserPage = () => {
   }, []);
 
   return (
-    <Stack spacing={1}>
-      <Typography variant="h4">User info for ${username}</Typography>
-      <Button onClick={handleLogoutClick}>Logout</Button>
-      <AccountCreationForm />;
-    </Stack>
+    <>
+      {username ? (
+        <Stack>
+          <Typography variant="h4">User info for {username}</Typography>
+          <Button variant="contained" onClick={handleLogoutClick}>
+            Logout
+          </Button>
+        </Stack>
+      ) : (
+        <AccountCreationForm />
+      )}
+    </>
   );
 };
 
