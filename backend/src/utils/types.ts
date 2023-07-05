@@ -17,7 +17,7 @@ export const isSessionTemplate = (object: unknown): object is SessionTemplate =>
 
 export interface Session {
   id: string;
-  username: string;
+  userId: string;
   date: string;
   name?: string;
   exercises: Exercise[];
@@ -27,12 +27,12 @@ export const isSession = (object: unknown): object is Session =>
   typeof object === 'object' &&
   object !== null &&
   'id' in object &&
-  'username' in object &&
+  'userId' in object &&
   'date' in object &&
   'exercises' in object &&
   typeof object.id === 'string' &&
   typeof object.date === 'string' &&
-  typeof object.username === 'string' &&
+  typeof object.userId === 'string' &&
   Array.isArray(object.exercises) &&
   object.exercises.every(isExercise);
 

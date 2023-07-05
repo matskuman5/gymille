@@ -62,14 +62,14 @@ export const addSession = async (obj: object) => {
   if (session.name) {
     await models.SessionModel.create({
       id: session.id,
-      username: session.username,
+      userId: session.userId,
       date: session.date,
       name: session.name,
     });
   } else {
     await models.SessionModel.create({
       id: session.id,
-      username: session.username,
+      userId: session.userId,
       date: session.date,
     });
   }
@@ -83,9 +83,9 @@ export const addSession = async (obj: object) => {
   await models.ExerciseModel.bulkCreate(exercises);
 };
 
-export const getUserSessions = async (username: string) => {
+export const getUserSessions = async (id: string) => {
   const sessions = await models.SessionModel.findAll({
-    where: { username: username },
+    where: { userId: id },
   });
 
   let response = [];

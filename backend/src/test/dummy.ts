@@ -6,7 +6,7 @@ export const addDummySessions = async () => {
   dummySessions.forEach(async (session) => {
     const sessionWithoutExercises = {
       id: session.id,
-      username: session.username,
+      userId: session.userId,
       date: session.date,
       name: session.name,
     };
