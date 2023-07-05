@@ -8,7 +8,7 @@ else
 fi
 if docker container ls -a --filter name=redistest --format '{{.Names}}' | grep -q '^redistest$';
 then
-    docker start redisdb
+    docker start redistest
 else
     docker run -d --name redistest -p 6379:6379 -it redis/redis-stack-server:latest
 fi
