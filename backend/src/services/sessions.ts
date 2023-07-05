@@ -61,12 +61,14 @@ export const addSession = async (obj: object) => {
   if (session.name) {
     await models.SessionModel.create({
       id: session.id,
+      username: session.username,
       date: session.date,
       name: session.name,
     });
   } else {
     await models.SessionModel.create({
       id: session.id,
+      username: session.username,
       date: session.date,
     });
   }

@@ -3,6 +3,7 @@
     "id": "b600fd47-cfd8-4b61-8e56-e82b0adb7b74",
     "date": "2023-06-01",
     "name": "Push",
+    "username": "TestGuy",
     "exercises": [
       {
         "sessionId": "b600fd47-cfd8-4b61-8e56-e82b0adb7b74",
@@ -27,6 +28,7 @@
   {
     "id": "d6b204e8-ed4c-4f58-879f-d3c05551a83c",
     "date": "2023-06-02",
+    "username": "GymBro1",
     "exercises": [
       {
         "sessionId": "d6b204e8-ed4c-4f58-879f-d3c05551a83c",

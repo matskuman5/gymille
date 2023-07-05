@@ -10,6 +10,9 @@ const setupModels = async () => {
     SessionModel.hasMany(ExerciseModel);
     ExerciseModel.belongsTo(SessionModel);
 
+    UserModel.hasMany(SessionModel);
+    SessionModel.belongsTo(UserModel);
+
     SessionTemplateModel.hasMany(ExerciseTemplateModel);
     ExerciseTemplateModel.belongsTo(SessionTemplateModel);
 

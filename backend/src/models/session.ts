@@ -13,6 +13,7 @@ interface SessionModel
     InferCreationAttributes<SessionModel>
   > {
   id: string;
+  username: string;
   date: string;
   name: CreationOptional<string>;
 }
@@ -21,6 +22,10 @@ export const SessionModel = sequelize.define<SessionModel>('Session', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   date: {
     type: DataTypes.STRING,
