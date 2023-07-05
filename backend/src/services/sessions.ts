@@ -85,12 +85,14 @@ export const addSession = async (obj: object) => {
 
 export const getUserSessions = async (id: string) => {
   const sessions = await models.SessionModel.findAll({
+    raw: true,
     where: { userId: id },
   });
 
   let response = [];
   for (const session of sessions) {
     const exercises = await ExerciseModel.findAll({
+      raw: true,
       where: { sessionId: session.id },
     });
     response.push({
