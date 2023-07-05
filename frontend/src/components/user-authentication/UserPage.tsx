@@ -11,6 +11,8 @@ const UserPage = () => {
     const data = await getUserName();
     if (data) {
       setUsername(data);
+    } else {
+      setUsername('');
     }
   };
 
