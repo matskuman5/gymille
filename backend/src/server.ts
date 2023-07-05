@@ -14,6 +14,7 @@ import { addDummySessions } from './test/dummy';
 import models from './models';
 import userRouter from './routers/users';
 import loginRouter from './routers/login';
+import logoutRouter from './routers/logout';
 
 const app = express();
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/logout', logoutRouter);
 
 app.listen(PORT, async () => {
   logger.info(`Starting server in mode: ${NODE_ENV}`);
