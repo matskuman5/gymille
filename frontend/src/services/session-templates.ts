@@ -1,11 +1,11 @@
-import axios from 'axios';
+import instance from '../utils/axios';
 import { SessionTemplate } from '../types';
 import apiUrl from '../utils/config';
 import { showError, showNotification } from '../utils/notifications';
 
 export const postSessionTemplate = async (sessionTemplate: SessionTemplate) => {
   try {
-    const response = await axios.post(
+    const response = await instance.post(
       `${apiUrl}/session-templates`,
       sessionTemplate
     );
@@ -19,7 +19,7 @@ export const updateSessionTemplate = async (
   sessionTemplate: SessionTemplate
 ) => {
   try {
-    const response = await axios.put(
+    const response = await instance.put(
       `${apiUrl}/session-templates/${sessionTemplate.id}`,
       sessionTemplate
     );
@@ -32,7 +32,7 @@ export const updateSessionTemplate = async (
 
 export const getSessionTemplates = async () => {
   try {
-    const response = await axios.get<SessionTemplate[]>(
+    const response = await instance.get<SessionTemplate[]>(
       `${apiUrl}/session-templates`
     );
     return response.data;
@@ -43,7 +43,7 @@ export const getSessionTemplates = async () => {
 
 export const deleteSessionTemplate = async (id: string) => {
   try {
-    const response = await axios.delete(`${apiUrl}/session-templates/${id}`);
+    const response = await instance.delete(`${apiUrl}/session-templates/${id}`);
     showNotification('Session template deleted successfully.', 'success');
     return response;
   } catch (error) {

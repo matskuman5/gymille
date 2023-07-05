@@ -1,11 +1,11 @@
-import axios from 'axios';
+import instance from '../utils/axios';
 import { User } from '../types';
 import apiUrl from '../utils/config';
 import { showError, showNotification } from '../utils/notifications';
 
 export const createUser = async (user: User) => {
   try {
-    const response = await axios.post(`${apiUrl}/users`, user);
+    const response = await instance.post(`${apiUrl}/users`, user);
     showNotification('User created successfully.', 'success');
     return response;
   } catch (error) {
@@ -15,7 +15,7 @@ export const createUser = async (user: User) => {
 
 export const getUserName = async () => {
   try {
-    const response = await axios.get(`${apiUrl}/users`);
+    const response = await instance.get(`${apiUrl}/users`);
     return response.data;
   } catch (error) {
     showError(error);
