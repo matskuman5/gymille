@@ -25,11 +25,11 @@ userRouter.get('/', async (req, res) => {
   }
 });
 
-userRouter.post('/:username/sessions', async (req, res) => {
+userRouter.post('/:id/sessions', async (req, res) => {
   try {
     const response = await addSession({
       ...req.body,
-      username: req.params.username,
+      username: req.params.id,
     });
     res.status(201).json(response);
   } catch (error) {
@@ -38,9 +38,9 @@ userRouter.post('/:username/sessions', async (req, res) => {
   }
 });
 
-userRouter.get('/:username/sessions', async (req, res) => {
+userRouter.get('/:id/sessions', async (req, res) => {
   try {
-    const sessions = await getUserSessions(req.params.username);
+    const sessions = await getUserSessions(req.params.id);
     res.json(sessions);
   } catch (error) {
     logger.error(error);
