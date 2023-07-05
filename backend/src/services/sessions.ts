@@ -2,6 +2,7 @@ import { ModelStatic } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 import models from '../models';
 import { isSession } from '../utils/types';
+import { ExerciseModel } from '../models/exercise';
 
 export const getAllSessions = async () => {
   return getAllData(
@@ -80,6 +81,24 @@ export const addSession = async (obj: object) => {
   }));
 
   await models.ExerciseModel.bulkCreate(exercises);
+};
+
+export const getUserSessions = async (username: string) => {
+  const sessions = await models.SessionModel.findAll({
+    where: { username: username },
+  });
+
+  let response = [];
+  for (const session of sessions) {
+    const exercises = await ExerciseModel.findAll({
+      where: { sessionId: session.id },
+    });
+    response.push({
+      ...session,
+      exercises: exercises,
+    });
+  }
+  return response;
 };
 
 export const deleteSession = async (id: string) => {
