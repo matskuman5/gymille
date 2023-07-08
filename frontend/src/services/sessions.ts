@@ -3,9 +3,12 @@ import { Session } from '../types';
 import apiUrl from '../utils/config';
 import { showError, showNotification } from '../utils/notifications';
 
-export const postSession = async (session: Session) => {
+export const postSession = async (session: Session, userId: string) => {
   try {
-    const response = await instance.post(`${apiUrl}/sessions`, session);
+    const response = await instance.post(
+      `${apiUrl}/users/${userId}/sessions`,
+      session
+    );
     showNotification('Session saved successfully.', 'success');
     return response.data;
   } catch (error) {

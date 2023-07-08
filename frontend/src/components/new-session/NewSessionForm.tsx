@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
@@ -8,11 +8,14 @@ import { postSession } from '../../services/sessions';
 import SessionTemplateSelector from './SessionTemplateSelector';
 import { showNotification } from '../../utils/notifications';
 import { v4 as uuidv4 } from 'uuid';
+import { UserContext } from '../user-authentication/UserContext';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
   const [name, setName] = useState('');
   const [exercises, setExercises] = useState<Exercise[]>([]);
+
+  const { userId } = useContext(UserContext);
 
   const updateExercise = (exercise: Exercise, index: number) => {
     setExercises((exercises) => {
@@ -53,7 +56,7 @@ const NewSessionForm = () => {
       name: name,
       exercises: exercises,
     };
-    postSession(sessionToSend);
+    postSession(sessionToSend, userId);
     setDate(null);
     setExercises([]);
   };
