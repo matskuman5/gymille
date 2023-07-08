@@ -1,7 +1,11 @@
 import { AppBar, Button, Grid, Toolbar, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { UserContext } from './user-authentication/UserContext';
+import { useContext } from 'react';
 
 const Header = () => {
+  const { username } = useContext(UserContext);
+
   return (
     <AppBar position="sticky">
       <Typography
@@ -12,6 +16,7 @@ const Header = () => {
       >
         Gymille!
       </Typography>
+      {username && <Typography>Logged in as {username}</Typography>}
       <Toolbar>
         <Grid container spacing={2} marginBottom={2}>
           <Grid item>
