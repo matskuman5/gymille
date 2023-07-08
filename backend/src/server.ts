@@ -10,7 +10,7 @@ import {
   connectToRedis,
   sessionMiddleware,
 } from './utils/db';
-import { addDummySessions } from './test/dummy';
+import { addDummySessions } from './tests/dummy';
 import models from './models';
 import userRouter from './routers/users';
 import loginRouter from './routers/login';
