@@ -6,7 +6,10 @@ import { showError, showNotification } from '../utils/notifications';
 export const createUser = async (user: User) => {
   try {
     const response = await instance.post(`${apiUrl}/users`, user);
-    showNotification('User created successfully.', 'success');
+    showNotification(
+      `User '${user.username}' created successfully.`,
+      'success'
+    );
     return response;
   } catch (error) {
     showError(error);
