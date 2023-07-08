@@ -5,10 +5,14 @@ import logout from '../../services/logout';
 import { UserContext } from './UserContext';
 
 const UserPage = () => {
-  const { username } = useContext(UserContext);
+  const { username, setUsername, setUserId } = useContext(UserContext);
 
   const handleLogoutClick = async () => {
-    await logout();
+    const response = await logout();
+    if (response && response.status === 200) {
+      setUsername('');
+      setUserId('');
+    }
   };
 
   return (

@@ -1,26 +1,36 @@
 import { Button, Grid, Stack, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { createUser } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/login';
+import { UserContext } from './UserContext';
 
 const AccountCreationForm = () => {
-  const [username, setUsername] = useState('');
+  const [formUsername, setFormUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const { setUsername, setUserId } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleLoginClick = async () => {
-    const response = await login({ username, password });
+    const response = await login({ username: formUsername, password });
     if (response && response.status === 200) {
+      setUsername(response.data.username);
+      setUserId(response.data.userId);
       navigate('/');
     }
   };
 
   const handleCreateAccountClick = async () => {
-    const response = await createUser({ username, password });
+    const response = await createUser({ username: formUsername, password });
     if (response && response.status === 201) {
-      navigate('/');
+      const response = await login({ username: formUsername, password });
+      if (response && response.status === 200) {
+        setUsername(response.data.username);
+        setUserId(response.data.userId);
+        navigate('/');
+      }
     }
   };
 
@@ -28,8 +38,8 @@ const AccountCreationForm = () => {
     <Stack spacing={1}>
       <TextField
         label="Username"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
+        value={formUsername}
+        onChange={(event) => setFormUsername(event.target.value)}
       ></TextField>
       <TextField
         label="Password"
