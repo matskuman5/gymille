@@ -9,7 +9,10 @@ loginRouter.post('/', async (req, res) => {
     const userId = await validateLoginAndReturnId(req.body);
     req.session.userId = userId;
     req.session.username = req.body.username;
-    res.status(200).send();
+    res.status(200).send({
+      username: req.session.username,
+      userId: req.session.userId,
+    });
   } catch (error) {
     logger.error(error);
     res.status(400).json({ error });
