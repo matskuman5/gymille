@@ -1,29 +1,16 @@
 import { Button, Stack, Typography } from '@mui/material';
 import AccountCreationForm from './AccountCreationForm';
-import { useEffect, useState } from 'react';
-import { getUserName } from '../../services/user';
+import { useContext } from 'react';
 import logout from '../../services/logout';
+import { UserContext } from './UserContext';
 
 const UserPage = () => {
-  const [username, setUsername] = useState('');
-
-  const fetchUsername = async () => {
-    const data = await getUserName();
-    if (data) {
-      setUsername(data.username);
-    } else {
-      setUsername('');
-    }
-  };
+  const { username, setUsername } = useContext(UserContext);
 
   const handleLogoutClick = async () => {
     await logout();
-    await fetchUsername();
+    setUsername('');
   };
-
-  useEffect(() => {
-    fetchUsername();
-  }, []);
 
   return (
     <>
