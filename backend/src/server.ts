@@ -16,7 +16,7 @@ import userRouter from './routers/users';
 import loginRouter from './routers/login';
 import logoutRouter from './routers/logout';
 
-const app = express();
+export const app = express();
 app.use(express.json());
 
 if (NODE_ENV === 'development') {
