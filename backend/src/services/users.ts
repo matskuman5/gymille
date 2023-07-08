@@ -9,6 +9,10 @@ export const addUser = async (newUser: object) => {
     throw new Error('User validation failed');
   }
 
+  if (!newUser.username || !newUser.password) {
+    throw new Error('Username or password is null');
+  }
+
   const existingUser = await models.UserModel.findOne({
     where: { username: newUser.username },
   });
