@@ -89,5 +89,6 @@ export const isNewUser = (object: unknown): object is NewUser =>
 declare module 'express-session' {
   interface SessionData {
     username: string;
+    userId: string;
   }
 }

@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { logger } from '../utils/logging';
-import { login } from '../services/login';
+import { validateLoginAndReturnId } from '../services/login';
 
 const loginRouter = Router();
 
 loginRouter.post('/', async (req, res) => {
   try {
-    await login(req.body);
+    const userId = await validateLoginAndReturnId(req.body);
+    req.session.userId = userId;
     req.session.username = req.body.username;
     res.status(200).send();
   } catch (error) {

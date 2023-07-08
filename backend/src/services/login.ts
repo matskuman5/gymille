@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { isNewUser } from '../utils/types';
 import models from '../models';
 
-export const login = async (user: object) => {
+export const validateLoginAndReturnId = async (user: object) => {
   if (!isNewUser(user)) {
     throw new Error('User validation failed');
   }
@@ -23,4 +23,6 @@ export const login = async (user: object) => {
   if (!correctPassword) {
     throw new Error('Incorrect password');
   }
+
+  return existingUser.id;
 };
