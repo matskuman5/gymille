@@ -32,7 +32,7 @@ userRouter.post('/:id/sessions', async (req, res) => {
   try {
     const response = await addSession({
       ...req.body,
-      username: req.params.id,
+      userId: req.params.id,
     });
     res.status(201).json(response);
   } catch (error) {
