@@ -1,18 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Session } from '../../types';
 import SessionItem from './SessionItem';
-import { getSessions } from '../../services/sessions';
+import { getUserSessions } from '../../services/sessions';
 import { Stack, Typography } from '@mui/material';
 import { deleteSession as deleteSessionAPI } from '../../services/sessions';
 import Loading from '../Loading';
+import { UserContext } from '../user-authentication/UserContext';
 
 const SessionList = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const { userId } = useContext(UserContext);
+
   const fetchSessions = async () => {
     setLoading(true);
-    const sessionsData = await getSessions();
+    const sessionsData = await getUserSessions(userId);
     setLoading(false);
     if (sessionsData !== undefined) {
       setSessions(sessionsData);
@@ -20,7 +23,9 @@ const SessionList = () => {
   };
 
   useEffect(() => {
-    fetchSessions();
+    if (userId) {
+      fetchSessions();
+    }
   }, []);
 
   const deleteSession = async (id: string) => {
@@ -30,24 +35,30 @@ const SessionList = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading text={'Fetching sessions...'} />
-      ) : (
+      {userId ? (
         <>
-          {sessions.length === 0 ? (
-            <Typography variant="h5">No sessions created yet!</Typography>
+          {loading ? (
+            <Loading text={'Fetching sessions...'} />
           ) : (
-            <Stack spacing={2}>
-              {sessions.map((session) => (
-                <SessionItem
-                  key={session.id}
-                  session={session}
-                  deleteSession={deleteSession}
-                ></SessionItem>
-              ))}
-            </Stack>
+            <>
+              {sessions.length === 0 ? (
+                <Typography variant="h5">No sessions created yet!</Typography>
+              ) : (
+                <Stack spacing={2}>
+                  {sessions.map((session) => (
+                    <SessionItem
+                      key={session.id}
+                      session={session}
+                      deleteSession={deleteSession}
+                    ></SessionItem>
+                  ))}
+                </Stack>
+              )}
+            </>
           )}
         </>
+      ) : (
+        <Typography variant="h5">Log in to save sessions!</Typography>
       )}
     </>
   );

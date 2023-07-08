@@ -16,9 +16,11 @@ export const postSession = async (session: Session, userId: string) => {
   }
 };
 
-export const getSessions = async () => {
+export const getUserSessions = async (userId: string) => {
   try {
-    const response = await instance.get<Session[]>(`${apiUrl}/sessions`);
+    const response = await instance.get<Session[]>(
+      `${apiUrl}/users/${userId}/sessions`
+    );
     return response.data;
   } catch (error) {
     showError(error);
