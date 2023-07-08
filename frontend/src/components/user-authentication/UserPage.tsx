@@ -10,7 +10,7 @@ const UserPage = () => {
   const fetchUsername = async () => {
     const data = await getUserName();
     if (data) {
-      setUsername(data);
+      setUsername(data.username);
     } else {
       setUsername('');
     }
