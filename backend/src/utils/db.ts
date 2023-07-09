@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import { DATABASE_URL, REDIS_SECRET } from './config';
+import { DATABASE_URL, REDIS_SECRET, REDIS_URL } from './config';
 import { logger } from './logging';
 import { createClient } from 'redis';
 import session from 'express-session';
@@ -18,7 +18,9 @@ export const connectToPostgres = async () => {
   }
 };
 
-const redisClient = createClient();
+const redisClient = createClient({
+  url: REDIS_URL,
+});
 
 export const connectToRedis = async () => {
   try {
