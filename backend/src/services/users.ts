@@ -2,14 +2,15 @@ import bcrypt from 'bcrypt';
 import models from '../models';
 import { isNewUser } from '../utils/types';
 import { v4 as uuidv4 } from 'uuid';
+import { ErrorWithStatus } from '../utils/error-handler';
 
 export const addUser = async (newUser: object) => {
   if (!isNewUser(newUser)) {
-    throw new Error('User validation failed');
+    throw new ErrorWithStatus('User validation failed', 400);
   }
 
   if (!newUser.username || !newUser.password) {
-    throw new Error('Username or password is null');
+    throw new ErrorWithStatus('Username or password is null', 400);
   }
 
   const existingUser = await models.UserModel.findOne({
@@ -17,7 +18,10 @@ export const addUser = async (newUser: object) => {
   });
 
   if (existingUser) {
-    throw new Error(`Username ${newUser.username} already used`);
+    throw new ErrorWithStatus(
+      `Username '${newUser.username}' already used`,
+      409
+    );
   }
 
   const passwordHash = await bcrypt.hash(newUser.password, 10);
