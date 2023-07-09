@@ -14,11 +14,11 @@ const seedUsers = [
 ];
 
 export const up: Seeder = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().bulkInsert('users', seedUsers);
+  await sequelize.getQueryInterface().bulkInsert('Users', seedUsers);
 };
 
 export const down: Seeder = async ({ context: sequelize }) => {
   await sequelize
     .getQueryInterface()
-    .bulkDelete('users', { id: seedUsers.map((u) => u.id) });
+    .bulkDelete('Users', { id: seedUsers.map((u) => u.id) });
 };

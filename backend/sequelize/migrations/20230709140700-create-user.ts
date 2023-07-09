@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import type { Migration } from '../../src/utils/umzug';
 
 export const up: Migration = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().createTable('users', {
+  await sequelize.getQueryInterface().createTable('Users', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -20,6 +20,6 @@ export const up: Migration = async ({ context: sequelize }) => {
 };
 
 export const down: Migration = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().dropTable('users');
+  await sequelize.getQueryInterface().dropTable('Users');
 };
 
