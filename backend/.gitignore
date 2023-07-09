@@ -1,2 +1,5 @@
 node_modules
 dist
+
+# Jest test coverage data
+coverage
