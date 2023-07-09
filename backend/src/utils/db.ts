@@ -1,9 +1,10 @@
 import { Sequelize } from 'sequelize';
-import { DATABASE_URL, REDIS_SECRET, REDIS_URL } from './config';
+import { DATABASE_URL, NODE_ENV, REDIS_SECRET, REDIS_URL } from './config';
 import { logger } from './logging';
 import { createClient } from 'redis';
 import session from 'express-session';
 import RedisStore from 'connect-redis';
+import { CookieOptions } from 'express';
 
 export const sequelize = new Sequelize(DATABASE_URL, {
   logging: false,
@@ -31,6 +32,14 @@ export const connectToRedis = async () => {
   }
 };
 
+const cookieSettings: CookieOptions =
+  NODE_ENV === 'production'
+    ? {
+        sameSite: 'none',
+        secure: true,
+      }
+    : {};
+
 export const sessionMiddleware = session({
   secret: REDIS_SECRET,
   resave: false,
@@ -38,4 +47,5 @@ export const sessionMiddleware = session({
   store: new RedisStore({
     client: redisClient,
   }),
+  cookie: cookieSettings,
 });
