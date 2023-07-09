@@ -16,7 +16,7 @@ app.use(express.json());
 let corsUrl;
 
 switch (NODE_ENV) {
-  case 'development':
+  case 'development' || 'test':
     corsUrl = 'http://localhost:5173';
     break;
   case 'production':
