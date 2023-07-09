@@ -19,7 +19,7 @@ export const connectToPostgres = async () => {
   }
 };
 
-const redisClient = createClient({
+export const redisClient = createClient({
   url: REDIS_URL,
 });
 
