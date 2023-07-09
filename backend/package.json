@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
+    "pretest": "sh src/tests/db-start.sh",
     "test": "jest --verbose --detectOpenHandles",
     "start": "ts-node src/server.ts",
     "dev": "ts-node-dev src/server.ts",
