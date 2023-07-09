@@ -20,7 +20,7 @@ interface ExerciseTemplateModel
 }
 
 export const ExerciseTemplateModel = sequelize.define<ExerciseTemplateModel>(
-  'ExerciseTemplate',
+  'exercise_templates',
   {
     sessionTemplateId: {
       type: DataTypes.STRING,

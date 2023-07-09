@@ -17,7 +17,7 @@ interface SessionTemplateModel
 }
 
 export const SessionTemplateModel = sequelize.define<SessionTemplateModel>(
-  'SessionTemplate',
+  'session_templates',
   {
     id: {
       type: DataTypes.STRING,

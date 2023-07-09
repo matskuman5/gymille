@@ -16,7 +16,7 @@ interface UserModel
   passwordHash: string;
 }
 
-export const UserModel = sequelize.define<UserModel>('User', {
+export const UserModel = sequelize.define<UserModel>('users', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,

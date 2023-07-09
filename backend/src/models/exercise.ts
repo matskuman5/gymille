@@ -21,7 +21,7 @@ interface ExerciseModel
   notes: CreationOptional<string>;
 }
 
-export const ExerciseModel = sequelize.define<ExerciseModel>('Exercise', {
+export const ExerciseModel = sequelize.define<ExerciseModel>('exercises', {
   sessionId: {
     type: DataTypes.STRING,
     allowNull: false,

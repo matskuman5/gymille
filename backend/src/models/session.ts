@@ -18,7 +18,7 @@ interface SessionModel
   name: CreationOptional<string>;
 }
 
-export const SessionModel = sequelize.define<SessionModel>('Session', {
+export const SessionModel = sequelize.define<SessionModel>('session', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
