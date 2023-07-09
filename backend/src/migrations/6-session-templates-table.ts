@@ -1,17 +1,13 @@
 import { DataTypes } from 'sequelize';
-import type { Migration } from '../../utils/umzug';
+import type { Migration } from '../utils/umzug';
 
 export const up: Migration = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().createTable('sessions', {
+  await sequelize.getQueryInterface().createTable('session_templates', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
     },
     userId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    date: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -22,5 +18,5 @@ export const up: Migration = async ({ context: sequelize }) => {
 };
 
 export const down: Migration = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().dropTable('sessions');
+  await sequelize.getQueryInterface().dropTable('session_templates');
 };

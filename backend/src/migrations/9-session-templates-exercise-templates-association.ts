@@ -1,4 +1,4 @@
-import type { Migration } from '../../utils/umzug';
+import type { Migration } from '../utils/umzug';
 
 export const up: Migration = async ({ context: sequelize }) => {
   await sequelize.getQueryInterface().addConstraint('exercise_templates', {

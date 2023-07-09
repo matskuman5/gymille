@@ -1,7 +1,7 @@
-import type { Migration } from '../../utils/umzug';
+import type { Migration } from '../utils/umzug';
 
 export const up: Migration = async ({ context: sequelize }) => {
-  await sequelize.getQueryInterface().addConstraint('session_templates', {
+  await sequelize.getQueryInterface().addConstraint('sessions', {
     fields: ['userId'],
     type: 'foreign key',
     references: {
@@ -16,5 +16,5 @@ export const up: Migration = async ({ context: sequelize }) => {
 export const down: Migration = async ({ context: sequelize }) => {
   await sequelize
     .getQueryInterface()
-    .removeConstraint('session_templates', 'session_templates_userId_users_fk');
+    .removeConstraint('sessions', 'sessions_userId_users_fk');
 };

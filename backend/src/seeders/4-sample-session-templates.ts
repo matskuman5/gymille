@@ -1,4 +1,4 @@
-import type { Seeder } from '../../utils/umzug';
+import type { Seeder } from '../utils/umzug';
 
 const seedSessionTemplates = [
   {

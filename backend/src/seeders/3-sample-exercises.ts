@@ -1,4 +1,4 @@
-import type { Seeder } from '../../utils/umzug';
+import type { Seeder } from '../utils/umzug';
 
 const seedExercises = [
   {
@@ -41,9 +41,7 @@ export const up: Seeder = async ({ context: sequelize }) => {
 };
 
 export const down: Seeder = async ({ context: sequelize }) => {
-  await sequelize
-    .getQueryInterface()
-    .bulkDelete('exercises', {
-      id: seedExercises.map((exercise) => exercise.id),
-    });
+  await sequelize.getQueryInterface().bulkDelete('exercises', {
+    id: seedExercises.map((exercise) => exercise.id),
+  });
 };
