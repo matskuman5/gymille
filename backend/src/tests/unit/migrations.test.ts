@@ -1,5 +1,5 @@
-import { migrator, resetMigrations, seedData } from '../utils/umzug';
-import { connectToPostgres, sequelize } from '../utils/db';
+import { migrator, resetMigrations, seedData } from '../../utils/umzug';
+import { connectToPostgres, sequelize } from '../../utils/db';
 
 describe('migration', () => {
   beforeAll(async () => {

@@ -1,4 +1,4 @@
-import { addUser } from '../services/users';
+import { addUser } from '../../services/users';
 
 describe('user validation', () => {
   test('throws correct error if user object malformed', async () => {

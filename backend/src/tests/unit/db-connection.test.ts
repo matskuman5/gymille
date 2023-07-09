@@ -3,7 +3,7 @@ import {
   connectToRedis,
   redisClient,
   sequelize,
-} from '../utils/db';
+} from '../../utils/db';
 
 describe('databases', () => {
   test('connects to Postgres', async () => {
