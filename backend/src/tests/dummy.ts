@@ -16,6 +16,7 @@ export const addDummySessions = async () => {
   dummySessionTemplates.forEach(async (sessionTemplate) => {
     const sessionTemplateWithoutExercises = {
       id: sessionTemplate.id,
+      userId: sessionTemplate.userId,
       name: sessionTemplate.name,
     };
     await models.SessionTemplateModel.create(sessionTemplateWithoutExercises);

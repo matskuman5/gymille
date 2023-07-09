@@ -15,6 +15,7 @@ export const addSessionTemplate = async (obj: object) => {
 
   await models.SessionTemplateModel.create({
     id: sessionTemplate.id,
+    userId: sessionTemplate.userId,
     name: sessionTemplate.name,
   });
 

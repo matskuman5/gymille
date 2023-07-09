@@ -1,5 +1,6 @@
 export interface SessionTemplate {
   id: string;
+  userId: string;
   name: string;
   exerciseTemplates: ExerciseTemplate[];
 }
@@ -8,9 +9,11 @@ export const isSessionTemplate = (object: unknown): object is SessionTemplate =>
   typeof object === 'object' &&
   object !== null &&
   'id' in object &&
+  'userId' in object &&
   'name' in object &&
   'exerciseTemplates' in object &&
   typeof object.id === 'string' &&
+  typeof object.userId === 'string' &&
   typeof object.name === 'string' &&
   Array.isArray(object.exerciseTemplates) &&
   object.exerciseTemplates.every(isExerciseTemplate);

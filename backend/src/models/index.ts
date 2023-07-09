@@ -16,6 +16,9 @@ const setupModels = async () => {
     SessionTemplateModel.hasMany(ExerciseTemplateModel);
     ExerciseTemplateModel.belongsTo(SessionTemplateModel);
 
+    UserModel.hasMany(SessionTemplateModel);
+    SessionTemplateModel.belongsTo(UserModel);
+
     await SessionModel.sync({ force: true });
     await ExerciseModel.sync({ force: true });
     await SessionTemplateModel.sync({ force: true });

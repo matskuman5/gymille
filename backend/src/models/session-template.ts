@@ -12,6 +12,7 @@ interface SessionTemplateModel
     InferCreationAttributes<SessionTemplateModel>
   > {
   id: string;
+  userId: string;
   name: string;
 }
 
@@ -21,6 +22,10 @@ export const SessionTemplateModel = sequelize.define<SessionTemplateModel>(
     id: {
       type: DataTypes.STRING,
       primaryKey: true,
+    },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
