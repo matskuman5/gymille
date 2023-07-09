@@ -1,36 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { SessionTemplate } from '../../types';
 import SessionTemplateItem from './SessionTemplateItem';
 import {
-  getUserSessionTemplates,
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
-import { Button, Stack, Divider, Container } from '@mui/material';
+import { Button, Stack, Divider, Container, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import Loading from '../Loading';
-import { UserContext } from '../user-authentication/UserContext';
+import {
+  SessionTemplateContext,
+  SessionTemplateProvider,
+} from './SessionTemplateContext';
 
 const SessionTemplateList = () => {
-  const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
-    []
+  const { sessionTemplates, setSessionTemplates } = useContext(
+    SessionTemplateContext
   );
-  const [loading, setLoading] = useState(true);
-
-  const { userId } = useContext(UserContext);
-
-  useEffect(() => {
-    fetchSessionTemplates();
-  }, []);
-
-  const fetchSessionTemplates = async () => {
-    setLoading(true);
-    const sessionTemplateData = await getUserSessionTemplates(userId);
-    setLoading(false);
-    if (sessionTemplateData !== undefined) {
-      setSessionTemplates(sessionTemplateData);
-    }
-  };
 
   const handleUpdatedSessionTemplate = async (
     sessionTemplate: SessionTemplate
@@ -51,13 +36,12 @@ const SessionTemplateList = () => {
 
   const deleteSessionTemplate = async (id: string) => {
     await deleteSessionTemplateAPI(id);
-    await fetchSessionTemplates();
   };
 
   return (
-    <>
-      {loading ? (
-        <Loading text={'Fetching session templates..'} />
+    <SessionTemplateProvider>
+      {!sessionTemplates ? (
+        <Typography variant="h5">No session templates created yet!</Typography>
       ) : (
         <Container>
           <Stack spacing={2}>
@@ -84,7 +68,7 @@ const SessionTemplateList = () => {
           </Stack>
         </Container>
       )}
-    </>
+    </SessionTemplateProvider>
   );
 };
 
