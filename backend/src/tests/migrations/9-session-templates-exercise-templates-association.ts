@@ -5,7 +5,7 @@ export const up: Migration = async ({ context: sequelize }) => {
     fields: ['sessionTemplateId'],
     type: 'foreign key',
     references: {
-      table: 'sessions',
+      table: 'session_templates',
       field: 'id',
     },
     onDelete: 'CASCADE',
@@ -18,6 +18,6 @@ export const down: Migration = async ({ context: sequelize }) => {
     .getQueryInterface()
     .removeConstraint(
       'exercise_templates',
-      'exercise_templates_sessionTemplateId_sessions_fk'
+      'exercise_templates_sessionTemplateId_session_templates_fk'
     );
 };
