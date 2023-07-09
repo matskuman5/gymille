@@ -40,7 +40,6 @@ app.use(
 
 app.use(logRequests);
 app.use(sessionMiddleware);
-app.use(errorHandler);
 
 app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
@@ -48,3 +47,5 @@ app.use('/api/session-templates', sessionTemplateRouter);
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
+
+app.use(errorHandler);
