@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SessionTemplate } from '../../types';
 import SessionTemplateItem from './SessionTemplateItem';
 import {
-  getSessionTemplates,
+  getUserSessionTemplates,
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
 } from '../../services/session-templates';
 import { Button, Stack, Divider, Container } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import Loading from '../Loading';
+import { UserContext } from '../user-authentication/UserContext';
 
 const SessionTemplateList = () => {
   const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
@@ -16,13 +17,15 @@ const SessionTemplateList = () => {
   );
   const [loading, setLoading] = useState(true);
 
+  const { userId } = useContext(UserContext);
+
   useEffect(() => {
     fetchSessionTemplates();
   }, []);
 
   const fetchSessionTemplates = async () => {
     setLoading(true);
-    const sessionTemplateData = await getSessionTemplates();
+    const sessionTemplateData = await getUserSessionTemplates(userId);
     setLoading(false);
     if (sessionTemplateData !== undefined) {
       setSessionTemplates(sessionTemplateData);

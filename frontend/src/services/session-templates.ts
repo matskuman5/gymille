@@ -30,10 +30,10 @@ export const updateSessionTemplate = async (
   }
 };
 
-export const getSessionTemplates = async () => {
+export const getUserSessionTemplates = async (userId: string) => {
   try {
     const response = await instance.get<SessionTemplate[]>(
-      `${apiUrl}/session-templates`
+      `${apiUrl}/users/${userId}/session-templates`
     );
     return response.data;
   } catch (error) {

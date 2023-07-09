@@ -1,7 +1,8 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { getSessionTemplates } from '../../services/session-templates';
+import { useState, useEffect, useContext } from 'react';
+import { getUserSessionTemplates } from '../../services/session-templates';
 import { Exercise, SessionTemplate } from '../../types';
+import { UserContext } from '../user-authentication/UserContext';
 
 interface Props {
   setExercises: React.Dispatch<React.SetStateAction<Exercise[]>>;
@@ -14,9 +15,11 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
   );
   const [selectedTemplate, setSelectedTemplate] = useState('');
 
+  const { userId } = useContext(UserContext);
+
   useEffect(() => {
     const fetchSessionTemplates = async () => {
-      const sessionTemplateData = await getSessionTemplates();
+      const sessionTemplateData = await getUserSessionTemplates(userId);
       if (sessionTemplateData !== undefined) {
         setSessionTemplates(sessionTemplateData);
       }
