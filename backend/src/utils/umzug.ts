@@ -3,7 +3,7 @@ import { logger } from './logging';
 import { sequelize } from './db';
 
 export const migrator = new Umzug({
-  migrations: { glob: 'sequelize/migrations/*.ts' },
+  migrations: { glob: 'src/tests/migrations/*.ts' },
   logger: logger,
   storage: new SequelizeStorage({
     sequelize,
@@ -15,7 +15,7 @@ export const migrator = new Umzug({
 export type Migration = typeof migrator._types.migration;
 
 export const seeder = new Umzug({
-  migrations: { glob: 'sequelize/seeders/*.ts' },
+  migrations: { glob: 'src/tests/seeders/*.ts' },
   logger: logger,
   storage: new SequelizeStorage({
     sequelize,

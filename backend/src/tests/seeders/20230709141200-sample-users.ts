@@ -1,4 +1,4 @@
-import type { Seeder } from '../../src/utils/umzug';
+import type { Seeder } from '../../utils/umzug';
 
 const seedUsers = [
   {
