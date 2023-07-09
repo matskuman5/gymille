@@ -16,7 +16,6 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  console.log('fuck me in the ass');
   if (err instanceof ErrorWithStatus) {
     return res.status(err.statusCode).json({ error: err.message });
   }
