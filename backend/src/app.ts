@@ -16,11 +16,14 @@ app.use(express.json());
 let corsUrl;
 
 switch (NODE_ENV) {
-  case 'development' || 'test':
+  case 'development':
     corsUrl = 'http://localhost:5173';
     break;
   case 'production':
     corsUrl = 'https://gymille-frontend.fly.dev';
+    break;
+  case 'test':
+    corsUrl = 'http://localhost:5173';
     break;
   default:
     throw new Error(`NODE_ENV '${NODE_ENV}' not supported`);
