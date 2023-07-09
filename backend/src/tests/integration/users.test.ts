@@ -19,15 +19,18 @@ describe('User API', () => {
 
   const invalidUser = { malformed1: false, malformed2: 5 };
 
+  const userWithoutPassword = { username: 'testguy1', password: '' };
+
   describe('POST /users', () => {
     it('returns 201 to valid users', async () => {
       await api.post('/api/users').send(validUser).expect(201);
     });
-    it('refuses to create malformed users', async () => {
+    it('returns 400 to malformed users', async () => {
       await api.post('/api/users').send(invalidUser).expect(400);
+      await api.post('/api/users').send(userWithoutPassword).expect(400);
     });
-    it('returns error if username already exists', async () => {
-      await api.post('/api/users').send(validUser).expect(400);
+    it('returns 409 if username already exists', async () => {
+      await api.post('/api/users').send(validUser).expect(409);
     });
   });
 
