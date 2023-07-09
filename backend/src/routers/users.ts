@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { addUser } from '../services/users';
 import { logger } from '../utils/logging';
 import { addSession, getUserSessions } from '../services/sessions';
+import { getUserSessionTemplates } from '../services/session-template';
 
 const userRouter = Router();
 
@@ -47,6 +48,15 @@ userRouter.get('/:id/sessions', async (req, res) => {
     res.json(sessions);
   } catch (error) {
     logger.error(error);
+    res.status(400).json({ error });
+  }
+});
+
+userRouter.get('/:id/session-templates', async (req, res) => {
+  try {
+    const response = await getUserSessionTemplates(req.params.id);
+    res.json(response);
+  } catch (error) {
     res.status(400).json({ error });
   }
 });

@@ -71,3 +71,23 @@ export const deleteSessionTemplate = async (id: string) => {
     where: { sessionTemplateId: id },
   });
 };
+
+export const getUserSessionTemplates = async (id: string) => {
+  const sessionTemplates = await models.SessionTemplateModel.findAll({
+    raw: true,
+    where: { userId: id },
+  });
+
+  let response = [];
+  for (const sessionTemplate of sessionTemplates) {
+    const exerciseTemplates = await models.ExerciseTemplateModel.findAll({
+      raw: true,
+      where: { sessionTemplateId: sessionTemplate.id },
+    });
+    response.push({
+      ...sessionTemplate,
+      exercises: exerciseTemplates,
+    });
+  }
+  return response;
+};
