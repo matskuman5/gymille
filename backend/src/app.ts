@@ -21,6 +21,7 @@ switch (NODE_ENV) {
     break;
   case 'production':
     corsUrl = 'https://gymille-frontend.fly.dev';
+    app.set('trust proxy', 1);
     break;
   case 'test':
     corsUrl = 'http://localhost:5173';
