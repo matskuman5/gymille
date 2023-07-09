@@ -40,5 +40,6 @@ export const ExerciseTemplateModel = sequelize.define<ExerciseTemplateModel>(
     reps: {
       type: DataTypes.INTEGER,
     },
-  }
+  },
+  { timestamps: false }
 );

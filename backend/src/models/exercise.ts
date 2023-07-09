@@ -21,32 +21,36 @@ interface ExerciseModel
   notes: CreationOptional<string>;
 }
 
-export const ExerciseModel = sequelize.define<ExerciseModel>('exercises', {
-  sessionId: {
-    type: DataTypes.STRING,
-    allowNull: false,
+export const ExerciseModel = sequelize.define<ExerciseModel>(
+  'exercises',
+  {
+    sessionId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    sets: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    reps: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    weight: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    notes: {
+      type: DataTypes.STRING,
+    },
   },
-  id: {
-    type: DataTypes.STRING,
-    primaryKey: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  sets: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  reps: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  weight: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  notes: {
-    type: DataTypes.STRING,
-  },
-});
+  { timestamps: false }
+);

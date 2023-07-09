@@ -16,18 +16,22 @@ interface UserModel
   passwordHash: string;
 }
 
-export const UserModel = sequelize.define<UserModel>('users', {
-  id: {
-    type: DataTypes.STRING,
-    primaryKey: true,
+export const UserModel = sequelize.define<UserModel>(
+  'users',
+  {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    passwordHash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  passwordHash: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  { timestamps: false }
+);

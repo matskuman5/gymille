@@ -31,5 +31,6 @@ export const SessionTemplateModel = sequelize.define<SessionTemplateModel>(
       type: DataTypes.STRING,
       allowNull: false,
     },
-  }
+  },
+  { timestamps: false }
 );

@@ -18,20 +18,24 @@ interface SessionModel
   name: CreationOptional<string>;
 }
 
-export const SessionModel = sequelize.define<SessionModel>('session', {
-  id: {
-    type: DataTypes.STRING,
-    primaryKey: true,
+export const SessionModel = sequelize.define<SessionModel>(
+  'session',
+  {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
   },
-  userId: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  date: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  name: {
-    type: DataTypes.STRING,
-  },
-});
+  { timestamps: false }
+);
