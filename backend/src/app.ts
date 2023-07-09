@@ -9,6 +9,7 @@ import { sessionMiddleware } from './utils/db';
 import userRouter from './routers/users';
 import loginRouter from './routers/login';
 import logoutRouter from './routers/logout';
+import { errorHandler } from './utils/error-handler';
 
 export const app = express();
 app.use(express.json());
@@ -39,6 +40,7 @@ app.use(
 
 app.use(logRequests);
 app.use(sessionMiddleware);
+app.use(errorHandler);
 
 app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
