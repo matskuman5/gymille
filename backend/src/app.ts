@@ -13,14 +13,25 @@ import logoutRouter from './routers/logout';
 export const app = express();
 app.use(express.json());
 
-if (NODE_ENV === 'development') {
-  app.use(
-    cors({
-      origin: 'http://localhost:5173',
-      credentials: true,
-    })
-  );
+let corsUrl;
+
+switch (NODE_ENV) {
+  case 'development':
+    corsUrl = 'http://localhost:5173';
+    break;
+  case 'production':
+    corsUrl = 'https://gymille-frontend.fly.dev';
+    break;
+  default:
+    throw new Error(`NODE_ENV '${NODE_ENV}' not supported`);
 }
+
+app.use(
+  cors({
+    origin: corsUrl,
+    credentials: true,
+  })
+);
 
 app.use(logRequests);
 app.use(sessionMiddleware);
