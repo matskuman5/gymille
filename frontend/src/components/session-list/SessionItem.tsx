@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Session } from '../../types';
 import { useState } from 'react';
 import { deleteSession } from '../../services/sessions';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   session: Session;
@@ -23,6 +24,15 @@ interface Props {
 
 const SessionItem = ({ session }: Props) => {
   const [expanded, setExpanded] = useState(false);
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: () => deleteSession(session.id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['sessions'] });
+    },
+  });
 
   return (
     <TableContainer component={Paper}>
@@ -69,7 +79,7 @@ const SessionItem = ({ session }: Props) => {
           <TableRow>
             <TableCell>
               <Button
-                onClick={() => deleteSession(session.id)}
+                onClick={() => mutation.mutate()}
                 startIcon={<DeleteIcon />}
               >
                 Delete
