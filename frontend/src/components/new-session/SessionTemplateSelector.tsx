@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getUserSessionTemplates } from '../../services/session-templates';
-import { Exercise, SessionTemplate } from '../../types';
+import { Exercise } from '../../types';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
 
@@ -11,9 +11,6 @@ interface Props {
 }
 
 const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
-  const [sessionTemplates, setSessionTemplates] = useState<SessionTemplate[]>(
-    []
-  );
   const [selectedTemplate, setSelectedTemplate] = useState('');
 
   const { data: userData } = useQuery({
@@ -21,21 +18,14 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
     queryFn: getUserData,
   });
 
-  useEffect(() => {
-    const fetchSessionTemplates = async () => {
-      const sessionTemplateData = await getUserSessionTemplates(
-        userData!.userId
-      );
-      if (sessionTemplateData !== undefined) {
-        setSessionTemplates(sessionTemplateData);
-      }
-    };
-
-    fetchSessionTemplates();
-  }, []);
+  const { data: sessionTemplates, isSuccess } = useQuery({
+    queryKey: ['sessionTemplates'],
+    queryFn: () => getUserSessionTemplates(userData!.userId),
+    enabled: !!userData?.userId,
+  });
 
   const getSessionTemplateByName = (name: string) => {
-    return sessionTemplates.find(
+    return sessionTemplates!.find(
       (sessionTemplates) => sessionTemplates.name === name
     );
   };
@@ -66,16 +56,20 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
   };
 
   return (
-    <FormControl sx={{ minWidth: 120 }}>
-      <InputLabel>Template</InputLabel>
-      <Select onChange={handleInputChange} value={selectedTemplate}>
-        {sessionTemplates.map((sessionTemplate) => (
-          <MenuItem key={sessionTemplate.name} value={sessionTemplate.name}>
-            {sessionTemplate.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      {isSuccess && (
+        <FormControl sx={{ minWidth: 120 }}>
+          <InputLabel>Template</InputLabel>
+          <Select onChange={handleInputChange} value={selectedTemplate}>
+            {sessionTemplates.map((sessionTemplate) => (
+              <MenuItem key={sessionTemplate.name} value={sessionTemplate.name}>
+                {sessionTemplate.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
+    </>
   );
 };
 
