@@ -15,13 +15,13 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Session } from '../../types';
 import { useState } from 'react';
+import { deleteSession } from '../../services/sessions';
 
 interface Props {
   session: Session;
-  deleteSession: (id: string) => void;
 }
 
-const SessionItem = ({ session, deleteSession }: Props) => {
+const SessionItem = ({ session }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
   return (

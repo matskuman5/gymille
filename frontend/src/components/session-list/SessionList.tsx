@@ -1,7 +1,6 @@
 import SessionItem from './SessionItem';
 import { getUserSessions } from '../../services/sessions';
 import { Stack, Typography } from '@mui/material';
-import { deleteSession as deleteSessionAPI } from '../../services/sessions';
 import Loading from '../Loading';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
@@ -21,10 +20,6 @@ const SessionList = () => {
     queryFn: () => getUserSessions(userData!.userId),
     enabled: !!userData?.userId,
   });
-
-  const deleteSession = async (id: string) => {
-    await deleteSessionAPI(id);
-  };
 
   return (
     <>
@@ -46,7 +41,6 @@ const SessionList = () => {
                         <SessionItem
                           key={session.id}
                           session={session}
-                          deleteSession={deleteSession}
                         ></SessionItem>
                       ))}
                     </Stack>
