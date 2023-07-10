@@ -44,9 +44,7 @@ const SessionTemplateList = () => {
 
   return (
     <>
-      {!sessionTemplates ? (
-        <Typography variant="h5">No session templates created yet!</Typography>
-      ) : (
+      {sessionTemplates ? (
         <Container>
           <Stack spacing={2}>
             <Stack spacing={2} divider={<Divider flexItem />}>
@@ -71,6 +69,8 @@ const SessionTemplateList = () => {
             </Button>
           </Stack>
         </Container>
+      ) : (
+        <Typography variant="h5">No session templates created yet!</Typography>
       )}
     </>
   );
