@@ -1,21 +1,25 @@
-import { useContext } from 'react';
 import { SessionTemplate } from '../../types';
 import SessionTemplateItem from './SessionTemplateItem';
 import {
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
+  getUserSessionTemplates,
 } from '../../services/session-templates';
 import { Button, Stack, Divider, Container, Typography } from '@mui/material';
-import { v4 as uuidv4 } from 'uuid';
-import {
-  SessionTemplateContext,
-  SessionTemplateProvider,
-} from './SessionTemplateContext';
+import { useQuery } from '@tanstack/react-query';
+import { getUserData } from '../../services/user';
 
 const SessionTemplateList = () => {
-  const { sessionTemplates, setSessionTemplates } = useContext(
-    SessionTemplateContext
-  );
+  const { data: userData } = useQuery({
+    queryKey: ['userData'],
+    queryFn: getUserData,
+  });
+
+  const { data: sessionTemplates } = useQuery({
+    queryKey: ['sessions'],
+    queryFn: () => getUserSessionTemplates(userData!.userId),
+    enabled: !!userData?.userId,
+  });
 
   const handleUpdatedSessionTemplate = async (
     sessionTemplate: SessionTemplate
@@ -23,23 +27,23 @@ const SessionTemplateList = () => {
     await updateSessionTemplate(sessionTemplate);
   };
 
-  const newSessionTemplate = () => {
-    setSessionTemplates([
-      ...sessionTemplates,
-      {
-        id: uuidv4(),
-        name: '',
-        exerciseTemplates: [],
-      },
-    ]);
-  };
+  // const newSessionTemplate = () => {
+  //   setSessionTemplates([
+  //     ...sessionTemplates,
+  //     {
+  //       id: uuidv4(),
+  //       name: '',
+  //       exerciseTemplates: [],
+  //     },
+  //   ]);
+  // };
 
   const deleteSessionTemplate = async (id: string) => {
     await deleteSessionTemplateAPI(id);
   };
 
   return (
-    <SessionTemplateProvider>
+    <>
       {!sessionTemplates ? (
         <Typography variant="h5">No session templates created yet!</Typography>
       ) : (
@@ -61,14 +65,14 @@ const SessionTemplateList = () => {
             <Button
               style={{ maxWidth: '70px' }}
               variant="contained"
-              onClick={newSessionTemplate}
+              // onClick={newSessionTemplate}
             >
               New
             </Button>
           </Stack>
         </Container>
       )}
-    </SessionTemplateProvider>
+    </>
   );
 };
 
