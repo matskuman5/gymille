@@ -19,8 +19,10 @@ export const getUserSessions = async (userId: string) => {
   return response.data;
 };
 
-export const deleteSession = async (id: string) => {
-  const response = await axiosInstance.delete(`${apiUrl}/sessions/${id}`);
+export const deleteSession = async (sessionId: string, userId: string) => {
+  const response = await axiosInstance.delete(
+    `${apiUrl}/users/${userId}/sessions/${sessionId}`
+  );
   showNotification('Session deleted successfully.', 'success');
   return response;
 };
