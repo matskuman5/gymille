@@ -1,20 +1,44 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
-import { useContext, useState } from 'react';
-import { Exercise, Session } from '../../types';
+import { useState } from 'react';
+import { Exercise } from '../../types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
 import SessionTemplateSelector from './SessionTemplateSelector';
 import { v4 as uuidv4 } from 'uuid';
-import { UserContext } from '../user-authentication/UserContext';
+import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
+import { getUserData } from '../../services/user';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
   const [name, setName] = useState('');
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
-  const { userId } = useContext(UserContext);
+  const { data: userData } = useQuery({
+    queryKey: ['userData'],
+    queryFn: getUserData,
+  });
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: () =>
+      postSession(
+        {
+          id: uuidv4(),
+          date: date!.toString(),
+          name: name,
+          exercises: exercises,
+        },
+        userData!.userId
+      ),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['sessions'] });
+      setExercises([]);
+      setName('');
+    },
+  });
 
   const updateExercise = (exercise: Exercise, index: number) => {
     setExercises((exercises) => {
@@ -42,18 +66,6 @@ const NewSessionForm = () => {
     setExercises((exercises) =>
       exercises.filter((exercise) => exercise.id !== id)
     );
-  };
-
-  const submitSession = () => {
-    const sessionToSend: Session = {
-      id: uuidv4(),
-      date: date!.toString(),
-      name: name,
-      exercises: exercises,
-    };
-    postSession(sessionToSend, userId);
-    setDate(null);
-    setExercises([]);
   };
 
   const checkValidity = () => {
@@ -116,7 +128,7 @@ const NewSessionForm = () => {
 
       <Button
         variant="contained"
-        onClick={submitSession}
+        onClick={() => mutation.mutate()}
         disabled={!checkValidity()}
       >
         Submit
