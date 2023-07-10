@@ -1,26 +1,32 @@
 import { Button, Stack, Typography } from '@mui/material';
 import AccountCreationForm from './AccountCreationForm';
-import { useContext } from 'react';
 import logout from '../../services/logout';
-import { UserContext } from './UserContext';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { getUserData } from '../../services/user';
 
 const UserPage = () => {
-  const { username, setUsername, setUserId } = useContext(UserContext);
+  const { data: userData } = useQuery({
+    queryKey: ['userData'],
+    queryFn: getUserData,
+  });
 
-  const handleLogoutClick = async () => {
-    const response = await logout();
-    if (response && response.status === 200) {
-      setUsername('');
-      setUserId('');
-    }
-  };
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userData'] });
+    },
+  });
 
   return (
     <>
-      {username ? (
+      {userData?.username && userData?.userId ? (
         <Stack>
-          <Typography variant="h4">User info for {username}</Typography>
-          <Button variant="contained" onClick={handleLogoutClick}>
+          <Typography variant="h4">
+            User info for {userData.username}
+          </Typography>
+          <Button variant="contained" onClick={() => mutation.mutate()}>
             Logout
           </Button>
         </Stack>
