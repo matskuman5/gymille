@@ -31,7 +31,7 @@ const NewSessionForm = () => {
           name: name,
           exercises: exercises,
         },
-        userData!.userId
+        userData!.userId // WIP: disable submitting sessions when not logged in
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['sessions'] });
