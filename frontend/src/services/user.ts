@@ -1,5 +1,5 @@
 import axiosInstance from '../utils/axios';
-import { User } from '../types';
+import { User, UserData } from '../types';
 import apiUrl from '../utils/config';
 import { showNotification } from '../utils/notifications';
 
@@ -10,6 +10,6 @@ export const createUser = async (user: User) => {
 };
 
 export const getUserData = async () => {
-  const response = await axiosInstance.get(`${apiUrl}/users`);
+  const response = await axiosInstance.get<UserData>(`${apiUrl}/users`);
   return response.data;
 };
