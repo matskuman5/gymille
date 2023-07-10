@@ -26,7 +26,7 @@ export const validateLoginAndReturnId = async (user: object) => {
   );
 
   if (!correctPassword) {
-    throw new ErrorWithStatus('Incorrect password', 400);
+    throw new ErrorWithStatus('Incorrect password', 401);
   }
 
   return existingUser.id;
