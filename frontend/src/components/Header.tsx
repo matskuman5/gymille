@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../services/user';
 
 const Header = () => {
-  const { data: userData, isSuccess } = useQuery({
+  const { data: userData } = useQuery({
     queryKey: ['userData'],
     queryFn: getUserData,
   });
@@ -19,7 +19,9 @@ const Header = () => {
       >
         Gymille!
       </Typography>
-      {isSuccess && <Typography>Logged in as {userData.username}</Typography>}
+      {userData?.username && (
+        <Typography>Logged in as {userData.username}</Typography>
+      )}
       <Toolbar>
         <Grid container spacing={2} marginBottom={2}>
           <Grid item>
