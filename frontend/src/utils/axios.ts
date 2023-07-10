@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { showError } from './notifications';
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   withCredentials: true,
 });
 
@@ -9,7 +9,7 @@ interface ErrorResponse {
   error?: string;
 }
 
-instance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ErrorResponse>) => {
     if (error.response?.data.error) {
@@ -21,4 +21,4 @@ instance.interceptors.response.use(
   }
 );
 
-export default instance;
+export default axiosInstance;

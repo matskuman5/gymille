@@ -1,10 +1,10 @@
-import instance from '../utils/axios';
+import axiosInstance from '../utils/axios';
 import { Session } from '../types';
 import apiUrl from '../utils/config';
 import { showNotification } from '../utils/notifications';
 
 export const postSession = async (session: Session, userId: string) => {
-  const response = await instance.post(
+  const response = await axiosInstance.post(
     `${apiUrl}/users/${userId}/sessions`,
     session
   );
@@ -13,14 +13,14 @@ export const postSession = async (session: Session, userId: string) => {
 };
 
 export const getUserSessions = async (userId: string) => {
-  const response = await instance.get<Session[]>(
+  const response = await axiosInstance.get<Session[]>(
     `${apiUrl}/users/${userId}/sessions`
   );
   return response.data;
 };
 
 export const deleteSession = async (id: string) => {
-  const response = await instance.delete(`${apiUrl}/sessions/${id}`);
+  const response = await axiosInstance.delete(`${apiUrl}/sessions/${id}`);
   showNotification('Session deleted successfully.', 'success');
   return response;
 };
