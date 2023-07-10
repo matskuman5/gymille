@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from 'react';
-import { getUserName } from '../../services/user';
+import { getUserData } from '../../services/user';
 
 type UserContextType = {
   username: string;
@@ -21,7 +21,7 @@ export const UserProvider = ({ children }: ChildProps) => {
   const [userId, setUserId] = useState('');
 
   const fetchUserData = async () => {
-    const data = await getUserName();
+    const data = await getUserData();
     if (data) {
       setUsername(data.username);
       setUserId(data.userId);

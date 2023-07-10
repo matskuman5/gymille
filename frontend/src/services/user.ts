@@ -9,7 +9,7 @@ export const createUser = async (user: User) => {
   return response;
 };
 
-export const getUserName = async () => {
+export const getUserData = async () => {
   const response = await axiosInstance.get(`${apiUrl}/users`);
   return response.data;
 };
