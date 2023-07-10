@@ -3,9 +3,11 @@ import { logger } from './logging';
 import { sequelize } from './db';
 import { NODE_ENV } from './config';
 
+const logIfInProd = NODE_ENV === 'production' ? logger : undefined;
+
 export const migrator = new Umzug({
   migrations: { glob: 'src/migrations/*.ts' },
-  logger: logger,
+  logger: logIfInProd,
   storage: new SequelizeStorage({
     sequelize,
     modelName: 'migration_meta',
@@ -17,7 +19,7 @@ export type Migration = typeof migrator._types.migration;
 
 export const seeder = new Umzug({
   migrations: { glob: 'src/seeders/*.ts' },
-  logger: logger,
+  logger: logIfInProd,
   storage: new SequelizeStorage({
     sequelize,
     modelName: 'seeder_meta',
