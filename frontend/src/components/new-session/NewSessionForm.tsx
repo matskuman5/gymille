@@ -6,7 +6,6 @@ import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
 import { postSession } from '../../services/sessions';
 import SessionTemplateSelector from './SessionTemplateSelector';
-import { showNotification } from '../../utils/notifications';
 import { v4 as uuidv4 } from 'uuid';
 import { UserContext } from '../user-authentication/UserContext';
 
@@ -46,13 +45,9 @@ const NewSessionForm = () => {
   };
 
   const submitSession = () => {
-    if (date === null) {
-      showNotification('Error: date not valid.', 'error');
-      return;
-    }
     const sessionToSend: Session = {
       id: uuidv4(),
-      date: date.toString(),
+      date: date!.toString(),
       name: name,
       exercises: exercises,
     };
@@ -62,14 +57,17 @@ const NewSessionForm = () => {
   };
 
   const checkValidity = () => {
-    return exercises.every((exercise) => {
-      return (
-        exercise.name &&
-        exercise.sets > 0 &&
-        exercise.reps > 0 &&
-        exercise.weight > 0
-      );
-    });
+    return (
+      date &&
+      exercises.every((exercise) => {
+        return (
+          exercise.name &&
+          exercise.sets > 0 &&
+          exercise.reps > 0 &&
+          exercise.weight > 0
+        );
+      })
+    );
   };
 
   return (
