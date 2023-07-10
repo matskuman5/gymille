@@ -15,7 +15,7 @@ axiosInstance.interceptors.response.use(
     if (error.response?.data.error) {
       showError(`Error: ${error.response.data.error}`);
     } else {
-      showError(`Error: ${error}`);
+      showError(`Error: ${error.message}`);
     }
     throw error;
   }
