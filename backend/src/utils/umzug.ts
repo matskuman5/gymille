@@ -31,16 +31,17 @@ export type Seeder = typeof seeder._types.migration;
 
 export const resetMigrations = async () => {
   try {
-    const executedAmount = (await migrator.executed()).length;
-    const pendingAmount = (await migrator.pending()).length;
-    logger.info('Migrations executed: ', executedAmount);
-    logger.info('Migrations pending: ', pendingAmount);
     // don't drop all tables in production...
     if (NODE_ENV !== 'production') {
       await migrator.down({ to: 0 });
     }
+    const executedAmount = (await migrator.executed()).length;
+    const pendingAmount = (await migrator.pending()).length;
+    logger.info(
+      `Migrations executed: ${executedAmount}, pending: ${pendingAmount}`
+    );
     await migrator.up();
-    logger.info('Migrations completed successfully');
+    logger.info(`${pendingAmount} migrations completed`);
   } catch (error) {
     logger.error(`Error during migrations:`, error);
   }
@@ -49,8 +50,13 @@ export const resetMigrations = async () => {
 export const seedData = async () => {
   try {
     await seeder.down({ to: 0 });
+    const executedAmount = (await seeder.executed()).length;
+    const pendingAmount = (await seeder.pending()).length;
+    logger.info(
+      `Seed data migrations executed: ${executedAmount}, pending: ${pendingAmount}`
+    );
     await seeder.up();
-    logger.info('Seed data added successfully');
+    logger.info(`${pendingAmount} seed data migrations completed`);
   } catch (error) {
     logger.error(`Error adding seed data:`, error);
   }
