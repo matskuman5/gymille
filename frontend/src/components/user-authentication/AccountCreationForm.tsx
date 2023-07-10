@@ -1,38 +1,32 @@
 import { Button, Grid, Stack, TextField } from '@mui/material';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { createUser } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/login';
-import { UserContext } from './UserContext';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const AccountCreationForm = () => {
   const [formUsername, setFormUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const { setUsername, setUserId } = useContext(UserContext);
+  const queryClient = useQueryClient();
 
   const navigate = useNavigate();
 
-  const handleLoginClick = async () => {
-    const response = await login({ username: formUsername, password });
-    if (response && response.status === 200) {
-      setUsername(response.data.username);
-      setUserId(response.data.userId);
+  const mutationLogin = useMutation({
+    mutationFn: () => login({ username: formUsername, password }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userData'] });
       navigate('/');
-    }
-  };
+    },
+  });
 
-  const handleCreateAccountClick = async () => {
-    const response = await createUser({ username: formUsername, password });
-    if (response && response.status === 201) {
-      const response = await login({ username: formUsername, password });
-      if (response && response.status === 200) {
-        setUsername(response.data.username);
-        setUserId(response.data.userId);
-        navigate('/');
-      }
-    }
-  };
+  const mutationCreateAccount = useMutation({
+    mutationFn: () => createUser({ username: formUsername, password }),
+    onSuccess: () => {
+      mutationLogin.mutate();
+    },
+  });
 
   return (
     <Stack spacing={1}>
@@ -54,14 +48,14 @@ const AccountCreationForm = () => {
       ></TextField>
       <Grid container spacing={1}>
         <Grid item>
-          <Button variant="contained" onClick={handleLoginClick}>
+          <Button variant="contained" onClick={() => mutationLogin.mutate()}>
             Login
           </Button>
         </Grid>
         <Grid item>
           <Button
             variant="contained"
-            onClick={handleCreateAccountClick}
+            onClick={() => mutationCreateAccount.mutate()}
             disabled={password.length < 8}
           >
             Create Account
