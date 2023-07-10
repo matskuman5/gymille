@@ -1,8 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { getUserSessionTemplates } from '../../services/session-templates';
 import { Exercise, SessionTemplate } from '../../types';
-import { UserContext } from '../user-authentication/UserContext';
+import { useQuery } from '@tanstack/react-query';
+import { getUserData } from '../../services/user';
 
 interface Props {
   setExercises: React.Dispatch<React.SetStateAction<Exercise[]>>;
@@ -15,11 +16,16 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
   );
   const [selectedTemplate, setSelectedTemplate] = useState('');
 
-  const { userId } = useContext(UserContext);
+  const { data: userData } = useQuery({
+    queryKey: ['userData'],
+    queryFn: getUserData,
+  });
 
   useEffect(() => {
     const fetchSessionTemplates = async () => {
-      const sessionTemplateData = await getUserSessionTemplates(userId);
+      const sessionTemplateData = await getUserSessionTemplates(
+        userData!.userId
+      );
       if (sessionTemplateData !== undefined) {
         setSessionTemplates(sessionTemplateData);
       }
