@@ -16,7 +16,7 @@ const SessionTemplateList = () => {
   });
 
   const { data: sessionTemplates } = useQuery({
-    queryKey: ['sessions'],
+    queryKey: ['sessionTemplates'],
     queryFn: () => getUserSessionTemplates(userData!.userId),
     enabled: !!userData?.userId,
   });
