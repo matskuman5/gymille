@@ -11,6 +11,7 @@ import loginRouter from './routers/login';
 import logoutRouter from './routers/logout';
 import { errorHandler } from './utils/error-handler';
 import userSessionsRouter from './routers/user-sessions';
+import userSessionTemplatesRouter from './routers/user-session-templates';
 
 export const app = express();
 app.use(express.json());
@@ -47,6 +48,7 @@ app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 app.use('/api/users', userRouter);
 app.use('/api/users', userSessionsRouter);
+app.use('/api/users', userSessionTemplatesRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
 
