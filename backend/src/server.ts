@@ -5,7 +5,9 @@ import { logger } from './utils/logging';
 import { resetMigrations, seedData } from './utils/umzug';
 
 app.listen(PORT, async () => {
-  logger.info(`Starting server in mode: ${NODE_ENV}`);
+  logger.info(
+    `Starting server in ${NODE_ENV} mode in working directory ${process.cwd()}`
+  );
   await connectToPostgres();
   await connectToRedis();
 
