@@ -32,9 +32,11 @@ export type Seeder = typeof seeder._types.migration;
 export const resetMigrations = async () => {
   try {
     // don't drop all tables in production...
-    if (NODE_ENV !== 'production') {
-      await migrator.down({ to: 0 });
-    }
+    // currently disabled for deployment testing
+    // if (NODE_ENV !== 'production') {
+    //   await migrator.down({ to: 0 });
+    // }
+    await migrator.down({ to: 0 });
     const executedAmount = (await migrator.executed()).length;
     const pendingAmount = (await migrator.pending()).length;
     logger.info(
