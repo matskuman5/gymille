@@ -5,8 +5,11 @@ import { NODE_ENV } from './config';
 
 const logIfInProd = NODE_ENV === 'production' ? logger : undefined;
 
+const migrationsPath =
+  NODE_ENV === 'production' ? 'dist/migrations/*.js' : 'src/migrations/*.ts';
+
 export const migrator = new Umzug({
-  migrations: { glob: 'src/migrations/*.ts' },
+  migrations: { glob: migrationsPath },
   logger: logIfInProd,
   storage: new SequelizeStorage({
     sequelize,
@@ -17,8 +20,11 @@ export const migrator = new Umzug({
 
 export type Migration = typeof migrator._types.migration;
 
+const seedersPath =
+  NODE_ENV === 'production' ? 'dist/seeders/*.js' : 'src/seeders/*.ts';
+
 export const seeder = new Umzug({
-  migrations: { glob: 'src/seeders/*.ts' },
+  migrations: { glob: seedersPath },
   logger: logIfInProd,
   storage: new SequelizeStorage({
     sequelize,
@@ -37,6 +43,7 @@ export const resetMigrations = async () => {
     //   await migrator.down({ to: 0 });
     // }
     await migrator.down({ to: 0 });
+    migrator.options.migrations;
     const executedAmount = (await migrator.executed()).length;
     const pendingAmount = (await migrator.pending()).length;
     logger.info(
