@@ -25,7 +25,7 @@ const Sidebar = ({ mobileSidebarOpen, setMobileSidebarOpen }: Props) => {
         open={mobileSidebarOpen}
         onClose={handleDrawerToggle}
       >
-        <SideBarContent />
+        <SideBarContent setMobileSidebarOpen={setMobileSidebarOpen} />
       </Drawer>
       <Drawer
         variant="permanent"
@@ -34,7 +34,7 @@ const Sidebar = ({ mobileSidebarOpen, setMobileSidebarOpen }: Props) => {
           width: 200,
         }}
       >
-        <SideBarContent />
+        <SideBarContent setMobileSidebarOpen={setMobileSidebarOpen} />
       </Drawer>
     </>
   );

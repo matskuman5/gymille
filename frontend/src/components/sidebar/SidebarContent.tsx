@@ -8,13 +8,24 @@ import {
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const SideBarContent = () => {
+interface Props {
+  setMobileSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
   const { data: userData } = useQuery({
     queryKey: ['userData'],
     queryFn: getUserData,
   });
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (to: string) => {
+    setMobileSidebarOpen(false);
+    navigate(to);
+  };
 
   return (
     <Box>
@@ -23,22 +34,24 @@ const SideBarContent = () => {
       )}
       <List>
         <ListItem key={'New Session'}>
-          <ListItemButton component={RouterLink} to="/">
+          <ListItemButton onClick={() => handleNavigation('/')}>
             <ListItemText>New Session</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem key={'Previous Sessions'}>
-          <ListItemButton component={RouterLink} to="/sessions">
+          <ListItemButton onClick={() => handleNavigation('/sessions')}>
             <ListItemText>Previous Sessions</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem key={'Session Templates'}>
-          <ListItemButton component={RouterLink} to="/session-templates">
+          <ListItemButton
+            onClick={() => handleNavigation('/session-templates')}
+          >
             <ListItemText>Session Templates</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem key={'User'}>
-          <ListItemButton component={RouterLink} to="/user">
+          <ListItemButton onClick={() => handleNavigation('/user')}>
             <ListItemText>User</ListItemText>
           </ListItemButton>
         </ListItem>
