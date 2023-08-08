@@ -47,6 +47,15 @@ describe('User API', () => {
     });
   });
 
+  describe('PUT /users/password', () => {
+    it('returns 401 if not authenticated', async () => {
+      await api
+        .put('/api/users/ff3e694e-02fd-413b-a38f-b826cc2dc08b/password')
+        .send({ newPassword: 'fma3i65maoi5ma' })
+        .expect(401);
+    });
+  });
+
   afterAll(async () => {
     sequelize.close();
   });
