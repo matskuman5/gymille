@@ -86,7 +86,7 @@ export const getUserSessionTemplates = async (id: string) => {
     });
     response.push({
       ...sessionTemplate,
-      exercises: exerciseTemplates,
+      exerciseTemplates: exerciseTemplates,
     });
   }
   return response;
