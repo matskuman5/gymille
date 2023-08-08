@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import NewSessionForm from './components/new-session/NewSessionForm';
 import SessionList from './components/session-list/SessionList';
-import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
 import { ToastContainer } from 'react-toastify';
 import { Box, Stack } from '@mui/material';
@@ -11,9 +11,9 @@ import UserPage from './components/user-authentication/UserPage';
 const App = () => {
   return (
     <Box>
+      <Sidebar />
       <Stack spacing={2} minHeight="100vh">
-        <Header />
-        <Box sx={{ flex: 1 }}>
+        <Box sx={{ flex: 1, width: { marginLeft: 200 } }}>
           <Routes>
             <Route path="/" element={<NewSessionForm />} />
             <Route path="/sessions" element={<SessionList />} />
