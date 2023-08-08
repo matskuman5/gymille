@@ -42,7 +42,7 @@ export const updatePassword = async (userId: string, newPassword: string) => {
     throw new ErrorWithStatus('User not found', 404);
   }
 
-  if (!newPassword) {
+  if (newPassword === null) {
     throw new ErrorWithStatus('Password is null', 400);
   }
 
