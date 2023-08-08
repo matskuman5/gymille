@@ -7,13 +7,27 @@ import { ToastContainer } from 'react-toastify';
 import { Box, Stack } from '@mui/material';
 import Footer from './components/Footer';
 import UserPage from './components/user-authentication/UserPage';
+import { useState } from 'react';
+import Header from './components/Header';
 
 const App = () => {
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+
   return (
     <Box>
-      <Sidebar />
-      <Stack spacing={2} minHeight="100vh">
-        <Box sx={{ flex: 1, width: { marginLeft: 200 } }}>
+      <Sidebar
+        mobileSidebarOpen={mobileSidebarOpen}
+        setMobileSidebarOpen={setMobileSidebarOpen}
+      />
+      <Stack
+        spacing={2}
+        sx={{
+          width: { marginLeft: 200 },
+          mx: { xs: 0, sm: 25 },
+        }}
+      >
+        <Header setMobileSidebarOpen={setMobileSidebarOpen} />
+        <Box>
           <Routes>
             <Route path="/" element={<NewSessionForm />} />
             <Route path="/sessions" element={<SessionList />} />
