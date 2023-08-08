@@ -36,6 +36,12 @@ const UserPage = () => {
             label="New Password"
             value={newPassword}
             onChange={(event) => setNewPassword(event.target.value)}
+            error={newPassword.length < 8}
+            helperText={
+              newPassword.length < 8
+                ? 'Password must be at least 8 characters long'
+                : ''
+            }
           />
           <Button
             variant="contained"
