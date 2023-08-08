@@ -1,13 +1,11 @@
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import AccountCreationForm from './AccountCreationForm';
 import logout from '../../services/logout';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getUserData, updatePassword } from '../../services/user';
-import { useState } from 'react';
+import { getUserData } from '../../services/user';
+import PasswordChangeForm from './PasswordChangeForm';
 
 const UserPage = () => {
-  const [newPassword, setNewPassword] = useState('');
-
   const { data: userData } = useQuery({
     queryKey: ['userData'],
     queryFn: getUserData,
@@ -32,23 +30,7 @@ const UserPage = () => {
           <Button variant="contained" onClick={() => mutation.mutate()}>
             Logout
           </Button>
-          <TextField
-            label="New Password"
-            value={newPassword}
-            onChange={(event) => setNewPassword(event.target.value)}
-            error={newPassword.length < 8}
-            helperText={
-              newPassword.length < 8
-                ? 'Password must be at least 8 characters long'
-                : ''
-            }
-          />
-          <Button
-            variant="contained"
-            onClick={() => updatePassword(userData.userId, newPassword)}
-          >
-            Change Password
-          </Button>
+          <PasswordChangeForm />
         </Stack>
       ) : (
         <AccountCreationForm />
