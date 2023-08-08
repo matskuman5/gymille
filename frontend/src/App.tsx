@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import NewSessionForm from './components/new-session/NewSessionForm';
 import SessionList from './components/session-list/SessionList';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
 import { ToastContainer } from 'react-toastify';
 import { Box, Stack } from '@mui/material';
