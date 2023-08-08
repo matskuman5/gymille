@@ -13,3 +13,12 @@ export const getUserData = async () => {
   const response = await axiosInstance.get<UserData>(`${apiUrl}/users`);
   return response.data;
 };
+
+export const updatePassword = async (userId: string, newPassword: string) => {
+  const response = await axiosInstance.put(
+    `${apiUrl}/users/${userId}/password`,
+    { newPassword }
+  );
+  showNotification(`Password updated successfully.`, 'success');
+  return response;
+};
