@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addUser } from '../services/users';
+import { addUser, updatePassword } from '../services/users';
 
 const userRouter = Router();
 
@@ -14,6 +14,15 @@ userRouter.get('/', async (req, res) => {
     username: req.session.username,
     userId: req.session.userId,
   });
+});
+
+userRouter.put('/:id/password', async (req, res) => {
+  if (req.session.userId === req.params.id) {
+    await updatePassword(req.session.userId, req.body.password);
+    res.status(200);
+  } else {
+    res.status(401).send();
+  }
 });
 
 export default userRouter;

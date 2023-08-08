@@ -32,3 +32,21 @@ export const addUser = async (newUser: object) => {
     passwordHash: passwordHash,
   });
 };
+
+export const updatePassword = async (userId: string, newPassword: string) => {
+  const user = await models.UserModel.findOne({
+    where: { id: userId },
+  });
+
+  if (user === null) {
+    throw new ErrorWithStatus('User not found', 404);
+  }
+
+  if (!newPassword) {
+    throw new ErrorWithStatus('Password is null', 400);
+  }
+
+  const newHash = await bcrypt.hash(newPassword, 10);
+  user.set({ passwordHash: newHash });
+  user.save();
+};
