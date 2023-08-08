@@ -18,9 +18,6 @@ const SideBarContent = () => {
 
   return (
     <Box>
-      <Typography variant="h3" fontWeight="bold" fontStyle="italic">
-        Gymille!
-      </Typography>
       {userData?.username && (
         <Typography>Logged in as {userData.username}</Typography>
       )}
