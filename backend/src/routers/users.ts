@@ -18,8 +18,8 @@ userRouter.get('/', async (req, res) => {
 
 userRouter.put('/:id/password', async (req, res) => {
   if (req.session.userId === req.params.id) {
-    await updatePassword(req.session.userId, req.body.password);
-    res.status(200);
+    await updatePassword(req.session.userId, req.body.newPassword);
+    res.status(200).send();
   } else {
     res.status(401).send();
   }
