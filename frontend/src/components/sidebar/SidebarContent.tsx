@@ -1,10 +1,10 @@
 import {
   Box,
-  Typography,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  Divider,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
@@ -29,9 +29,6 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
 
   return (
     <Box>
-      {userData?.username && (
-        <Typography>Logged in as {userData.username}</Typography>
-      )}
       <List>
         <ListItem key={'New Session'}>
           <ListItemButton onClick={() => handleNavigation('/')}>
@@ -50,25 +47,31 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
             <ListItemText>Session Templates</ListItemText>
           </ListItemButton>
         </ListItem>
-        <ListItem key={'User'}>
-          <ListItemButton onClick={() => handleNavigation('/user')}>
-            <ListItemText>User</ListItemText>
-          </ListItemButton>
-        </ListItem>
-        <ListItem key={'Change Password'}>
-          <ListItemButton
-            onClick={() => handleNavigation('/user/change-password')}
-          >
-            <ListItemText>Change Password</ListItemText>
-          </ListItemButton>
-        </ListItem>
-        <ListItem key={'Delete Account'}>
-          <ListItemButton
-            onClick={() => handleNavigation('/user/delete-account')}
-          >
-            <ListItemText>Delete Account</ListItemText>
-          </ListItemButton>
-        </ListItem>
+        <Divider sx={{ marginY: 1 }} />
+        {userData?.username ? (
+          <>
+            <ListItem key={'Change Password'}>
+              <ListItemButton
+                onClick={() => handleNavigation('/user/change-password')}
+              >
+                <ListItemText>Change Password</ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem key={'Delete Account'}>
+              <ListItemButton
+                onClick={() => handleNavigation('/user/delete-account')}
+              >
+                <ListItemText>Delete Account</ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </>
+        ) : (
+          <ListItem key={'User'}>
+            <ListItemButton onClick={() => handleNavigation('/user')}>
+              <ListItemText>User</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
     </Box>
   );
