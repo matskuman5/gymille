@@ -15,13 +15,11 @@ import SessionTemplateItemEditor from './SessionTemplateItemEditor';
 
 interface Props {
   givenSessionTemplate: SessionTemplate;
-  handleUpdatedSessionTemplate: (sessionTemplate: SessionTemplate) => void;
   deleteSessionTemplate: (nameToRemove: string) => void;
 }
 
 const SessionTemplateItem = ({
   givenSessionTemplate,
-  handleUpdatedSessionTemplate,
   deleteSessionTemplate,
 }: Props) => {
   const [editing, setEditing] = useState<Boolean>(false);
@@ -35,7 +33,6 @@ const SessionTemplateItem = ({
           oldSessionTemplate={sessionTemplate}
           setSessionTemplate={setSessionTemplate}
           setEditing={setEditing}
-          handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
         />
       ) : (
         <>

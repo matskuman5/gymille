@@ -1,7 +1,5 @@
-import { SessionTemplate } from '../../types';
 import SessionTemplateItem from './SessionTemplateItem';
 import {
-  updateSessionTemplate,
   deleteSessionTemplate,
   getUserSessionTemplates,
   postSessionTemplate,
@@ -22,12 +20,6 @@ const SessionTemplateList = () => {
     queryFn: () => getUserSessionTemplates(userData!.userId),
     enabled: !!userData?.userId,
   });
-
-  const handleUpdatedSessionTemplate = async (
-    sessionTemplate: SessionTemplate
-  ) => {
-    await updateSessionTemplate(sessionTemplate);
-  };
 
   const queryClient = useQueryClient();
 
@@ -64,7 +56,6 @@ const SessionTemplateList = () => {
                 <SessionTemplateItem
                   key={sessionTemplate.id}
                   givenSessionTemplate={sessionTemplate}
-                  handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
                   deleteSessionTemplate={() =>
                     mutationDeleteSessionTemplate.mutate(sessionTemplate.id)
                   }

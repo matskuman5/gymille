@@ -5,19 +5,19 @@ import { ExerciseTemplate, SessionTemplate } from '../../types';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ExerciseTemplateEditor from './ExerciseTemplateEditor';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { updateSessionTemplate } from '../../services/session-templates';
 
 interface Props {
   oldSessionTemplate: SessionTemplate;
   setSessionTemplate: React.Dispatch<React.SetStateAction<SessionTemplate>>;
   setEditing: React.Dispatch<React.SetStateAction<Boolean>>;
-  handleUpdatedSessionTemplate: (sessionTemplate: SessionTemplate) => void;
 }
 
 const SessionTemplateItemEditor = ({
   oldSessionTemplate,
   setSessionTemplate,
   setEditing,
-  handleUpdatedSessionTemplate,
 }: Props) => {
   const [sessionTemplateEditing, setSessionTemplateEditing] =
     useState<SessionTemplate>(oldSessionTemplate);
@@ -41,6 +41,19 @@ const SessionTemplateItemEditor = ({
       };
     });
   };
+
+  const queryClient = useQueryClient();
+
+  const mutationUpdateSessionTemplate = useMutation({
+    mutationFn: async (sessionTemplate: SessionTemplate) => {
+      await updateSessionTemplate(sessionTemplate);
+    },
+    onSuccess: () => {
+      setEditing(false);
+      setSessionTemplate(sessionTemplateEditing);
+      queryClient.invalidateQueries({ queryKey: ['sessionTemplates'] });
+    },
+  });
 
   const updateName = (newName: string) => {
     setSessionTemplateEditing({ ...sessionTemplateEditing, name: newName });
@@ -68,12 +81,6 @@ const SessionTemplateItemEditor = ({
     });
   };
 
-  const confirmChanges = () => {
-    setSessionTemplate(sessionTemplateEditing);
-    handleUpdatedSessionTemplate(sessionTemplateEditing);
-    setEditing(false);
-  };
-
   const cancelChanges = () => {
     setEditing(false);
   };
@@ -90,7 +97,9 @@ const SessionTemplateItemEditor = ({
     <Stack spacing={2} margin={3}>
       <Stack direction="row">
         <Button
-          onClick={confirmChanges}
+          onClick={() =>
+            mutationUpdateSessionTemplate.mutate(sessionTemplateEditing)
+          }
           disabled={!checkValidity()}
           startIcon={<CheckIcon />}
         >
