@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import UserPage from './components/user-authentication/UserPage';
 import { useState } from 'react';
 import Header from './components/Header';
+import PasswordChangeForm from './components/user-authentication/PasswordChangeForm';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
@@ -36,6 +37,10 @@ const App = () => {
               element={<SessionTemplateList />}
             />
             <Route path="/user" element={<UserPage />} />
+            <Route
+              path="/user/change-password"
+              element={<PasswordChangeForm />}
+            />
           </Routes>
         </Box>
         <Footer />

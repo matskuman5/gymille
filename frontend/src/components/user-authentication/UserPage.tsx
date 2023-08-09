@@ -3,7 +3,6 @@ import AccountCreationForm from './AccountCreationForm';
 import logout from '../../services/logout';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
-import PasswordChangeForm from './PasswordChangeForm';
 
 const UserPage = () => {
   const { data: userData } = useQuery({
@@ -30,7 +29,6 @@ const UserPage = () => {
           <Button variant="contained" onClick={() => mutation.mutate()}>
             Logout
           </Button>
-          <PasswordChangeForm />
         </Stack>
       ) : (
         <AccountCreationForm />
