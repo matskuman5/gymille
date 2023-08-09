@@ -5,6 +5,7 @@ import {
   ListItemButton,
   ListItemText,
   Divider,
+  Typography,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
@@ -50,6 +51,15 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
         <Divider sx={{ marginY: 1 }} />
         {userData?.username ? (
           <>
+            <ListItem>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ marginLeft: 2.1 }}
+              >
+                Logged in as {userData.username}
+              </Typography>
+            </ListItem>
             <ListItem key={'Change Password'}>
               <ListItemButton
                 onClick={() => handleNavigation('/user/change-password')}
