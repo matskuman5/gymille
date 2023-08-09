@@ -86,34 +86,22 @@ const NewSessionForm = () => {
     if (userData?.userId) {
       mutationPostSession.mutate();
     } else {
-      const existingTempSessions = localStorage.getItem('tempSessions');
+      const existingTempSessions = JSON.parse(
+        localStorage.getItem('tempSessions') || '[]'
+      );
 
-      if (existingTempSessions === null) {
-        localStorage.setItem(
-          'tempSessions',
-          JSON.stringify([
-            {
-              id: uuidv4(),
-              date: date!.toString(),
-              name: name,
-              exercises: exercises,
-            },
-          ])
-        );
-      } else {
-        localStorage.setItem(
-          'tempSessions',
-          JSON.stringify([
-            ...JSON.parse(existingTempSessions),
-            {
-              id: uuidv4(),
-              date: date!.toString(),
-              name: name,
-              exercises: exercises,
-            },
-          ])
-        );
-      }
+      localStorage.setItem(
+        'tempSessions',
+        JSON.stringify([
+          ...existingTempSessions,
+          {
+            id: uuidv4(),
+            date: date!.toString(),
+            name: name,
+            exercises: exercises,
+          },
+        ])
+      );
     }
   };
 
