@@ -62,6 +62,13 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
             <ListItemText>Change Password</ListItemText>
           </ListItemButton>
         </ListItem>
+        <ListItem key={'Delete Account'}>
+          <ListItemButton
+            onClick={() => handleNavigation('/user/delete-account')}
+          >
+            <ListItemText>Delete Account</ListItemText>
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );

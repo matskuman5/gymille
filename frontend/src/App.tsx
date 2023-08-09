@@ -10,6 +10,7 @@ import UserPage from './components/user-authentication/UserPage';
 import { useState } from 'react';
 import Header from './components/Header';
 import PasswordChangeForm from './components/user-authentication/PasswordChangeForm';
+import DeleteAccountPage from './components/user-authentication/DeleteAccountPage';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
@@ -40,6 +41,10 @@ const App = () => {
             <Route
               path="/user/change-password"
               element={<PasswordChangeForm />}
+            />
+            <Route
+              path="/user/delete-account"
+              element={<DeleteAccountPage />}
             />
           </Routes>
         </Box>

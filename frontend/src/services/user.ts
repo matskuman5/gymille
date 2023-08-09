@@ -22,3 +22,9 @@ export const updatePassword = async (userId: string, newPassword: string) => {
   showNotification(`Password updated successfully.`, 'success');
   return response;
 };
+
+export const deleteUser = async (userId: string) => {
+  const response = await axiosInstance.delete(`${apiUrl}/users/${userId}`);
+  showNotification(`Account deleted successfully.`, 'success');
+  return response;
+};
