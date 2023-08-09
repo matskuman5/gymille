@@ -12,6 +12,13 @@ import { getUserData } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PasswordIcon from '@mui/icons-material/Password';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import TimelineIcon from '@mui/icons-material/Timeline';
 import { useState } from 'react';
 import logout from '../../services/logout';
 
@@ -48,11 +55,17 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
       <List>
         <ListItem key={'New Session'}>
           <ListItemButton onClick={() => handleNavigation('/')}>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
             <ListItemText>New Session</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem key={'Previous Sessions'}>
           <ListItemButton onClick={() => handleNavigation('/sessions')}>
+            <ListItemIcon>
+              <TimelineIcon />
+            </ListItemIcon>
             <ListItemText>Previous Sessions</ListItemText>
           </ListItemButton>
         </ListItem>
@@ -60,6 +73,9 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
           <ListItemButton
             onClick={() => handleNavigation('/session-templates')}
           >
+            <ListItemIcon>
+              <TableChartIcon />
+            </ListItemIcon>
             <ListItemText>Session Templates</ListItemText>
           </ListItemButton>
         </ListItem>
@@ -84,6 +100,9 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
               <>
                 <ListItem key={'Logout'}>
                   <ListItemButton onClick={() => mutationLogout.mutate()}>
+                    <ListItemIcon>
+                      <LogoutIcon />
+                    </ListItemIcon>
                     <ListItemText>Logout</ListItemText>
                   </ListItemButton>
                 </ListItem>
@@ -91,6 +110,9 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
                   <ListItemButton
                     onClick={() => handleNavigation('/user/change-password')}
                   >
+                    <ListItemIcon>
+                      <PasswordIcon />
+                    </ListItemIcon>
                     <ListItemText>Change Password</ListItemText>
                   </ListItemButton>
                 </ListItem>
@@ -98,6 +120,9 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
                   <ListItemButton
                     onClick={() => handleNavigation('/user/delete-account')}
                   >
+                    <ListItemIcon>
+                      <DeleteIcon color="error" />
+                    </ListItemIcon>
                     <ListItemText
                       primaryTypographyProps={{
                         color: 'error.dark',
@@ -113,6 +138,9 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
         ) : (
           <ListItem key={'Login | Create Account'}>
             <ListItemButton onClick={() => handleNavigation('/user')}>
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
               <ListItemText>Login | Create Account</ListItemText>
             </ListItemButton>
           </ListItem>
