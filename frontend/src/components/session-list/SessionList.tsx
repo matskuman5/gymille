@@ -4,8 +4,19 @@ import { Stack, Typography } from '@mui/material';
 import Loading from '../Loading';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
+import { useEffect, useState } from 'react';
+import { Session } from '../../types';
 
 const SessionList = () => {
+  const [tempSessions, setTempSessions] = useState<Session[]>([]);
+
+  useEffect(() => {
+    const sessionsFromStorage = JSON.parse(
+      localStorage.getItem('tempSessions') || '[]'
+    );
+    setTempSessions(sessionsFromStorage);
+  }, []);
+
   const { data: userData } = useQuery({
     queryKey: ['userData'],
     queryFn: getUserData,
@@ -23,7 +34,7 @@ const SessionList = () => {
 
   return (
     <>
-      {userData ? (
+      {userData?.userId ? (
         <>
           {isLoading ? (
             <Loading text={'Fetching sessions...'} />
@@ -51,7 +62,17 @@ const SessionList = () => {
           )}
         </>
       ) : (
-        <Typography variant="h5">Log in to save sessions!</Typography>
+        <>
+          {tempSessions.length === 0 ? (
+            <Typography variant="h5">No sessions created yet!</Typography>
+          ) : (
+            <Stack spacing={2}>
+              {tempSessions.map((session) => (
+                <SessionItem key={session.id} session={session}></SessionItem>
+              ))}
+            </Stack>
+          )}
+        </>
       )}
     </>
   );
