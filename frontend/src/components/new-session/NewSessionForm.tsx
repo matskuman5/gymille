@@ -22,7 +22,7 @@ const NewSessionForm = () => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const mutationPostSession = useMutation({
     mutationFn: () =>
       postSession(
         {
@@ -128,7 +128,7 @@ const NewSessionForm = () => {
 
       <Button
         variant="contained"
-        onClick={() => mutation.mutate()}
+        onClick={() => mutationPostSession.mutate()}
         disabled={!checkValidity()}
       >
         Submit
