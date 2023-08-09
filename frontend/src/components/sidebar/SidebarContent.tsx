@@ -7,12 +7,13 @@ import {
   Divider,
   ListItemIcon,
 } from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
+import logout from '../../services/logout';
 
 interface Props {
   setMobileSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,6 +33,15 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
     setMobileSidebarOpen(false);
     navigate(to);
   };
+
+  const queryClient = useQueryClient();
+
+  const mutationLogout = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userData'] });
+    },
+  });
 
   return (
     <Box>
@@ -72,6 +82,11 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
             </ListItem>
             {userButtonsExpanded && (
               <>
+                <ListItem key={'Logout'}>
+                  <ListItemButton onClick={() => mutationLogout.mutate()}>
+                    <ListItemText>Logout</ListItemText>
+                  </ListItemButton>
+                </ListItem>
                 <ListItem key={'Change Password'}>
                   <ListItemButton
                     onClick={() => handleNavigation('/user/change-password')}
