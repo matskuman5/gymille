@@ -14,8 +14,12 @@ sessionTemplateRouter.get('/', async (_req, res) => {
 });
 
 sessionTemplateRouter.post('/', async (req, res) => {
-  const response = await addSessionTemplate(req.body);
-  res.status(201).json(response);
+  if (req.session.userId) {
+    const response = await addSessionTemplate(req.body, req.session.userId);
+    res.status(201).json(response);
+  } else {
+    res.status(401).send();
+  }
 });
 
 sessionTemplateRouter.put('/:id', async (req, res) => {

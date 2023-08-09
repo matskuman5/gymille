@@ -1,16 +1,18 @@
+import { ErrorWithStatus } from '../utils/error-handler';
 import models from '../models';
 import { isSessionTemplate } from '../utils/types';
 import { v4 as uuidv4 } from 'uuid';
 
-export const addSessionTemplate = async (obj: object) => {
+export const addSessionTemplate = async (obj: object, userId: string) => {
   const sessionTemplate = {
     ...obj,
     id: uuidv4(),
+    userId: userId,
   };
 
   if (!isSessionTemplate(sessionTemplate)) {
     console.log(sessionTemplate);
-    throw new Error('Session template validation failed');
+    throw new ErrorWithStatus('Session template validation failed', 400);
   }
 
   await models.SessionTemplateModel.create({
