@@ -29,10 +29,6 @@ const ExerciseForm = ({
     updateChildData(exerciseData, index);
   }, [exerciseData]);
 
-  const deleteThisExercise = (id: string) => {
-    deleteExercise(id);
-  };
-
   return (
     <Grid container spacing={1}>
       <Grid item>
@@ -110,7 +106,7 @@ const ExerciseForm = ({
       <Grid item>
         <Button
           startIcon={<DeleteIcon />}
-          onClick={() => deleteThisExercise(exercise.id)}
+          onClick={() => deleteExercise(exercise.id)}
         >
           Delete
         </Button>
