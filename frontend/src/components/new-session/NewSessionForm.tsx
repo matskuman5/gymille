@@ -9,7 +9,6 @@ import SessionTemplateSelector from './SessionTemplateSelector';
 import { v4 as uuidv4 } from 'uuid';
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
-import Cookies from 'js-cookie';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
@@ -87,10 +86,10 @@ const NewSessionForm = () => {
     if (userData?.userId) {
       mutationPostSession.mutate();
     } else {
-      const existingTempSessions = Cookies.get('tempSessions');
+      const existingTempSessions = localStorage.getItem('tempSessions');
 
-      if (existingTempSessions === undefined) {
-        Cookies.set(
+      if (existingTempSessions === null) {
+        localStorage.setItem(
           'tempSessions',
           JSON.stringify([
             {
@@ -102,26 +101,7 @@ const NewSessionForm = () => {
           ])
         );
       } else {
-        console.log(existingTempSessions);
-        console.log(JSON.parse(existingTempSessions));
-        console.log(
-          JSON.parse(existingTempSessions).push({
-            id: uuidv4(),
-            date: date!.toString(),
-            name: name,
-            exercises: exercises,
-          })
-        );
-        console.log([
-          ...JSON.parse(existingTempSessions),
-          {
-            id: uuidv4(),
-            date: date!.toString(),
-            name: name,
-            exercises: exercises,
-          },
-        ]);
-        Cookies.set(
+        localStorage.setItem(
           'tempSessions',
           JSON.stringify([
             ...JSON.parse(existingTempSessions),
