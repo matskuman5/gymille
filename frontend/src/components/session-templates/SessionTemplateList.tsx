@@ -4,10 +4,12 @@ import {
   updateSessionTemplate,
   deleteSessionTemplate as deleteSessionTemplateAPI,
   getUserSessionTemplates,
+  postSessionTemplate,
 } from '../../services/session-templates';
 import { Button, Stack, Divider, Container, Typography } from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
+import { v4 as uuidv4 } from 'uuid';
 
 const SessionTemplateList = () => {
   const { data: userData } = useQuery({
@@ -27,16 +29,23 @@ const SessionTemplateList = () => {
     await updateSessionTemplate(sessionTemplate);
   };
 
-  // const newSessionTemplate = () => {
-  //   setSessionTemplates([
-  //     ...sessionTemplates,
-  //     {
-  //       id: uuidv4(),
-  //       name: '',
-  //       exerciseTemplates: [],
-  //     },
-  //   ]);
-  // };
+  const queryClient = useQueryClient();
+
+  const mutationCreateSessionTemplate = useMutation({
+    mutationFn: async () => {
+      const defaultSessionTemplate = {
+        id: uuidv4(),
+        name: `New Session Template ${
+          sessionTemplates ? sessionTemplates.length + 1 : 1
+        }`,
+        exerciseTemplates: [{ id: uuidv4(), name: 'Example Exercise' }],
+      };
+      await postSessionTemplate(defaultSessionTemplate);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['sessionTemplates'] });
+    },
+  });
 
   const deleteSessionTemplate = async (id: string) => {
     await deleteSessionTemplateAPI(id);
@@ -63,7 +72,7 @@ const SessionTemplateList = () => {
             <Button
               style={{ maxWidth: '70px' }}
               variant="contained"
-              // onClick={newSessionTemplate}
+              onClick={() => mutationCreateSessionTemplate.mutate()}
             >
               New
             </Button>
