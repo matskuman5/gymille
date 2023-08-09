@@ -2,7 +2,7 @@ import { SessionTemplate } from '../../types';
 import SessionTemplateItem from './SessionTemplateItem';
 import {
   updateSessionTemplate,
-  deleteSessionTemplate as deleteSessionTemplateAPI,
+  deleteSessionTemplate,
   getUserSessionTemplates,
   postSessionTemplate,
 } from '../../services/session-templates';
@@ -47,9 +47,12 @@ const SessionTemplateList = () => {
     },
   });
 
-  const deleteSessionTemplate = async (id: string) => {
-    await deleteSessionTemplateAPI(id);
-  };
+  const mutationDeleteSessionTemplate = useMutation({
+    mutationFn: async (id: string) => await deleteSessionTemplate(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['sessionTemplates'] });
+    },
+  });
 
   return (
     <>
@@ -63,7 +66,7 @@ const SessionTemplateList = () => {
                   givenSessionTemplate={sessionTemplate}
                   handleUpdatedSessionTemplate={handleUpdatedSessionTemplate}
                   deleteSessionTemplate={() =>
-                    deleteSessionTemplate(sessionTemplate.id)
+                    mutationDeleteSessionTemplate.mutate(sessionTemplate.id)
                   }
                 ></SessionTemplateItem>
               ))}
