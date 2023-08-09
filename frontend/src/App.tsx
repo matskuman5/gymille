@@ -11,6 +11,7 @@ import Header from './components/Header';
 import PasswordChangeForm from './components/user-authentication/PasswordChangeForm';
 import DeleteAccountPage from './components/user-authentication/DeleteAccountPage';
 import AccountCreationForm from './components/user-authentication/AccountCreationForm';
+import LoginWarning from './components/LoginWarning';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
@@ -30,6 +31,7 @@ const App = () => {
       >
         <Header setMobileSidebarOpen={setMobileSidebarOpen} />
         <Box>
+          <LoginWarning />
           <Routes>
             <Route path="/" element={<NewSessionForm />} />
             <Route path="/sessions" element={<SessionList />} />
