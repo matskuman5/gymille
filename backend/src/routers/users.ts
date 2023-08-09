@@ -25,4 +25,13 @@ userRouter.put('/:id/password', async (req, res) => {
   }
 });
 
+userRouter.delete('/:id', async (req, res) => {
+  if (req.session.userId === req.params.id) {
+    await updatePassword(req.session.userId, req.body.newPassword);
+    res.status(200).send();
+  } else {
+    res.status(401).send();
+  }
+});
+
 export default userRouter;

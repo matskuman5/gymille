@@ -3,6 +3,7 @@ import models from '../models';
 import { isNewUser } from '../utils/types';
 import { v4 as uuidv4 } from 'uuid';
 import { ErrorWithStatus } from '../utils/error-handler';
+import { Op } from 'sequelize';
 
 export const addUser = async (newUser: object) => {
   if (!isNewUser(newUser)) {
@@ -49,4 +50,52 @@ export const updatePassword = async (userId: string, newPassword: string) => {
   const newHash = await bcrypt.hash(newPassword, 10);
   user.set({ passwordHash: newHash });
   user.save();
+};
+
+export const deleteUser = async (id: string) => {
+  const user = await models.UserModel.findOne({
+    where: { id: id },
+  });
+
+  if (user === null) {
+    throw new ErrorWithStatus('User not found', 404);
+  }
+
+  const sessionsToDelete = await models.SessionModel.findAll({
+    raw: true,
+    where: { userId: id },
+  });
+
+  await models.ExerciseModel.destroy({
+    where: {
+      sessionId: {
+        [Op.in]: sessionsToDelete.map((session) => session.id),
+      },
+    },
+  });
+
+  await models.SessionModel.destroy({
+    where: { userId: id },
+  });
+
+  const sessionTemplatesToDelete = await models.SessionTemplateModel.findAll({
+    raw: true,
+    where: { userId: id },
+  });
+
+  await models.ExerciseTemplateModel.destroy({
+    where: {
+      sessionTemplateId: {
+        [Op.in]: sessionTemplatesToDelete.map(
+          (sessionTemplate) => sessionTemplate.id
+        ),
+      },
+    },
+  });
+
+  await models.SessionTemplateModel.destroy({
+    where: { userId: id },
+  });
+
+  user.destroy();
 };
