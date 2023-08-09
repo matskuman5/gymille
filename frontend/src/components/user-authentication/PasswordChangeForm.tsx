@@ -16,6 +16,7 @@ const PasswordChangeForm = () => {
       <Typography variant="h5">Change password</Typography>
       <TextField
         label="New Password"
+        type="password"
         value={newPassword}
         onChange={(event) => setNewPassword(event.target.value)}
         error={newPassword.length < 8}

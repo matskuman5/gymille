@@ -37,6 +37,7 @@ const AccountCreationForm = () => {
       ></TextField>
       <TextField
         label="Password"
+        type="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
         error={password.length < 8}
