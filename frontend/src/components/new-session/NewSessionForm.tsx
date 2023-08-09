@@ -9,6 +9,7 @@ import SessionTemplateSelector from './SessionTemplateSelector';
 import { v4 as uuidv4 } from 'uuid';
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
+import Cookies from 'js-cookie';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
@@ -82,6 +83,60 @@ const NewSessionForm = () => {
     );
   };
 
+  const handleSubmitClick = () => {
+    if (userData?.userId) {
+      mutationPostSession.mutate();
+    } else {
+      const existingTempSessions = Cookies.get('tempSessions');
+
+      if (existingTempSessions === undefined) {
+        Cookies.set(
+          'tempSessions',
+          JSON.stringify([
+            {
+              id: uuidv4(),
+              date: date!.toString(),
+              name: name,
+              exercises: exercises,
+            },
+          ])
+        );
+      } else {
+        console.log(existingTempSessions);
+        console.log(JSON.parse(existingTempSessions));
+        console.log(
+          JSON.parse(existingTempSessions).push({
+            id: uuidv4(),
+            date: date!.toString(),
+            name: name,
+            exercises: exercises,
+          })
+        );
+        console.log([
+          ...JSON.parse(existingTempSessions),
+          {
+            id: uuidv4(),
+            date: date!.toString(),
+            name: name,
+            exercises: exercises,
+          },
+        ]);
+        Cookies.set(
+          'tempSessions',
+          JSON.stringify([
+            ...JSON.parse(existingTempSessions),
+            {
+              id: uuidv4(),
+              date: date!.toString(),
+              name: name,
+              exercises: exercises,
+            },
+          ])
+        );
+      }
+    }
+  };
+
   return (
     <Stack spacing={2}>
       <Grid container spacing={1}>
@@ -128,7 +183,7 @@ const NewSessionForm = () => {
 
       <Button
         variant="contained"
-        onClick={() => mutationPostSession.mutate()}
+        onClick={handleSubmitClick}
         disabled={!checkValidity()}
       >
         Submit
