@@ -6,11 +6,11 @@ import SessionTemplateList from './components/session-templates/SessionTemplateL
 import { ToastContainer } from 'react-toastify';
 import { Box, Stack } from '@mui/material';
 import Footer from './components/Footer';
-import UserPage from './components/user-authentication/UserPage';
 import { useState } from 'react';
 import Header from './components/Header';
 import PasswordChangeForm from './components/user-authentication/PasswordChangeForm';
 import DeleteAccountPage from './components/user-authentication/DeleteAccountPage';
+import AccountCreationForm from './components/user-authentication/AccountCreationForm';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const App = () => {
               path="/session-templates"
               element={<SessionTemplateList />}
             />
-            <Route path="/user" element={<UserPage />} />
+            <Route path="/user" element={<AccountCreationForm />} />
             <Route
               path="/user/change-password"
               element={<PasswordChangeForm />}

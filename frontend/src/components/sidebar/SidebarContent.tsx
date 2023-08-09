@@ -111,9 +111,9 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
             )}
           </>
         ) : (
-          <ListItem key={'User'}>
+          <ListItem key={'Login | Create Account'}>
             <ListItemButton onClick={() => handleNavigation('/user')}>
-              <ListItemText>User</ListItemText>
+              <ListItemText>Login | Create Account</ListItemText>
             </ListItemButton>
           </ListItem>
         )}
