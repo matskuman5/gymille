@@ -9,7 +9,6 @@ userRouter.post('/', async (req, res) => {
 });
 
 userRouter.get('/', async (req, res) => {
-  console.log(req.session);
   res.status(200).send({
     username: req.session.username,
     userId: req.session.userId,
