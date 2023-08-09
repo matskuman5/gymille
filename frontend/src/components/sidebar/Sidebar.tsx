@@ -20,7 +20,6 @@ const Sidebar = ({ mobileSidebarOpen, setMobileSidebarOpen }: Props) => {
         }}
         sx={{
           display: { xs: 'block', sm: 'none' },
-          width: 200,
         }}
         open={mobileSidebarOpen}
         onClose={handleDrawerToggle}
@@ -31,8 +30,8 @@ const Sidebar = ({ mobileSidebarOpen, setMobileSidebarOpen }: Props) => {
         variant="permanent"
         sx={{
           display: { xs: 'none', sm: 'block' },
-          width: 200,
         }}
+        PaperProps={{ style: { width: 200 } }}
       >
         <SideBarContent setMobileSidebarOpen={setMobileSidebarOpen} />
       </Drawer>
