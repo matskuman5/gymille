@@ -1,11 +1,13 @@
-describe('Basic ', function () {
+describe('Basic', function () {
+  beforeEach(function () {
+    cy.visit('/');
+  });
+
   it('front page can be opened', function () {
-    cy.visit('http://localhost:5173/front');
     cy.contains('Gymille!');
   });
 
   it('login warning functions properly', function () {
-    cy.visit('http://localhost:5173/front');
     cy.contains('Dismiss').click();
     cy.contains('Dismiss').should('not.exist');
     cy.reload();
@@ -19,7 +21,7 @@ describe('Account', function () {
   });
 
   it('can log in', function () {
-    cy.visit('http://localhost:5173/front/user');
+    cy.visit('/user');
     cy.get('[data-cy="username-field"]').type('GymBro1');
     cy.get('[data-cy="password-field"]').type('password123');
     cy.get('[data-cy="login-button"]').click();
@@ -32,7 +34,7 @@ describe('Account', function () {
         username: 'GymBro1',
         password: 'password123',
       });
-      cy.visit('http://localhost:5173/front');
+      cy.visit('/');
     });
 
     it('can log out', function () {
@@ -43,7 +45,7 @@ describe('Account', function () {
     });
 
     it('can change password', function () {
-      cy.visit('http://localhost:5173/front/user/change-password');
+      cy.visit('/user/change-password');
       cy.get('[data-cy="new-password-field"]').type('newpassword500');
       cy.get('[data-cy="change-password-button"]').click();
       cy.contains('Password updated successfully');
