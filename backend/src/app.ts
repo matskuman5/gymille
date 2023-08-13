@@ -17,6 +17,9 @@ import resetRouter from './routers/reset';
 export const app = express();
 app.use(express.json());
 
+app.use(logRequests);
+app.use(sessionMiddleware);
+
 let corsUrl;
 
 switch (NODE_ENV) {
@@ -42,9 +45,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.use(logRequests);
-app.use(sessionMiddleware);
 
 app.use('/ping', pingRouter);
 app.use('/api/sessions', sessionRouter);
