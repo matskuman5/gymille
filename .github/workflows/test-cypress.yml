@@ -1,0 +1,16 @@
+name: Run Cypress tests
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          start: npm run dev
