@@ -1,21 +1,4 @@
-describe('Basic', function () {
-  beforeEach(function () {
-    cy.visit('/');
-  });
-
-  it('front page can be opened', function () {
-    cy.contains('Gymille!');
-  });
-
-  it('login warning functions properly', function () {
-    cy.contains('Dismiss').click();
-    cy.contains('Dismiss').should('not.exist');
-    cy.reload();
-    cy.contains('Dismiss').should('not.exist');
-  });
-});
-
-describe('Account', function () {
+describe('User', function () {
   beforeEach(function () {
     cy.request('POST', 'http://localhost:3000/api/reset');
   });
