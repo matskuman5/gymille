@@ -2,7 +2,6 @@ import { TextField, Button, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import { getUserData, updatePassword } from '../../services/user';
 import { useQuery } from '@tanstack/react-query';
-import { Navigate } from 'react-router-dom';
 
 const PasswordChangeForm = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -14,12 +13,13 @@ const PasswordChangeForm = () => {
 
   return (
     <>
-      {userData ? (
+      {userData?.userId ? (
         <Stack spacing={2}>
           <Typography variant="h5">Change password</Typography>
           <TextField
             label="New Password"
             type="password"
+            data-cy="new-password-field"
             value={newPassword}
             onChange={(event) => setNewPassword(event.target.value)}
             error={newPassword.length < 8}
@@ -37,7 +37,7 @@ const PasswordChangeForm = () => {
           </Button>
         </Stack>
       ) : (
-        <Navigate to="/user" />
+        'Log in first!'
       )}
     </>
   );
