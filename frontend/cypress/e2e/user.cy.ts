@@ -33,5 +33,13 @@ describe('User', function () {
       cy.get('[data-cy="change-password-button"]').click();
       cy.contains('Password updated successfully');
     });
+
+    it('can delete account', function () {
+      cy.visit('/user/delete-account');
+      cy.get('[data-cy="delete-account-button"]').should('be.disabled');
+      cy.get('[data-cy="username-field"]').type('GymBro1');
+      cy.get('[data-cy="delete-account-button"]').click();
+      cy.contains('Account deleted successfully');
+    });
   });
 });

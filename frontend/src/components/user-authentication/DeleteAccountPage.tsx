@@ -36,11 +36,13 @@ const DeleteAccountPage = () => {
       </Typography>
       <TextField
         label="Username"
+        data-cy="username-field"
         value={formUsername}
         onChange={(event) => setFormUsername(event.target.value)}
       ></TextField>
       <Button
         variant="contained"
+        data-cy="delete-account-button"
         color="error"
         onClick={() => mutationDeleteUser.mutate()}
         disabled={formUsername !== userData?.username}
