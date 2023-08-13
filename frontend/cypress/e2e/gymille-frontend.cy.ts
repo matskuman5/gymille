@@ -14,6 +14,10 @@ describe('Basic ', function () {
 });
 
 describe('Account', function () {
+  beforeEach(function () {
+    cy.request('POST', 'http://localhost:3000/api/reset');
+  });
+
   it('can log in', function () {
     cy.visit('http://localhost:5173/front/user');
     cy.get('[data-cy="username-field"]').type('GymBro1');
@@ -46,7 +50,7 @@ describe('Account', function () {
       cy.visit('http://localhost:5173/front/user/change-password');
       cy.get('[data-cy="new-password-field"]').type('newpassword500');
       cy.get('[data-cy="change-password-button"]').click();
-      cy.contains('Password changed successfully');
+      cy.contains('Password updated successfully');
     });
   });
 });
