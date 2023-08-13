@@ -12,3 +12,13 @@ describe('Basic ', function () {
     cy.contains('Dismiss').should('not.exist');
   });
 });
+
+describe('Account', function () {
+  it('can log in', function () {
+    cy.visit('http://localhost:5173/front/user');
+    cy.get('[data-cy="username-field"]').type('GymBro1');
+    cy.get('[data-cy="password-field"]').type('password123');
+    cy.get('[data-cy="login-button"]').click();
+    cy.contains('Logged in successfully');
+  });
+});

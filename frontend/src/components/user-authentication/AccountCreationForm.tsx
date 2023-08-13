@@ -32,11 +32,13 @@ const AccountCreationForm = () => {
     <Stack spacing={1}>
       <TextField
         label="Username"
+        data-cy="username-field"
         value={formUsername}
         onChange={(event) => setFormUsername(event.target.value)}
       ></TextField>
       <TextField
         label="Password"
+        data-cy="password-field"
         type="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
@@ -49,7 +51,11 @@ const AccountCreationForm = () => {
       ></TextField>
       <Grid container spacing={1}>
         <Grid item>
-          <Button variant="contained" onClick={() => mutationLogin.mutate()}>
+          <Button
+            data-cy="login-button"
+            variant="contained"
+            onClick={() => mutationLogin.mutate()}
+          >
             Login
           </Button>
         </Grid>
