@@ -21,4 +21,26 @@ describe('Account', function () {
     cy.get('[data-cy="login-button"]').click();
     cy.contains('Logged in successfully');
   });
+
+  describe('when logged in', function () {
+    beforeEach(function () {
+      cy.request('POST', 'http://localhost:3000/api/login', {
+        username: 'GymBro1',
+        password: 'password123',
+      });
+      cy.visit('http://localhost:5173/front');
+    });
+
+    it('can log out', function () {
+      cy.get('[data-cy="user-expand-button"]').click({
+        multiple: true,
+        force: true,
+      });
+      cy.get('[data-cy="logout-button"]').click({
+        multiple: true,
+        force: true,
+      });
+      cy.contains('Logged out successfully');
+    });
+  });
 });

@@ -84,6 +84,7 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
           <>
             <ListItem key={'logged in'}>
               <ListItemButton
+                data-cy="user-expand-button"
                 onClick={() => setUserButtonsExpanded(!userButtonsExpanded)}
               >
                 <ListItemIcon>
@@ -99,7 +100,10 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
             {userButtonsExpanded && (
               <>
                 <ListItem key={'Logout'}>
-                  <ListItemButton onClick={() => mutationLogout.mutate()}>
+                  <ListItemButton
+                    data-cy="logout-button"
+                    onClick={() => mutationLogout.mutate()}
+                  >
                     <ListItemIcon>
                       <LogoutIcon />
                     </ListItemIcon>
