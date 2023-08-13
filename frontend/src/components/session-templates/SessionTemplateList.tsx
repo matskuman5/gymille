@@ -88,6 +88,26 @@ const SessionTemplateList = () => {
     }
   };
 
+  const deleteTempSessionTemplate = (id: string) => {
+    const existingTempSessionTemplates = JSON.parse(
+      localStorage.getItem('tempSessionTemplates') || '[]'
+    );
+
+    const updatedTempSessionTemplates = existingTempSessionTemplates.filter(
+      (sessionTemplate: SessionTemplate) => sessionTemplate.id !== id
+    );
+
+    localStorage.setItem(
+      'tempSessionTemplates',
+      JSON.stringify(updatedTempSessionTemplates)
+    );
+
+    const sessionTemplatesFromStorage = JSON.parse(
+      localStorage.getItem('tempSessionTemplates') || '[]'
+    );
+    setTempSessionTemplates(sessionTemplatesFromStorage);
+  };
+
   return (
     <>
       {userData?.userId ? (
@@ -132,7 +152,7 @@ const SessionTemplateList = () => {
                     key={sessionTemplate.id}
                     givenSessionTemplate={sessionTemplate}
                     deleteSessionTemplate={() =>
-                      mutationDeleteSessionTemplate.mutate(sessionTemplate.id)
+                      deleteTempSessionTemplate(sessionTemplate.id)
                     }
                   ></SessionTemplateItem>
                 ))}
