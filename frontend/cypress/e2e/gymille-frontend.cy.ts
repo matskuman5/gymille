@@ -36,13 +36,9 @@ describe('Account', function () {
     });
 
     it('can log out', function () {
-      cy.get('[data-cy="user-expand-button"]').click({
-        multiple: true,
-      });
+      cy.get('[data-cy="user-expand-button"]').first().click();
       cy.contains('Logout').should('be.visible');
-      cy.get('[data-cy="logout-button"]').click({
-        multiple: true,
-      });
+      cy.get('[data-cy="logout-button"]').first().click();
       cy.contains('Logged out successfully');
     });
 
