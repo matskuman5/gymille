@@ -30,6 +30,7 @@ const PasswordChangeForm = () => {
             }
           />
           <Button
+            data-cy="change-password-button"
             variant="contained"
             onClick={() => updatePassword(userData.userId, newPassword)}
           >

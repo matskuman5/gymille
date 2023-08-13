@@ -34,13 +34,19 @@ describe('Account', function () {
     it('can log out', function () {
       cy.get('[data-cy="user-expand-button"]').click({
         multiple: true,
-        force: true,
       });
+      cy.contains('Logout').should('be.visible');
       cy.get('[data-cy="logout-button"]').click({
         multiple: true,
-        force: true,
       });
       cy.contains('Logged out successfully');
+    });
+
+    it('can change password', function () {
+      cy.visit('http://localhost:5173/front/user/change-password');
+      cy.get('[data-cy="new-password-field"]').type('newpassword500');
+      cy.get('[data-cy="change-password-button"]').click();
+      cy.contains('Password changed successfully');
     });
   });
 });

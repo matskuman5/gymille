@@ -112,6 +112,7 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
                 </ListItem>
                 <ListItem key={'Change Password'}>
                   <ListItemButton
+                    data-cy="change-password-menu-button"
                     onClick={() => handleNavigation('/user/change-password')}
                   >
                     <ListItemIcon>
