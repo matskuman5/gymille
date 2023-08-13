@@ -1,13 +1,15 @@
 name: Deploy frontend
 
 on:
-  push:
-    paths:
-      - 'frontend/**'
+  workflow_run:
+    workflows: [Run Cypress tests]
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
