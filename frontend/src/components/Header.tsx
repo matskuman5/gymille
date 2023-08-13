@@ -14,6 +14,7 @@ const Header = ({ setMobileSidebarOpen }: Props) => {
     <AppBar position="static">
       <Toolbar>
         <IconButton
+          aria-label="Sidebar Toggle"
           color="inherit"
           onClick={handleDrawerToggle}
           sx={{
