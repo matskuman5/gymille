@@ -12,6 +12,7 @@ import logoutRouter from './routers/logout';
 import { errorHandler } from './utils/error-handler';
 import userSessionsRouter from './routers/user-sessions';
 import userSessionTemplatesRouter from './routers/user-session-templates';
+import resetRouter from './routers/reset';
 
 export const app = express();
 app.use(express.json());
@@ -19,15 +20,17 @@ app.use(express.json());
 let corsUrl;
 
 switch (NODE_ENV) {
-  case 'development':
-    corsUrl = 'http://localhost:5173';
-    break;
   case 'production':
     corsUrl = 'https://gymille-frontend.fly.dev';
     app.set('trust proxy', 1);
     break;
+  case 'development':
+    corsUrl = 'http://localhost:5173';
+    app.use('/api/reset', resetRouter);
+    break;
   case 'test':
     corsUrl = 'http://localhost:5173';
+    app.use('/api/reset', resetRouter);
     break;
   default:
     throw new Error(`NODE_ENV '${NODE_ENV}' not supported`);
