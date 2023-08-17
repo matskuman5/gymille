@@ -78,7 +78,7 @@ const ExerciseForm = ({
           helperText={exerciseData.reps <= 0 ? 'Reps must be at least 1' : ''}
         ></TextField>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <TextField
           label="Weight"
           data-cy="exercise-weight-field"
