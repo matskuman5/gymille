@@ -5,7 +5,6 @@ const Footer = () => {
     <Box
       boxShadow={3}
       sx={{
-        backgroundColor: (theme) => theme.palette.grey[300],
         width: '100%',
       }}
     >
