@@ -9,6 +9,7 @@ import {
   Button,
   IconButton,
   Typography,
+  TableFooter,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -92,18 +93,20 @@ const SessionItem = ({ session }: Props) => {
               </TableRow>
             ))}
         </TableBody>
-        {expanded && (
-          <TableRow>
-            <TableCell>
-              <Button
-                onClick={() => mutation.mutate()}
-                startIcon={<DeleteIcon />}
-              >
-                Delete
-              </Button>
-            </TableCell>
-          </TableRow>
-        )}
+        <TableFooter>
+          {expanded && (
+            <TableRow>
+              <TableCell>
+                <Button
+                  onClick={() => mutation.mutate()}
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableFooter>
       </Table>
     </TableContainer>
   );
