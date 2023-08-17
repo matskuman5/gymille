@@ -14,7 +14,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Session } from '../../types';
+import { Session } from '../../utils/types';
 import { useEffect, useState } from 'react';
 import { deleteSession } from '../../services/sessions';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

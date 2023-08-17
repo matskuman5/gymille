@@ -1,5 +1,5 @@
 import axiosInstance from '../utils/axios';
-import { SessionTemplate } from '../types';
+import { SessionTemplate } from '../utils/types';
 import apiUrl from '../utils/config';
 import { showNotification } from '../utils/notifications';
 

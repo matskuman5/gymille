@@ -1,5 +1,5 @@
 import axiosInstance from '../utils/axios';
-import { User, UserData } from '../types';
+import { User, UserData } from '../utils/types';
 import apiUrl from '../utils/config';
 import { showNotification } from '../utils/notifications';
 

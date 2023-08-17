@@ -5,7 +5,7 @@ import Loading from '../miscellaneous/Loading';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
 import { useEffect, useState } from 'react';
-import { Session } from '../../types';
+import { Session } from '../../utils/types';
 
 const SessionList = () => {
   const [tempSessions, setTempSessions] = useState<Session[]>([]);

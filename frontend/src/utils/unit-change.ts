@@ -1,4 +1,4 @@
-import { Session } from '../types';
+import { Session } from './types';
 
 export const kgToLbs = (session: Session) => {
   const updatedExercises = session.exercises.map((exercise) => {

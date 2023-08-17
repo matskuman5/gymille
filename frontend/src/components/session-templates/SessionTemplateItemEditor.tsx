@@ -1,7 +1,7 @@
 import { TextField, Button, Stack } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
-import { ExerciseTemplate, SessionTemplate } from '../../types';
+import { ExerciseTemplate, SessionTemplate } from '../../utils/types';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ExerciseTemplateEditor from './ExerciseTemplateEditor';

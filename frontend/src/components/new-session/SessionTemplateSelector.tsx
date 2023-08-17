@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useState } from 'react';
 import { getUserSessionTemplates } from '../../services/session-templates';
-import { Exercise } from '../../types';
+import { Exercise } from '../../utils/types';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
 

@@ -1,7 +1,7 @@
 import { Button, Grid, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect, useState } from 'react';
-import { Exercise } from '../../types';
+import { Exercise } from '../../utils/types';
 
 interface Props {
   index: number;

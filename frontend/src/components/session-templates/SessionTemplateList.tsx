@@ -8,7 +8,7 @@ import { Button, Stack, Divider, Container, Typography } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
 import { v4 as uuidv4 } from 'uuid';
-import { SessionTemplate } from '../../types';
+import { SessionTemplate } from '../../utils/types';
 import { useState, useEffect } from 'react';
 
 const SessionTemplateList = () => {

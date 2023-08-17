@@ -1,5 +1,5 @@
 import { TextField, Button } from '@mui/material';
-import { ExerciseTemplate } from '../../types';
+import { ExerciseTemplate } from '../../utils/types';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Props {

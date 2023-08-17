@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Exercise, Session } from '../../types';
+import { Exercise, Session } from '../../utils/types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
