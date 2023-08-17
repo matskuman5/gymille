@@ -19,6 +19,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import TimelineIcon from '@mui/icons-material/Timeline';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { useState } from 'react';
 import logout from '../../services/logout';
 
@@ -77,6 +78,14 @@ const SideBarContent = ({ setMobileSidebarOpen }: Props) => {
               <TableChartIcon />
             </ListItemIcon>
             <ListItemText>Session Templates</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <ListItem key={'Preferences'}>
+          <ListItemButton onClick={() => handleNavigation('/preferences')}>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText>Preferences</ListItemText>
           </ListItemButton>
         </ListItem>
         <Divider sx={{ marginY: 1 }} />

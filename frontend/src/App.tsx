@@ -12,6 +12,7 @@ import PasswordChangeForm from './components/user-authentication/PasswordChangeF
 import DeleteAccountPage from './components/user-authentication/DeleteAccountPage';
 import AccountCreationForm from './components/user-authentication/AccountCreationForm';
 import LoginWarning from './components/LoginWarning';
+import Preferences from './components/Preferences';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
@@ -48,6 +49,7 @@ const App = () => {
               path="/user/delete-account"
               element={<DeleteAccountPage />}
             />
+            <Route path="/preferences" element={<Preferences />} />
           </Routes>
         </Box>
         <Footer />
