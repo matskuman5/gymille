@@ -50,12 +50,14 @@ const Preferences = () => {
             control={<Radio />}
             label="kg"
             checked={weightUnit === 'kg'}
+            sx={{ color: (theme) => theme.palette.text.secondary }}
           />
           <FormControlLabel
             value="lbs"
             control={<Radio />}
             label="lbs"
             checked={weightUnit === 'lbs'}
+            sx={{ color: (theme) => theme.palette.text.secondary }}
           />
         </RadioGroup>
       </FormControl>
@@ -67,12 +69,14 @@ const Preferences = () => {
             control={<Radio />}
             label="Light"
             checked={!darkMode}
+            sx={{ color: (theme) => theme.palette.text.secondary }}
           />
           <FormControlLabel
             value="true"
             control={<Radio />}
             label="Dark"
             checked={darkMode}
+            sx={{ color: (theme) => theme.palette.text.secondary }}
           />
         </RadioGroup>
       </FormControl>
