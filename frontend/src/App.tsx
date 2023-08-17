@@ -31,7 +31,15 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box bgcolor="background.default">
+      <Box
+        bgcolor="background.default"
+        position="fixed"
+        height="100%"
+        width="100%"
+        marginTop="-8px"
+        marginLeft="-8px"
+        paddingLeft="8px"
+      >
         <Sidebar
           mobileSidebarOpen={mobileSidebarOpen}
           setMobileSidebarOpen={setMobileSidebarOpen}
