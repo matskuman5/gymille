@@ -33,12 +33,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Box
         bgcolor="background.default"
-        position="fixed"
+        position="relative"
         height="100%"
-        width="100%"
+        width="102.2%"
         marginTop="-8px"
         marginLeft="-8px"
         paddingLeft="8px"
+        marginBottom="-8px"
       >
         <Sidebar
           mobileSidebarOpen={mobileSidebarOpen}
@@ -77,6 +78,14 @@ const App = () => {
         </Stack>
         <ToastContainer />
       </Box>
+      <Box
+        bgcolor="background.default"
+        position="fixed"
+        height="100%"
+        width="100%"
+        marginLeft="-8px"
+        paddingLeft="8px"
+      ></Box>
     </ThemeProvider>
   );
 };
