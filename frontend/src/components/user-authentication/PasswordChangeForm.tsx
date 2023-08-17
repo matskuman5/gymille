@@ -1,4 +1,4 @@
-import { TextField, Button, Stack, Typography } from '@mui/material';
+import { TextField, Button, Stack, Typography, Divider } from '@mui/material';
 import { useState } from 'react';
 import { getUserData, updatePassword } from '../../services/user';
 import { useQuery } from '@tanstack/react-query';
@@ -15,7 +15,10 @@ const PasswordChangeForm = () => {
     <>
       {userData?.userId ? (
         <Stack spacing={2}>
-          <Typography variant="h5">Change password</Typography>
+          <Typography variant="h5" color="text.primary">
+            Change password
+          </Typography>
+          <Divider />
           <TextField
             label="New Password"
             type="password"

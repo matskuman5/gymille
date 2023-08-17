@@ -24,7 +24,9 @@ const DeleteAccountPage = () => {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="h5">Delete account</Typography>
+      <Typography variant="h5" color="text.primary">
+        Delete account
+      </Typography>
       <Divider />
       <Typography
         variant="body1"
