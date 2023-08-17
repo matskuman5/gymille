@@ -31,7 +31,7 @@ const ExerciseForm = ({
 
   return (
     <Grid container spacing={1}>
-      <Grid item>
+      <Grid item xs={10}>
         <TextField
           label="Name"
           data-cy="exercise-name-field"
