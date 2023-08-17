@@ -51,7 +51,7 @@ const ExerciseForm = ({
           label="Sets"
           data-cy="exercise-sets-field"
           name="sets"
-          value={exerciseData.sets || null}
+          value={exerciseData.sets || ''}
           type="number"
           onChange={(event) =>
             setExerciseData({
@@ -68,7 +68,7 @@ const ExerciseForm = ({
           label="Reps"
           data-cy="exercise-reps-field"
           name="reps"
-          value={exerciseData.reps || null}
+          value={exerciseData.reps || ''}
           type="number"
           onChange={(event) =>
             setExerciseData({
@@ -85,7 +85,7 @@ const ExerciseForm = ({
           label={`Weight (${weightUnit === 'lbs' ? 'lbs' : 'kg'})`}
           data-cy="exercise-weight-field"
           name="weight"
-          value={exerciseData.weight || null}
+          value={exerciseData.weight || ''}
           type="number"
           onChange={(event) =>
             setExerciseData({
