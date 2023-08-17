@@ -125,6 +125,7 @@ const NewSessionForm = () => {
         <Grid item>
           <TextField
             label="Session Name"
+            data-cy="session-name-field"
             value={name}
             onChange={(event) => setName(event.target.value)}
             sx={{ maxWidth: 140 }}
@@ -133,7 +134,7 @@ const NewSessionForm = () => {
       </Grid>
 
       <Box boxShadow={3}>
-        <Stack spacing={1} margin={3}>
+        <Stack data-cy="exercise-forms" spacing={1} margin={3}>
           {exercises.map((exercise, index) => (
             <ExerciseForm
               key={exercise.id}
@@ -144,12 +145,17 @@ const NewSessionForm = () => {
             ></ExerciseForm>
           ))}
         </Stack>
-        <Button variant="contained" onClick={newExercise}>
+        <Button
+          data-cy="add-exercise-button"
+          variant="contained"
+          onClick={newExercise}
+        >
           Add Exercise
         </Button>
       </Box>
 
       <Button
+        data-cy="submit-button"
         variant="contained"
         onClick={handleSubmitClick}
         disabled={!checkValidity()}

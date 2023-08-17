@@ -34,6 +34,7 @@ const ExerciseForm = ({
       <Grid item>
         <TextField
           label="Name"
+          data-cy="exercise-name-field"
           name="name"
           value={exerciseData.name}
           onChange={(event) =>
@@ -46,6 +47,7 @@ const ExerciseForm = ({
       <Grid item xs={3}>
         <TextField
           label="Sets"
+          data-cy="exercise-sets-field"
           name="sets"
           value={exerciseData.sets}
           type="number"
@@ -62,6 +64,7 @@ const ExerciseForm = ({
       <Grid item xs={3}>
         <TextField
           label="Reps"
+          data-cy="exercise-reps-field"
           name="reps"
           value={exerciseData.reps}
           type="number"
@@ -78,6 +81,7 @@ const ExerciseForm = ({
       <Grid item xs={3}>
         <TextField
           label="Weight"
+          data-cy="exercise-weight-field"
           name="weight"
           value={exerciseData.weight}
           type="number"
@@ -96,6 +100,7 @@ const ExerciseForm = ({
       <Grid item>
         <TextField
           label="Notes"
+          data-cy="exercise-notes-field"
           name="notes"
           value={exerciseData.notes}
           onChange={(event) =>

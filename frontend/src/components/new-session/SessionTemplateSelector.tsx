@@ -60,7 +60,11 @@ const SessionTemplateSelector = ({ setExercises, setSessionName }: Props) => {
       {isSuccess && (
         <FormControl sx={{ minWidth: 120 }}>
           <InputLabel>Template</InputLabel>
-          <Select onChange={handleInputChange} value={selectedTemplate}>
+          <Select
+            data-cy="session-template-selector"
+            onChange={handleInputChange}
+            value={selectedTemplate}
+          >
             {sessionTemplates.map((sessionTemplate) => (
               <MenuItem key={sessionTemplate.name} value={sessionTemplate.name}>
                 {sessionTemplate.name}
