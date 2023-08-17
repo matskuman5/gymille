@@ -14,7 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Session } from '../../types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteSession } from '../../services/sessions';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
@@ -25,6 +25,11 @@ interface Props {
 
 const SessionItem = ({ session }: Props) => {
   const [expanded, setExpanded] = useState(false);
+  const [weightUnit, setWeightUnit] = useState<string>('');
+
+  useEffect(() => {
+    setWeightUnit(localStorage.getItem('weightUnit') || '');
+  }, []);
 
   const { data: userData } = useQuery({
     queryKey: ['userData'],
@@ -64,7 +69,9 @@ const SessionItem = ({ session }: Props) => {
               <TableCell>Exercise</TableCell>
               <TableCell>Sets</TableCell>
               <TableCell>Reps</TableCell>
-              <TableCell>Weight</TableCell>
+              <TableCell>{`Weight (${
+                weightUnit === 'lbs' ? 'lbs' : 'kg'
+              })`}</TableCell>
               <TableCell>Notes</TableCell>
             </TableRow>
           )}
@@ -76,7 +83,11 @@ const SessionItem = ({ session }: Props) => {
                 <TableCell>{exercise.name}</TableCell>
                 <TableCell>{exercise.sets}</TableCell>
                 <TableCell>{exercise.reps}</TableCell>
-                <TableCell>{exercise.weight}</TableCell>
+                <TableCell>
+                  {weightUnit === 'lbs'
+                    ? Math.round(exercise.weight * 2.2)
+                    : exercise.weight}
+                </TableCell>
                 <TableCell>{exercise.notes}</TableCell>
               </TableRow>
             ))}
