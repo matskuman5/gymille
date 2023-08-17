@@ -1,7 +1,7 @@
 import SessionItem from './SessionItem';
 import { getUserSessions } from '../../services/sessions';
 import { Stack, Typography } from '@mui/material';
-import Loading from '../Loading';
+import Loading from '../miscellaneous/Loading';
 import { useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
 import { useEffect, useState } from 'react';

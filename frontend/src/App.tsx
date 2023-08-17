@@ -5,14 +5,14 @@ import Sidebar from './components/sidebar/Sidebar';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
 import { ToastContainer } from 'react-toastify';
 import { Box, Stack, Theme, ThemeProvider, createTheme } from '@mui/material';
-import Footer from './components/Footer';
+import Footer from './components/miscellaneous/Footer';
 import { useEffect, useState } from 'react';
-import Header from './components/Header';
+import Header from './components/miscellaneous/Header';
 import PasswordChangeForm from './components/user-authentication/PasswordChangeForm';
 import DeleteAccountPage from './components/user-authentication/DeleteAccountPage';
 import AccountCreationForm from './components/user-authentication/AccountCreationForm';
-import LoginWarning from './components/LoginWarning';
-import Preferences from './components/Preferences';
+import LoginWarning from './components/miscellaneous/LoginWarning';
+import Preferences from './components/miscellaneous/Preferences';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
