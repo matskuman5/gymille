@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Exercise } from '../../types';
+import { Exercise, Session } from '../../types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
@@ -9,6 +9,7 @@ import SessionTemplateSelector from './SessionTemplateSelector';
 import { v4 as uuidv4 } from 'uuid';
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { getUserData } from '../../services/user';
+import { lbsToKg } from '../../utils/unit-change';
 
 const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
@@ -28,16 +29,7 @@ const NewSessionForm = () => {
   const queryClient = useQueryClient();
 
   const mutationPostSession = useMutation({
-    mutationFn: () =>
-      postSession(
-        {
-          id: uuidv4(),
-          date: date!.toString(),
-          name: name,
-          exercises: exercises,
-        },
-        userData!.userId
-      ),
+    mutationFn: (session: Session) => postSession(session, userData!.userId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['sessions'] });
       setExercises([]);
@@ -88,25 +80,32 @@ const NewSessionForm = () => {
   };
 
   const handleSubmitClick = () => {
+    const session = {
+      id: uuidv4(),
+      date: date!.toString(),
+      name: name,
+      exercises: exercises,
+    };
+    const sessionFromLbs = lbsToKg(session);
+
     if (userData?.userId) {
-      mutationPostSession.mutate();
+      weightUnit === 'lbs'
+        ? mutationPostSession.mutate(sessionFromLbs)
+        : mutationPostSession.mutate(session);
     } else {
       const existingTempSessions = JSON.parse(
         localStorage.getItem('tempSessions') || '[]'
       );
 
-      localStorage.setItem(
-        'tempSessions',
-        JSON.stringify([
-          ...existingTempSessions,
-          {
-            id: uuidv4(),
-            date: date!.toString(),
-            name: name,
-            exercises: exercises,
-          },
-        ])
-      );
+      weightUnit === 'lbs'
+        ? localStorage.setItem(
+            'tempSessions',
+            JSON.stringify([...existingTempSessions, sessionFromLbs])
+          )
+        : localStorage.setItem(
+            'tempSessions',
+            JSON.stringify([...existingTempSessions, session])
+          );
     }
   };
 
