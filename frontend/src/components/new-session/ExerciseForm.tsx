@@ -8,6 +8,7 @@ interface Props {
   exercise: Exercise;
   updateChildData: (e: Exercise, i: number) => void;
   deleteExercise: (index: string) => void;
+  weightUnit: string;
 }
 
 const ExerciseForm = ({
@@ -15,6 +16,7 @@ const ExerciseForm = ({
   exercise,
   updateChildData,
   deleteExercise,
+  weightUnit,
 }: Props) => {
   const [exerciseData, setExerciseData] = useState<Exercise>({
     id: exercise.id,
@@ -78,9 +80,9 @@ const ExerciseForm = ({
           helperText={exerciseData.reps <= 0 ? 'Reps must be at least 1' : ''}
         ></TextField>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={5}>
         <TextField
-          label="Weight"
+          label={`Weight (${weightUnit === 'lbs' ? 'lbs' : 'kg'})`}
           data-cy="exercise-weight-field"
           name="weight"
           value={exerciseData.weight || null}

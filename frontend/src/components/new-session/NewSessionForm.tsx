@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Stack, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Exercise } from '../../types';
 import ExerciseForm from './ExerciseForm';
 import { DatePicker } from '@mui/x-date-pickers';
@@ -14,11 +14,16 @@ const NewSessionForm = () => {
   const [date, setDate] = useState<Dayjs | null>(dayjs());
   const [name, setName] = useState('');
   const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [weightUnit, setWeightUnit] = useState<string>('');
 
   const { data: userData } = useQuery({
     queryKey: ['userData'],
     queryFn: getUserData,
   });
+
+  useEffect(() => {
+    setWeightUnit(localStorage.getItem('weightUnit') || '');
+  }, []);
 
   const queryClient = useQueryClient();
 
@@ -142,6 +147,7 @@ const NewSessionForm = () => {
               exercise={exercise}
               updateChildData={updateExercise}
               deleteExercise={deleteExercise}
+              weightUnit={weightUnit}
             ></ExerciseForm>
           ))}
         </Stack>
