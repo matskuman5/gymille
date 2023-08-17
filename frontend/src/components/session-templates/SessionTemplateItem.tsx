@@ -37,7 +37,7 @@ const SessionTemplateItem = ({
       ) : (
         <>
           <Stack direction="row">
-            <Typography variant="h4" margin={2}>
+            <Typography variant="h4" margin={2} color="text.primary">
               {sessionTemplate.name}
             </Typography>
 
@@ -63,7 +63,12 @@ const SessionTemplateItem = ({
                   : `${exerciseTemplate.name}`;
               return (
                 <ListItem key={exerciseTemplate.id}>
-                  <ListItemText primary={text} />
+                  <ListItemText
+                    primary={text}
+                    primaryTypographyProps={{
+                      color: 'text.primary',
+                    }}
+                  />
                 </ListItem>
               );
             })}
