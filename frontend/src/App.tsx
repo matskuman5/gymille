@@ -4,9 +4,9 @@ import SessionList from './components/session-list/SessionList';
 import Sidebar from './components/sidebar/Sidebar';
 import SessionTemplateList from './components/session-templates/SessionTemplateList';
 import { ToastContainer } from 'react-toastify';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Theme, ThemeProvider, createTheme } from '@mui/material';
 import Footer from './components/Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import PasswordChangeForm from './components/user-authentication/PasswordChangeForm';
 import DeleteAccountPage from './components/user-authentication/DeleteAccountPage';
@@ -16,46 +16,60 @@ import Preferences from './components/Preferences';
 
 const App = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+  const [theme, setTheme] = useState<Theme>(createTheme());
+
+  useEffect(() => {
+    const mode = localStorage.getItem('darkMode') === 'true' ? 'dark' : 'light';
+    setTheme(
+      createTheme({
+        palette: {
+          mode: mode,
+        },
+      })
+    );
+  }, []);
 
   return (
-    <Box>
-      <Sidebar
-        mobileSidebarOpen={mobileSidebarOpen}
-        setMobileSidebarOpen={setMobileSidebarOpen}
-      />
-      <Stack
-        spacing={2}
-        sx={{
-          width: { marginLeft: 200 },
-          mx: { xs: 0, sm: 25 },
-        }}
-      >
-        <Header setMobileSidebarOpen={setMobileSidebarOpen} />
-        <Box>
-          <LoginWarning />
-          <Routes>
-            <Route path="/" element={<NewSessionForm />} />
-            <Route path="/sessions" element={<SessionList />} />
-            <Route
-              path="/session-templates"
-              element={<SessionTemplateList />}
-            />
-            <Route path="/user" element={<AccountCreationForm />} />
-            <Route
-              path="/user/change-password"
-              element={<PasswordChangeForm />}
-            />
-            <Route
-              path="/user/delete-account"
-              element={<DeleteAccountPage />}
-            />
-            <Route path="/preferences" element={<Preferences />} />
-          </Routes>
-        </Box>
-        <Footer />
-      </Stack>
-      <ToastContainer />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box bgcolor="background.default">
+        <Sidebar
+          mobileSidebarOpen={mobileSidebarOpen}
+          setMobileSidebarOpen={setMobileSidebarOpen}
+        />
+        <Stack
+          spacing={2}
+          sx={{
+            width: { marginLeft: 200 },
+            mx: { xs: 0, sm: 25 },
+          }}
+        >
+          <Header setMobileSidebarOpen={setMobileSidebarOpen} />
+          <Box>
+            <LoginWarning />
+            <Routes>
+              <Route path="/" element={<NewSessionForm />} />
+              <Route path="/sessions" element={<SessionList />} />
+              <Route
+                path="/session-templates"
+                element={<SessionTemplateList />}
+              />
+              <Route path="/user" element={<AccountCreationForm />} />
+              <Route
+                path="/user/change-password"
+                element={<PasswordChangeForm />}
+              />
+              <Route
+                path="/user/delete-account"
+                element={<DeleteAccountPage />}
+              />
+              <Route path="/preferences" element={<Preferences />} />
+            </Routes>
+          </Box>
+          <Footer />
+        </Stack>
+        <ToastContainer />
+      </Box>
+    </ThemeProvider>
   );
 };
 
