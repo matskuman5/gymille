@@ -1,3 +1,17 @@
+# [Gymille!](gymille-frontend.fly.dev/front) - a simple workout tracker webapp
+
+Track your workouts exercise by exercise, see your progress week by week. Create session templates to fill in sessions quickly. Register and log in to save your sessions and session templates server-side, or try the app before and store data locally. You can even run the entire app on your own computer using a single command!
+
+# Stack
+
+The entire app is written in [TypeScript](https://www.typescriptlang.org/), with [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) taking care of linting and opinionated code formatting. E2E-testing is done using [Cypress](https://www.cypress.io/). The frontend and backend are hosted as separate instances in [fly.io](https://fly.io/), or locally in [Docker](https://www.docker.com/) containers. Testing and deployment is automated with [GitHub Actions](https://github.com/features/actions).
+
+The frontend is a [React](https://react.dev/) app built with [Vite](https://vitejs.dev/). HTTP requests to the backend are handled by [Axios](https://axios-http.com/), using [React Query](https://tanstack.com/query/latest/) for asynchronous state management and data fetching logic. The main component and styling library used is [Material UI](https://mui.com/).
+
+The backend is a REST API implemented with [Node](https://nodejs.org/en) that uses [Express](https://expressjs.com/) for HTTP requests. Database stuff is handled with [Sequelize](https://sequelize.org/), along with [Umzug](https://github.com/sequelize/umzug) for migrations and seed data. Unit and integration tests use [Jest](https://jestjs.io/).
+
+User, session and session template data is stored in a [PostgreSQL](https://www.postgresql.org/) database running either locally in a Docker container or remotely in a fly.io instance. Browser session data is similarly stored in [Redis](https://redis.io/).
+
 # Running locally
 
 Requires [Docker](https://www.docker.com/).
