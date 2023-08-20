@@ -7,6 +7,7 @@ import RedisStore from 'connect-redis';
 import { CookieOptions } from 'express';
 
 export const sequelize = new Sequelize(DATABASE_URL, {
+  dialect: 'postgres',
   logging: false,
 });
 
