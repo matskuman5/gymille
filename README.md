@@ -6,7 +6,7 @@ Track your workouts exercise by exercise, see your progress week by week. Create
 
 The entire app is written in [TypeScript](https://www.typescriptlang.org/), with [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) taking care of linting and opinionated code formatting. E2E-testing is done using [Cypress](https://www.cypress.io/). The frontend and backend are hosted as separate instances in [fly.io](https://fly.io/), or locally in [Docker](https://www.docker.com/) containers. Testing and deployment is automated with [GitHub Actions](https://github.com/features/actions).
 
-The frontend is a [React](https://react.dev/) app built with [Vite](https://vitejs.dev/). HTTP requests to the backend are handled by [Axios](https://axios-http.com/), using [React Query](https://tanstack.com/query/latest/) for asynchronous state management and data fetching logic. The main component and styling library used is [Material UI](https://mui.com/).
+The frontend is a [React](https://react.dev/) SPA built with [Vite](https://vitejs.dev/), with [React Router](https://reactrouter.com/en/main) to handle client side routing. HTTP requests to the backend are handled by [Axios](https://axios-http.com/), using [React Query](https://tanstack.com/query/latest/) for asynchronous state management and data fetching logic. The main component and styling library used is [Material UI](https://mui.com/).
 
 The backend is a REST API implemented with [Node](https://nodejs.org/en) that uses [Express](https://expressjs.com/) for HTTP requests. Database stuff is handled with [Sequelize](https://sequelize.org/), along with [Umzug](https://github.com/sequelize/umzug) for migrations and seed data. Unit and integration tests use [Jest](https://jestjs.io/).
 
