@@ -4,13 +4,15 @@ FROM node:18-alpine AS compiler
 
 WORKDIR /usr/src/app
 
-# Copy necessary files for installing packages and compilation
+# Copy necessary files for installing packages
 COPY package.json .
-COPY tsconfig.json .
-COPY src ./src
 
 # Install TypeScript so we can compile
+COPY tsconfig.json .
 RUN npm install typescript
+
+# Copy code to be copiled
+COPY src ./src
 
 # Compile the app into ./dist
 RUN npm run build
