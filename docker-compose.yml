@@ -7,6 +7,22 @@ services:
   backend:
     build: ./backend
     container_name: app-backend
+    environment:
+      - DATABASE_URL=postgres://postgres:test@postgres:5432
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=test
+    ports:
+      - '5432:5432'
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - '6379:6379'
   nginx-reverse-proxy:
     image: nginx:1.24.0-alpine
     container_name: nginx-reverse-proxy
