@@ -12,6 +12,7 @@ export const sequelize = new Sequelize(DATABASE_URL, {
 
 export const connectToPostgres = async () => {
   try {
+    logger.info(`Connecting to Postgres at ${DATABASE_URL}...`);
     await sequelize.authenticate();
     logger.info('Connected to Postgres successfully');
   } catch (error) {
@@ -25,6 +26,7 @@ export const redisClient = createClient({
 
 export const connectToRedis = async () => {
   try {
+    logger.info(`Connecting to Redis at ${REDIS_URL}...`);
     await redisClient.connect();
     logger.info('Connected to Redis successfully');
   } catch (error) {
