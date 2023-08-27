@@ -66,3 +66,7 @@ $ npm run dev
 ```
 
 The frontend can be accessed via http://localhost:5173/front, API requests via http://localhost:3000/api. The dev scripts use [Vite](https://vitejs.dev/) and [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) to restart the app whenever changes to the source code are detected.
+
+# Licence
+
+This project is licenced under the GNU General Public License v3.0.
