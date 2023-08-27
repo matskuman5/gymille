@@ -2,6 +2,20 @@
 
 Track your workouts exercise by exercise, see your progress week by week. Create session templates to fill in sessions quickly. Register and log in to save your sessions and session templates server-side, or try the app before and store data locally. You can even run the entire app on your own computer using a single command!
 
+# Instructions
+
+You can navigate throughout the app using the sidebar. The sidebar is open by default on desktop, or you can hit the icon in the top left on mobile to open it.
+
+Save a new workout session in the "New Session" page, which should be open by default. You can add multiple exercises to the session by clicking "Add Exercise". When you're done, click "Submit" to save the session.
+
+You can see saved sessions in the "Previous Sessions" page. Click the arrow button on the left of the session name to show more info.
+
+Create session templates in the "Session Templates" page. Click "New" to create a new template, then hit "Edit" next to its name to add exercise templates to it and hit "Confirm" to save changes. In the "New Session" page, you can use the template selector in the top left to load exercises to the current session from the selected template.
+
+In the "Preferences" page, you can adjust the weight unit from kilograms to pounds as well as enable dark mode.
+
+Create an account or log in by entering a unique username and a password at least 8 characters long. Once logged in, any sessions or session templates you add will be stored in the backend server, so they are synchronized across devices and even if you clear local browser data. You can log out, change your password or delete your account (including all stored data) using the appropriate buttons in the sidebar.
+
 # Stack
 
 The entire app is written in [TypeScript](https://www.typescriptlang.org/), with [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) taking care of linting and opinionated code formatting. E2E-testing is done using [Cypress](https://www.cypress.io/). The frontend and backend are hosted as separate instances in [fly.io](https://fly.io/), or locally in [Docker](https://www.docker.com/) containers. Testing and deployment is automated with [GitHub Actions](https://github.com/features/actions).
