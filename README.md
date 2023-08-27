@@ -67,6 +67,10 @@ $ npm run dev
 
 The frontend can be accessed via http://localhost:5173/front, API requests via http://localhost:3000/api. The dev scripts use [Vite](https://vitejs.dev/) and [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) to restart the app whenever changes to the source code are detected.
 
+# Time used to develop
+
+In [time-used.md](time-used.md), you can find a diary of the amount of time I used to develop the app and what I used the time to do. The entire app from start to finish took about 90 hours of work, not including planning and research.
+
 # Licence
 
 This project is licenced under the GNU General Public License v3.0.
