@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import { logRequests } from './utils/logging';
 import pingRouter from './routers/ping';
-import sessionRouter from './routers/session';
 import { NODE_ENV } from './utils/config';
 import sessionTemplateRouter from './routers/session-templates';
 import { sessionMiddleware } from './utils/db';
@@ -47,7 +46,6 @@ app.use(
 );
 
 app.use('/ping', pingRouter);
-app.use('/api/sessions', sessionRouter);
 app.use('/api/session-templates', sessionTemplateRouter);
 app.use('/api/users', userRouter);
 app.use('/api/users', userSessionsRouter);
