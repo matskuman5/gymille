@@ -1,4 +1,5 @@
-# [Gymille!](https://gymille-frontend.fly.dev/front) - a simple workout tracker webapp
+# Gymille - a simple workout tracker webapp
+# https://gymille-frontend.fly.dev/front
 
 Track your workouts exercise by exercise, see your progress week by week. Create session templates to fill in sessions quickly. Register and log in to save your sessions and session templates server-side, or try the app before and store data locally. You can even run the entire app on your own computer using a single command!
 
